@@ -1,0 +1,4 @@
+project_id = "yveuznhgeqrgasfbimdf"
+
+[functions.calculate-kundali]
+verify_jwt = false

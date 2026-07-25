@@ -1,0 +1,793 @@
+import React, { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { StarField } from '@/components/StarField';
+import { Globe, ArrowRight, Sparkles, Heart, Briefcase, Info, Home, PhoneCall, Check, Trash2, Calendar, Clock, MapPin, User, Mail, Phone, CreditCard, ChevronRight, Star } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { LanguageToggle } from '@/components/LanguageToggle';
+import { CurrencyToggle } from '@/components/CurrencyToggle';
+import { cn } from '@/lib/utils';
+
+// Constants for services
+const SERVICES = [
+  {
+    id: 'birth-chart',
+    title: 'BIRTH CHART ANALYSIS',
+    price: 0,
+    priceLabel: 'Free',
+    description: 'Comprehensive Vedic birth chart (Kundli) analysis focusing on your planetary placements and their effects.',
+    icon: <Globe className="w-5 h-5" />,
+    color: '#3B82F6'
+  },
+  {
+    id: 'daily-predictions',
+    title: 'YOUR DAILY PREDICTIONS',
+    price: 0,
+    priceLabel: 'Free',
+    description: 'Get your personalized daily horoscope and astrological predictions based on current planetary transits.',
+    icon: <Sparkles className="w-5 h-5" />,
+    color: '#6366F1'
+  },
+  {
+    id: 'bnn-analysis',
+    title: 'BIRTH CHART BNN ANALYSIS',
+    price: 25.20,
+    description: 'In-depth Bhrigu Nandi Nadi analysis for unique insights into your destiny and soul purpose.',
+    icon: <Sparkles className="w-5 h-5" />,
+    color: '#A855F7'
+  },
+  {
+    id: 'career',
+    title: 'CAREER PREDICTIONS',
+    price: 18.00,
+    description: 'Find the right profession, timing for job changes, and strategies for professional success.',
+    icon: <Briefcase className="w-5 h-5" />,
+    color: '#22C55E'
+  },
+  {
+    id: 'marriage',
+    title: 'MARRIAGE PREDICTIONS',
+    price: 18.00,
+    description: 'Understand your relationship patterns, timing for marriage, and compatibility factors.',
+    icon: <Heart className="w-5 h-5" />,
+    color: '#EC4899'
+  },
+  {
+    id: 'education',
+    title: 'EDUCATION PREDICTIONS',
+    price: 13.20,
+    description: 'Guidance on academic choices, higher studies, and success in competitive exams.',
+    icon: <Sparkles className="w-5 h-5" />,
+    color: '#EAB308'
+  },
+  {
+    id: 'wealth',
+    title: 'WEALTH & PROSPERITY',
+    price: 25.20,
+    description: 'Analyze your financial potential, investment luck, and strategies for wealth creation.',
+    icon: <Briefcase className="w-5 h-5" />,
+    color: '#3B82F6'
+  },
+  {
+    id: 'dasha',
+    title: 'DASHA PREDICTIONS',
+    price: 18.00,
+    description: 'Detailed analysis of your Vimshottari Dasha periods and their impact on your life events.',
+    icon: <Sparkles className="w-5 h-5" />,
+    color: '#6366F1'
+  },
+  {
+    id: 'progression',
+    title: 'PROGRESSION PREDICTIONS',
+    price: 25.20,
+    description: 'Modern and ancient progression techniques for precise timing of future events.',
+    icon: <Sparkles className="w-5 h-5" />,
+    color: '#A855F7'
+  },
+  {
+    id: 'transit',
+    title: 'GOCHAR (TRANSIT) PREDICTIONS',
+    price: 13.20,
+    description: 'Current planetary transits and their effects on your natal chart for timely guidance.',
+    icon: <Globe className="w-5 h-5" />,
+    color: '#F97316'
+  },
+  {
+    id: 'bnn-combinations',
+    title: 'BNN COMBINATIONS',
+    price: 21.60,
+    description: 'Discover unique BNN planetary combinations that shape your personality and destiny.',
+    icon: <Sparkles className="w-5 h-5" />,
+    color: '#8B5CF6'
+  },
+  {
+    id: 'bnn-dhana-yogs',
+    title: 'BNN DHANA YOGS',
+    price: 18.00,
+    description: 'Identify wealth-producing yogas in your chart for financial growth and abundance.',
+    icon: <Briefcase className="w-5 h-5" />,
+    color: '#10B981'
+  },
+  {
+    id: 'bnn-medical',
+    title: 'BNN MEDICAL ASTROLOGY',
+    price: 18.00,
+    description: 'Health insights based on planetary positions to help prevent and manage health issues.',
+    icon: <Sparkles className="w-5 h-5" />,
+    color: '#EF4444'
+  },
+  {
+    id: 'bnn-foreign',
+    title: 'BNN FOREIGN TRAVEL',
+    price: 13.20,
+    description: 'Predictions about foreign travel, settlement abroad, and overseas opportunities.',
+    icon: <Globe className="w-5 h-5" />,
+    color: '#0EA5E9'
+  },
+  {
+    id: 'bnn-career-analysis',
+    title: 'BNN CAREER ANALYSIS',
+    price: 18.00,
+    description: 'Deep BNN-based career analysis for finding the right profession and growth timing.',
+    icon: <Briefcase className="w-5 h-5" />,
+    color: '#64748B'
+  },
+  {
+    id: 'bnn-business',
+    title: 'BNN BUSINESS ANALYSIS',
+    price: 21.60,
+    description: 'Business potential, partnerships, and timing for entrepreneurial ventures.',
+    icon: <Briefcase className="w-5 h-5" />,
+    color: '#334155'
+  },
+  {
+    id: 'bnn-family',
+    title: 'BNN FAMILY ANALYSIS',
+    price: 13.20,
+    description: 'Insights into family dynamics, harmony, and relationships with family members.',
+    icon: <Heart className="w-5 h-5" />,
+    color: '#F43F5E'
+  },
+  {
+    id: 'bnn-education-analysis',
+    title: 'BNN EDUCATION ANALYSIS',
+    price: 13.20,
+    description: 'Educational path, best fields of study, and academic success predictions.',
+    icon: <Sparkles className="w-5 h-5" />,
+    color: '#84CC16'
+  },
+  {
+    id: 'bnn-marriage-analysis',
+    title: 'BNN MARRIAGE ANALYSIS',
+    price: 18.00,
+    description: 'Marriage timing, spouse characteristics, and marital harmony through BNN methods.',
+    icon: <Heart className="w-5 h-5" />,
+    color: '#D946EF'
+  },
+  {
+    id: 'bnn-love',
+    title: 'BNN LOVE MARRIAGE & DIVORCE',
+    price: 18.00,
+    description: 'Insights into love relationships, chances of love marriage, and relationship stability.',
+    icon: <Heart className="w-5 h-5" />,
+    color: '#EC4899'
+  },
+  {
+    id: 'bnn-santan',
+    title: 'BNN SANTAN ANALYSIS',
+    price: 13.20,
+    description: 'Predictions about children, their well-being, and parent-child relationships.',
+    icon: <Heart className="w-5 h-5" />,
+    color: '#06B6D4'
+  },
+  {
+    id: 'bnn-property',
+    title: 'BNN PROPERTY & ASSET YOG',
+    price: 18.00,
+    description: 'Property acquisition timing, real estate gains, and asset accumulation insights.',
+    icon: <Home className="w-5 h-5" />,
+    color: '#71717A'
+  },
+  {
+    id: 'bnn-dharma',
+    title: 'BNN DHARMA-KARMA YOG',
+    price: 21.60,
+    description: 'Understanding your life purpose, dharmic path, and karmic patterns.',
+    icon: <Sparkles className="w-5 h-5" />,
+    color: '#A855F7'
+  },
+  {
+    id: 'bnn-gains',
+    title: 'BNN GAINS & MARKET YOGS',
+    price: 18.00,
+    description: 'Stock market, speculative gains, and financial market timing predictions.',
+    icon: <Briefcase className="w-5 h-5" />,
+    color: '#22C55E'
+  },
+  {
+    id: 'bnn-legal',
+    title: 'BNN LEGAL ISSUES YOG',
+    price: 13.20,
+    description: 'Legal matters, court cases, and their outcomes based on planetary analysis.',
+    icon: <Info className="w-5 h-5" />,
+    color: '#EF4444'
+  },
+  {
+    id: 'bnn-retrograde',
+    title: 'BNN RETROGRADE ANALYSIS',
+    price: 18.00,
+    description: 'Impact of retrograde planets on your life and remedies for their negative effects.',
+    icon: <Sparkles className="w-5 h-5" />,
+    color: '#3B82F6'
+  },
+  {
+    id: 'bnn-personality',
+    title: 'BNN PERSONALITY TRAITS',
+    price: 13.20,
+    description: 'Discover your innate personality traits and behavioral patterns through BNN.',
+    icon: <Sparkles className="w-5 h-5" />,
+    color: '#6366F1'
+  },
+  {
+    id: 'bnn-creative',
+    title: 'BNN CREATIVE TALENT',
+    price: 13.20,
+    description: 'Identify hidden creative talents and artistic abilities in your chart.',
+    icon: <Sparkles className="w-5 h-5" />,
+    color: '#EC4899'
+  },
+  {
+    id: 'bnn-kundali-milan',
+    title: 'BNN KUNDALI MILAN',
+    price: 25.20,
+    description: 'Comprehensive compatibility matching for marriage using BNN methodology.',
+    icon: <Heart className="w-5 h-5" />,
+    color: '#D946EF'
+  },
+  {
+    id: 'bnn-remedies',
+    title: 'BNN REMEDIES',
+    price: 18.00,
+    description: 'Personalized remedies including mantras, gemstones, and rituals for planetary appeasement.',
+    icon: <Sparkles className="w-5 h-5" />,
+    color: '#F59E0B'
+  }
+];
+
+const AllServices = () => {
+  const navigate = useNavigate();
+  const { t } = useLanguage();
+  const [currentStep, setCurrentStep] = useState(1);
+  const [selectedServiceIds, setSelectedServiceIds] = useState<string[]>([]);
+  const [userDetails, setUserDetails] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    dob: '',
+    tob: '',
+    pob: ''
+  });
+
+  const selectedServices = useMemo(() => 
+    SERVICES.filter(s => selectedServiceIds.includes(s.id)),
+    [selectedServiceIds]
+  );
+
+  const totalPrice = useMemo(() => 
+    selectedServices.reduce((acc, curr) => acc + curr.price, 0),
+    [selectedServices]
+  );
+
+  const toggleService = (id: string) => {
+    setSelectedServiceIds(prev => 
+      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+    );
+  };
+
+  const removeService = (id: string) => {
+    setSelectedServiceIds(prev => prev.filter(i => i !== id));
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserDetails(prev => ({ ...prev, [name]: value }));
+  };
+
+  // Render Stepper component
+  const renderStepper = () => (
+    <div className="flex items-center justify-center w-full mb-8 mt-4 px-2">
+      {[
+        { step: 1, label: 'Select Services' },
+        { step: 2, label: 'Your Details' },
+        { step: 3, label: 'Confirm & Pay' }
+      ].map((item, index) => (
+        <React.Fragment key={item.step}>
+          <div className="flex flex-col items-center relative">
+            <div className={cn(
+              "w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300",
+              currentStep >= item.step ? "bg-blue-600 text-white shadow-lg shadow-blue-400 border-opacity-30"  : "bg-slate-200 text-slate-500"
+            )}>
+              {currentStep > item.step ? <Check className="w-4 h-4" /> : item.step}
+            </div>
+            <span className={cn(
+              "absolute -bottom-6 whitespace-nowrap text-[10px] font-bold uppercase tracking-wider",
+              currentStep >= item.step ? "text-blue-600" : "text-slate-400"
+            )}>
+              {t(item.label, item.label)}
+            </span>
+          </div>
+          {index < 2 && (
+            <div className={cn(
+              "h-[2px] flex-1 mx-2 sm:mx-4 transition-all duration-300",
+              currentStep > item.step ? "bg-blue-600" : "bg-slate-200"
+            )} />
+          )}
+        </React.Fragment>
+      ))}
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen relative flex flex-col items-center py-8 overflow-x-hidden bg-slate-950">
+      <StarField count={100} />
+
+      <div className="relative z-10 w-full max-w-5xl px-4 animate-in fade-in zoom-in duration-700">
+        <div className="glass-card flex flex-col rounded-3xl border border-blue-300 bg-opacity-50 bg-white bg-opacity-90 backdrop-blur-xl shadow-2xl shadow-blue-400 bg-opacity-30 overflow-hidden min-h-[800px]">
+          
+          {/* Header */}
+          <div className="bg-[#4272e8] border-b-[3px] border-white py-4 shadow-md w-full relative z-20">
+            <h1 className="text-white text-center font-serif text-xl sm:text-2xl font-bold tracking-widest drop-shadow-md">
+              BOOK CONSULTATION
+            </h1>
+            <button 
+              onClick={() => navigate('/')}
+              className="absolute left-6 top-1 bg-opacity-2 -translate-y-1 bg-opacity-2 flex items-center gap-1.5 text-white bg-opacity-90 hover:text-white transition-colors font-bold text-sm"
+            >
+              <Home className="w-4 h-4" />
+              <span className="hidden sm:inline">Back</span>
+            </button>
+            <div className="absolute right-6 top-1 bg-opacity-2 -translate-y-1 bg-opacity-2 scale-90 sm:scale-100 flex gap-2">
+              <CurrencyToggle triggerClassName="bg-white bg-opacity-20 border-white bg-opacity-30 text-white h-8 px-2" />
+            </div>
+          </div>
+
+          {/* Stepper Area */}
+          <div className="w-full max-w-2xl mx-auto py-6">
+            {renderStepper()}
+          </div>
+
+          {/* Main Content Area */}
+          <div className="flex-1 p-6 md:p-8 pt-0">
+            {currentStep === 1 && (
+              <div className="flex flex-col lg:flex-row gap-8">
+                {/* Services List */}
+                <div className="flex-1">
+                  <div className="mb-6">
+                    <h2 className="text-2xl font-bold text-slate-800 uppercase tracking-tight">
+                      {t('Select Your Services', 'अपनी सेवाएँ चुनें')}
+                    </h2>
+                    <p className="text-slate-500 text-sm mt-1">
+                      {t('Choose one or more services for your consultation.', 'अपनी परामर्श के लिए एक या अधिक सेवाएँ चुनें।')}
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {SERVICES.map((s) => (
+                      <div 
+                        key={s.id} 
+                        onClick={() => toggleService(s.id)}
+                        className={cn(
+                          "cursor-pointer rounded-2xl border p-4 transition-all duration-300 group relative overflow-hidden",
+                          selectedServiceIds.includes(s.id) 
+                            ? "bg-blue-50 bg-opacity-50 border-blue-400 shadow-md ring-2 ring-blue-400 border-opacity-20"  
+                            : "bg-white border-slate-200 hover:border-blue-300 hover:shadow-lg"
+                        )}
+                      >
+                        <div className="flex items-start gap-4">
+                          <div className={cn(
+                            "p-2 rounded-xl shrink-0 transition-colors",
+                            selectedServiceIds.includes(s.id) ? "bg-blue-600 text-white" : "bg-blue-50 text-blue-600 group-hover:bg-blue-100"
+                          )}>
+                            {s.icon}
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex justify-between items-start mb-1">
+                              <h3 className="font-bold text-slate-800 text-sm leading-tight uppercase">
+                                {t(s.title, s.title)}
+                              </h3>
+                              <div className={cn(
+                                "w-4 h-4 rounded-full border flex items-center justify-center shrink-0 transition-all",
+                                selectedServiceIds.includes(s.id) ? "bg-blue-600 border-blue-600" : "border-slate-300"
+                              )}>
+                                {selectedServiceIds.includes(s.id) && <Check className="w-3 h-3 text-white" />}
+                              </div>
+                            </div>
+                            <p className="text-blue-600 font-bold text-sm mb-2">
+                              {s.price === 0 ? t('Free', 'निःशुल्क') : `$${s.price.toFixed(2)}`}
+                            </p>
+                            <p className="text-slate-500 text-[11px] leading-relaxed">
+                              {t(s.description, s.description)}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Order Summary Sidebar */}
+                <div className="w-full lg:w-[350px]">
+                  <div className="sticky top-8 bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
+                    <div className="bg-slate-50 border-b border-slate-100 p-5 flex items-center gap-3">
+                      <div className="p-2 bg-blue-100 rounded-lg">
+                        <Briefcase className="w-5 h-5 text-blue-600" />
+                      </div>
+                      <h3 className="font-bold text-slate-800 uppercase tracking-wider">{t('Order Summary', 'आदेश सारांश')}</h3>
+                    </div>
+
+                    <div className="p-5 space-y-4 max-h-[400px] overflow-y-auto">
+                      {selectedServices.length === 0 ? (
+                        <div className="text-center py-8">
+                          <p className="text-slate-400 text-sm italic">{t('No services selected yet.', 'अभी तक कोई सेवा नहीं चुनी गई।')}</p>
+                        </div>
+                      ) : (
+                        selectedServices.map(s => (
+                          <div key={s.id} className="flex justify-between items-center group animate-in slide-in-from-right-2 duration-300">
+                            <div className="flex-1 mr-4">
+                              <p className="text-xs font-bold text-slate-700 uppercase leading-none mb-1">{t(s.title, s.title)}</p>
+                              <p className="text-[11px] font-bold text-blue-600">{s.price === 0 ? 'Free' : `$${s.price.toFixed(2)}`}</p>
+                            </div>
+                            <button 
+                              onClick={(e) => { e.stopPropagation(); removeService(s.id); }}
+                              className="p-1.5 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
+                        ))
+                      )}
+                    </div>
+
+                    <div className="p-5 bg-slate-50 border-t border-slate-200 space-y-4">
+                      <div className="flex justify-between items-center text-lg">
+                        <span className="font-bold text-slate-800 uppercase tracking-tighter">{t('Total', 'कुल')}</span>
+                        <span className="font-black text-blue-600 tracking-tighter">${totalPrice.toFixed(2)}</span>
+                      </div>
+                      <Button 
+                        disabled={selectedServices.length === 0}
+                        onClick={() => setCurrentStep(2)}
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold h-12 rounded-xl transition-all shadow-lg shadow-blue-500 bg-opacity-20 group"
+                      >
+                        {t('Continue to Details', 'विवरण पर जारी रखें')}
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {currentStep === 2 && (
+              <div className="max-w-2xl mx-auto animate-in slide-in-from-right-4 duration-500">
+                <div className="mb-8">
+                  <h2 className="text-3xl font-bold text-slate-800 uppercase tracking-tight">
+                    {t('Your Details', 'आपका विवरण')}
+                  </h2>
+                  <p className="text-slate-500 mt-2">
+                    {t('Please provide your birth details for the consultation.', 'परामर्श के लिए कृपया अपने जन्म विवरण प्रदान करें।')}
+                  </p>
+                </div>
+
+                <div className="space-y-6">
+                  <div className="grid grid-cols-1 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-slate-700 uppercase tracking-wide flex items-center gap-2">
+                        <User className="w-4 h-4 text-blue-600" />
+                        {t('Full Name', 'पूरा नाम')}
+                      </label>
+                      <input 
+                        type="text"
+                        name="fullName"
+                        value={userDetails.fullName}
+                        onChange={handleInputChange}
+                        placeholder={t('Enter your full name', 'अपना पूरा नाम दर्ज करें')}
+                        className="w-full bg-slate-50 bg-opacity-50 border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 bg-opacity-20 focus:border-blue-500 outline-none transition-all"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-sm font-bold text-slate-700 uppercase tracking-wide flex items-center gap-2">
+                          <Mail className="w-4 h-4 text-blue-600" />
+                          {t('Email', 'ईमेल')}
+                        </label>
+                        <input 
+                          type="email"
+                          name="email"
+                          value={userDetails.email}
+                          onChange={handleInputChange}
+                          placeholder="your@email.com"
+                          className="w-full bg-slate-50 bg-opacity-50 border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 bg-opacity-20 focus:border-blue-500 outline-none transition-all"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-bold text-slate-700 uppercase tracking-wide flex items-center gap-2">
+                          <Phone className="w-4 h-4 text-blue-600" />
+                          {t('Phone Number', 'फ़ोन नंबर')}
+                        </label>
+                        <input 
+                          type="tel"
+                          name="phone"
+                          value={userDetails.phone}
+                          onChange={handleInputChange}
+                          placeholder="+91 98XXX XXXXX"
+                          className="w-full bg-slate-50 bg-opacity-50 border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 bg-opacity-20 focus:border-blue-500 outline-none transition-all"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-slate-700 uppercase tracking-wide flex items-center gap-2">
+                        <Calendar className="w-4 h-4 text-blue-600" />
+                        {t('Date of Birth', 'जन्म तिथि')}
+                      </label>
+                      <input 
+                        type="date"
+                        name="dob"
+                        value={userDetails.dob}
+                        onChange={handleInputChange}
+                        className="w-full bg-slate-50 bg-opacity-50 border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 bg-opacity-20 focus:border-blue-500 outline-none transition-all"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-sm font-bold text-slate-700 uppercase tracking-wide flex items-center gap-2">
+                          <Clock className="w-4 h-4 text-blue-600" />
+                          {t('Time of Birth', 'जन्म समय')}
+                        </label>
+                        <input 
+                          type="time"
+                          name="tob"
+                          value={userDetails.tob}
+                          onChange={handleInputChange}
+                          className="w-full bg-slate-50 bg-opacity-50 border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 bg-opacity-20 focus:border-blue-500 outline-none transition-all"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-bold text-slate-700 uppercase tracking-wide flex items-center gap-2">
+                          <MapPin className="w-4 h-4 text-blue-600" />
+                          {t('Place of Birth', 'जन्म स्थान')}
+                        </label>
+                        <input 
+                          type="text"
+                          name="pob"
+                          value={userDetails.pob}
+                          onChange={handleInputChange}
+                          placeholder={t('City, State, Country', 'शहर, राज्य, देश')}
+                          className="w-full bg-slate-50 bg-opacity-50 border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 bg-opacity-20 focus:border-blue-500 outline-none transition-all"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4 pt-4">
+                    <Button 
+                      variant="outline"
+                      onClick={() => setCurrentStep(1)}
+                      className="flex-1 h-12 rounded-xl border-slate-200 text-slate-600 font-bold hover:bg-slate-50"
+                    >
+                      {t('Back', 'वापस')}
+                    </Button>
+                    <Button 
+                      onClick={() => setCurrentStep(3)}
+                      className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold h-12 rounded-xl shadow-lg shadow-blue-500 bg-opacity-20 animate-pulse-subtle"
+                    >
+                      {t('Review Order', 'आदेश की समीक्षा करें')}
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {currentStep === 3 && (
+              <div className="max-w-3xl mx-auto animate-in zoom-in-95 duration-500">
+                <div className="mb-8 text-center">
+                  <h2 className="text-3xl font-bold text-slate-800 uppercase tracking-tight">
+                    {t('Confirm & Pay', 'पुष्टि करें और भुगतान करें')}
+                  </h2>
+                  <p className="text-slate-500 mt-2">
+                    {t('Review your information and complete the payment.', 'अपनी जानकारी की समीक्षा करें और भुगतान पूरा करें।')}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                  {/* Order Review */}
+                  <div className="bg-slate-50 bg-opacity-50 rounded-3xl border border-slate-200 p-6">
+                    <h3 className="font-bold text-slate-800 uppercase text-sm mb-4 border-b border-slate-200 pb-2 flex items-center justify-between">
+                      {t('Order Summary', 'आदेश सारांश')}
+                      <button onClick={() => setCurrentStep(1)} className="text-blue-600 text-[10px] hover:underline uppercase">{t('Edit', 'बदलें')}</button>
+                    </h3>
+                    <div className="space-y-3 mb-4">
+                      {selectedServices.map(s => (
+                        <div key={s.id} className="flex justify-between text-xs">
+                          <span className="text-slate-600 uppercase font-medium">{t(s.title, s.title)}</span>
+                          <span className="font-bold text-slate-800">${s.price.toFixed(2)}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="pt-3 border-t border-slate-200 flex justify-between items-center">
+                      <span className="font-bold text-slate-800 uppercase text-base">{t('Total Amount', 'कुल राशि')}</span>
+                      <span className="text-2xl font-black text-blue-600 tracking-tighter">${totalPrice.toFixed(2)}</span>
+                    </div>
+                  </div>
+
+                  {/* Details Review */}
+                  <div className="bg-slate-50 bg-opacity-50 rounded-3xl border border-slate-200 p-6">
+                    <h3 className="font-bold text-slate-800 uppercase text-sm mb-4 border-b border-slate-200 pb-2 flex items-center justify-between">
+                      {t('Consultation Details', 'परामर्श विवरण')}
+                      <button onClick={() => setCurrentStep(2)} className="text-blue-600 text-[10px] hover:underline uppercase">{t('Edit', 'बदलें')}</button>
+                    </h3>
+                    <div className="space-y-2">
+                      <div className="flex flex-col">
+                        <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none mb-1">{t('Name', 'नाम')}</span>
+                        <span className="text-sm font-bold text-slate-800 uppercase">{userDetails.fullName || 'N/A'}</span>
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none mb-1">{t('Date of Birth', 'जन्म तिथि')}</span>
+                        <span className="text-sm font-bold text-slate-800 uppercase">{userDetails.dob || 'N/A'} at {userDetails.tob || 'N/A'}</span>
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none mb-1">{t('Place', 'स्थान')}</span>
+                        <span className="text-sm font-bold text-slate-800 uppercase">{userDetails.pob || 'N/A'}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Payment Methods */}
+                <div className="bg-white rounded-3xl border border-blue-100 shadow-xl p-8 mb-8">
+                  <h3 className="font-bold text-slate-800 uppercase text-sm mb-6 flex items-center gap-2">
+                    <CreditCard className="w-5 h-5 text-blue-600" />
+                    {t('Select Payment Method', 'भुगतान विधि चुनें')}
+                  </h3>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {[
+                      { id: 'card', name: 'Credit/Debit Card', icon: <CreditCard className="w-5 h-5" /> },
+                      { id: 'upi', name: 'UPI (GPay/PhonePe)', icon: <div className="font-bold text-xs">UPI</div> },
+                      { id: 'paypal', name: 'PayPal', icon: <div className="font-bold text-xs italic">PayPal</div> },
+                      { id: 'netbanking', name: 'Net Banking', icon: <Globe className="w-5 h-5" /> }
+                    ].map(method => (
+                      <div 
+                        key={method.id}
+                        className="flex items-center gap-4 p-4 rounded-2xl border border-slate-100 hover:border-blue-400 hover:bg-blue-50 bg-opacity-30 cursor-pointer transition-all group"
+                      >
+                        <div className="w-4 h-4 rounded-full border border-slate-300 group-hover:border-blue-400 flex items-center justify-center">
+                          <div className="w-2 h-2 rounded-full bg-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </div>
+                        <div className="p-2 bg-slate-100 rounded-lg group-hover:bg-blue-100 transition-colors">
+                          {method.icon}
+                        </div>
+                        <span className="font-bold text-slate-700 text-sm">{t(method.name, method.name)}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-4">
+                  <Button 
+                    className="w-full bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold h-16 rounded-2xl text-xl shadow-[0_10px_40px_rgba(37,99,235,0.3)] transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3 group"
+                  >
+                    <span>{t('Proceed to Secure Payment', 'सुरक्षित भुगतान के लिए आगे बढ़ें')}</span>
+                    <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
+                  </Button>
+                  <p className="text-center text-[10px] text-slate-400 font-medium pb-4">
+                    🛡️ {t('Secure 256-bit SSL encrypted payment gateway.', 'सुरक्षित 256-बिट एसएसएल एन्क्रिप्टेड भुगतान गेटवे।')}
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* External Page Sections (Image 2) */}
+        <div className="mt-20 space-y-24 pb-20">
+          {/* Why Choose Us */}
+          <section className="text-center animate-in fade-in slide-in-from-bottom-8 duration-1000">
+            <h2 className="text-3xl sm:text-4xl font-black text-white uppercase tracking-tighter mb-4 drop-shadow-lg">
+              {t('Why Choose Us?', 'हमें क्यों चुनें?')}
+            </h2>
+            <p className="text-slate-400 max-w-2xl mx-auto mb-12 font-medium">
+              {t('With deep expertise in Bhrigu Nandi Nadi Astrology, we provide highly accurate and actionable astrological guidance to transform your life.', 'भृगु नंदी नाडी ज्योतिष में गहरी विशेषज्ञता के साथ, हम आपके जीवन को बदलने के लिए अत्यधिक सटीक और कार्रवाई योग्य ज्योतिषीय मार्गदर्शन प्रदान करते हैं।')}
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                { title: 'Specialized in BNN Astrology', text: 'Unique insights using sacred Nadi scriptures.', icon: <Sparkles /> },
+                { title: 'Accurate Predictions', text: 'Time-bound and precise life events analysis.', icon: <Check /> },
+                { title: 'Trusted Globally', text: 'Join thousands of satisfied clients worldwide.', icon: <Globe /> },
+                { title: '25+ Specialized Services', text: 'Deep dive into every aspect of your life.', icon: <Briefcase /> },
+                { title: 'Remedies & Guidance', text: 'Simple yet effective solutions for challenges.', icon: <Star /> },
+                { title: 'Premium Support', text: 'Dedicated assistance for all your consultations.', icon: <PhoneCall /> }
+              ].map((item, i) => (
+                <div key={i} className="glass-card p-6 rounded-2xl border border-white bg-opacity-10 bg-white bg-opacity-5 backdrop-blur-md flex flex-col items-center text-center hover:bg-white bg-opacity-10 transition-all group">
+                  <div className="w-12 h-12 rounded-full bg-blue-500 bg-opacity-20 flex items-center justify-center text-blue-400 mb-4 group-hover:scale-110 transition-transform">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-white font-bold uppercase tracking-tight mb-2">{t(item.title, item.title)}</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed">{t(item.text, item.text)}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Get In Touch */}
+          <section className="glass-card p-10 rounded-[3rem] border border-blue-400 bg-opacity-30 bg-gradient-to-br from-blue-600 bg-opacity-20 via-indigo-600 bg-opacity-10 to-transparent backdrop-blur-2xl text-center relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500 bg-opacity-10 blur-[100px] -mr-32 -mt-32 rounded-full" />
+            <h2 className="text-3xl sm:text-4xl font-black text-white uppercase tracking-tighter mb-4">
+              {t('Get In Touch', 'संपर्क करें')}
+            </h2>
+            <p className="text-slate-300 font-medium mb-10">
+              {t('Ready to explore your destiny? Reach out to us for a consultation.', 'अपनी नियति का पता लगाने के लिए तैयार हैं? परामर्श के लिए हमसे संपर्क करें।')}
+            </p>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-12">
+              <a href="mailto:contact@bnnastrology.com" className="flex items-center gap-3 text-blue-400 font-bold hover:text-blue-300 transition-colors group">
+                <div className="p-3 bg-blue-500 bg-opacity-10 rounded-2xl group-hover:bg-blue-500 bg-opacity-20 transition-all">
+                  <Mail className="w-6 h-6" />
+                </div>
+                <span>contact@bnnastrology.com</span>
+              </a>
+              <div className="w-px h-6 bg-white bg-opacity-10 hidden sm:block" />
+              <a href="tel:+9198XXXXXXXX" className="flex items-center gap-3 text-orange-400 font-bold hover:text-orange-300 transition-colors group">
+                <div className="p-3 bg-orange-500 bg-opacity-10 rounded-2xl group-hover:bg-orange-500 bg-opacity-20 transition-all">
+                  <Phone className="w-6 h-6" />
+                </div>
+                <span>+91 98XXX XXXXX</span>
+              </a>
+            </div>
+
+            <Button 
+              onClick={() => {
+                setCurrentStep(1);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="bg-white text-blue-700 hover:bg-slate-100 font-black h-14 px-10 rounded-2xl shadow-2xl shadow-white bg-opacity-10 text-lg uppercase tracking-widest active:scale-95 transition-all"
+            >
+              {t('Book a Consultation', 'परामर्श बुक करें')}
+            </Button>
+          </section>
+        </div>
+      </div>
+
+      <style>{`
+        .glass-card {
+           box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        @keyframes pulse-subtle {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.95; transform: scale(1.01); }
+        }
+        .animate-pulse-subtle {
+          animation: pulse-subtle 2s infinite ease-in-out;
+        }
+        ::-webkit-scrollbar {
+          width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+          background: rgba(37, 99, 235, 0.2);
+          border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: rgba(37, 99, 235, 0.4);
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default AllServices;
