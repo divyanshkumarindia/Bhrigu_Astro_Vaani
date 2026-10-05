@@ -30,16 +30,14 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen relative flex flex-col items-center overflow-x-hidden bg-slate-950">
-      <StarField count={100} />
-
+    <div className="min-h-screen relative flex flex-col items-center overflow-x-hidden bg-white">
       {/* Unified Main Container - Header and Page Card in Perfect Symmetry */}
       <div className={cn(
         "relative z-10 w-full transition-all duration-300 ease-in-out flex flex-col items-center pt-4 sm:pt-6",
         isDesktopView ? "max-w-6xl px-4 sm:px-8 pb-12 sm:pb-16" : "max-w-md px-4 pb-8"
       )}>
         {/* Top Header Group - Reduced width matching card width in symmetry */}
-        <header className="w-full relative z-20 flex flex-col items-center bg-white/95 backdrop-blur-xl border border-b-0 border-blue-200/70 rounded-t-3xl sm:rounded-t-[2.5rem] overflow-hidden shadow-xl">
+        <header className="w-full relative z-20 flex flex-col items-center bg-white/95 backdrop-blur-xl border border-b-0 border-blue-200/70 rounded-none overflow-hidden shadow-xl">
           {/* Top Heading with matching amber-orange gradient and font size/bold matching KNOW YOUR DESTINY */}
           <div className={cn("w-full transition-all text-center", isDesktopView ? "py-6 sm:py-8" : "py-4 sm:py-5")}>
             <h1 className={cn(
@@ -81,7 +79,7 @@ const Login = () => {
 
         {/* Main Content Area - Joined directly to the header with 0 gap */}
         <div className={cn(
-          "glass-card flex flex-col justify-center rounded-b-3xl sm:rounded-b-[2.5rem] rounded-t-none border-t-0 border border-blue-300/50 bg-white-300/40 backdrop-blur-xl shadow-2xl shadow-blue-400/30 text-center relative overflow-hidden transition-all duration-300 w-full",
+          "glass-card flex flex-col justify-center rounded-none border-t-0 border border-blue-300/50 bg-white-300/40 backdrop-blur-xl shadow-2xl shadow-blue-400/30 text-center relative overflow-hidden transition-all duration-300 w-full",
           isDesktopView ? "p-8 sm:p-12 space-y-10" : "p-4"
         )}>
 
