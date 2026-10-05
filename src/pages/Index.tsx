@@ -516,72 +516,66 @@ const Index = () => {
                   </div>
 
                   {isDesktopView ? (
-                    /* Desktop Layout: 2 Columns (Heritage & Form) Enlarged Vertically */
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch my-6">
-                      {/* Left Info Column */}
-                      <div className="lg:col-span-5 flex flex-col">
-                        <div className="bg-white/50 backdrop-blur-md p-8 sm:p-10 rounded-[2.5rem] border border-blue-200/50 shadow-lg text-center flex flex-col items-center justify-between flex-1 min-h-[640px]">
-                          <div className="flex flex-col items-center w-full">
-                            <div className="overflow-hidden rounded-3xl shadow-xl border-4 border-blue-300/40 bg-white/40 mb-4">
-                              <img
-                                src="/maharishi_bhrigu.png"
-                                alt="Maharishi Bhrigu"
-                                className="w-[220px] sm:w-[250px] aspect-square object-cover hover:scale-105 transition-transform duration-500"
-                              />
-                            </div>
-                            <h3 className="font-serif text-2xl font-bold text-blue-700 mt-2">
-                              Maharishi Bhrigu Heritage
-                            </h3>
-                            <p className="text-sm text-slate-600 mt-1 font-medium">
-                              {t('Sacred Bhrigu Nandi Nadi (BNN) Calculations', 'पवित्र भृगु नंदी नाड़ी गणना')}
-                            </p>
-
-                            <div className="w-full mt-6 space-y-4 text-left">
-                              {[
-                                { title: t('Parashari & Lahiri Ayanamsha', 'पाराशरी और लहिरी अयनांश'), desc: t('High-precision astronomical planetary degrees', 'सटीक खगोलीय ग्रह अंश') },
-                                { title: t('Lagna & Chalit (D1) Charts', 'लग्न और चलित (D1) चार्ट'), desc: t('Dual chart view for true planetary house occupation', 'सटीक भाव स्थिति के लिए दोहरा चार्ट दृश्य') },
-                                { title: t('BNN Daily Transit Insights', 'बीएनएन दैनिक गोचर अंतर्दृष्टि'), desc: t('Personalized daily horoscope and astro remedies', 'व्यक्तिगत दैनिक राशिफल और वैदिक उपाय') }
-                              ].map((feature, idx) => (
-                                <div key={idx} className="flex items-start gap-4 bg-white/80 p-4 sm:p-5 rounded-2xl border border-blue-100 shadow-sm">
-                                  <CheckCircle2 className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
-                                  <div>
-                                    <p className="text-sm font-bold text-blue-900">{feature.title}</p>
-                                    <p className="text-xs text-slate-600 mt-0.5">{feature.desc}</p>
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          <div className="mt-6 p-4 sm:p-5 rounded-2xl bg-blue-50/80 border border-blue-200/60 text-left w-full">
-                            <p className="text-xs sm:text-sm text-blue-800 font-bold flex items-center gap-2">
-                              <Sparkles className="w-4 h-4 text-blue-600 shrink-0" />
-                              {t('Pro Tip for Accuracy:', 'सटीकता के लिए सुझाव:')}
-                            </p>
-                            <p className="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed font-medium">
-                              {t('Accurate birth time ensures precise Lagna (Ascendant) & Bhava Chalit chart calculation.', 'सटीक जन्म समय से सही लग्न एवं भाव चलित चार्ट प्राप्त होता है।')}
-                            </p>
-                          </div>
-                        </div>
+                    /* Desktop Layout: Vertically Stacked (Form & Heritage) in an Above-and-Below Pattern */
+                    <div className="flex flex-col items-center gap-10 my-8 w-full max-w-3xl mx-auto">
+                      {/* Kundali Form Card */}
+                      <div className="glass-card p-8 sm:p-14 rounded-[2.5rem] border border-blue-200/60 shadow-2xl w-full flex flex-col justify-center">
+                        <BirthDetailsForm
+                          onSubmit={handleGenerateKundali}
+                          onDailyHoroscope={handleDailyHoroscope}
+                          isLoading={isLoading}
+                          isDailyLoading={isDailyLoading}
+                          initialDetails={formDetails}
+                          onDetailsChange={setFormDetails}
+                          country={formCountry}
+                          onCountryChange={setFormCountry}
+                          state={formState}
+                          onStateChange={setFormState}
+                          city={formCity}
+                          onCityChange={setFormCity}
+                        />
                       </div>
 
-                      {/* Right Form Column */}
-                      <div className="lg:col-span-7 flex flex-col">
-                        <div className="glass-card p-8 sm:p-12 rounded-[2.5rem] border border-blue-100/50 shadow-xl w-full flex-1 flex flex-col justify-center min-h-[640px]">
-                          <BirthDetailsForm
-                            onSubmit={handleGenerateKundali}
-                            onDailyHoroscope={handleDailyHoroscope}
-                            isLoading={isLoading}
-                            isDailyLoading={isDailyLoading}
-                            initialDetails={formDetails}
-                            onDetailsChange={setFormDetails}
-                            country={formCountry}
-                            onCountryChange={setFormCountry}
-                            state={formState}
-                            onStateChange={setFormState}
-                            city={formCity}
-                            onCityChange={setFormCity}
+                      {/* Heritage & Vedic Insights Card (Directly Below, Vertically Aligned) */}
+                      <div className="bg-white/70 backdrop-blur-md p-8 sm:p-12 rounded-[2.5rem] border border-blue-200/60 shadow-xl text-center flex flex-col items-center w-full">
+                        <div className="overflow-hidden rounded-3xl shadow-xl border-4 border-blue-300/40 bg-white/50 mb-6 group">
+                          <img
+                            src="/maharishi_bhrigu.png"
+                            alt="Maharishi Bhrigu"
+                            className="w-[260px] sm:w-[320px] aspect-square object-cover group-hover:scale-105 transition-transform duration-500"
                           />
+                        </div>
+                        <h3 className="font-serif text-2xl sm:text-3xl font-bold text-blue-700 mt-2">
+                          Maharishi Bhrigu Heritage
+                        </h3>
+                        <p className="text-base sm:text-lg text-slate-600 mt-2 font-medium">
+                          {t('Sacred Bhrigu Nandi Nadi (BNN) Calculations', 'पवित्र भृगु नंदी नाड़ी गणना')}
+                        </p>
+
+                        <div className="w-full mt-8 space-y-4 text-left">
+                          {[
+                            { title: t('Parashari & Lahiri Ayanamsha', 'पाराशरी और लहिरी अयनांश'), desc: t('High-precision astronomical planetary degrees', 'सटीक खगोलीय ग्रह अंश') },
+                            { title: t('Lagna & Chalit (D1) Charts', 'लग्न और चलित (D1) चार्ट'), desc: t('Dual chart view for true planetary house occupation', 'सटीक भाव स्थिति के लिए दोहरा चार्ट दृश्य') },
+                            { title: t('BNN Daily Transit Insights', 'बीएनएन दैनिक गोचर अंतर्दृष्टि'), desc: t('Personalized daily horoscope and astro remedies', 'व्यक्तिगत दैनिक राशिफल और वैदिक उपाय') }
+                          ].map((feature, idx) => (
+                            <div key={idx} className="flex items-start gap-5 bg-white/90 p-5 sm:p-6 rounded-2xl border border-blue-100 shadow-sm">
+                              <CheckCircle2 className="w-6 h-6 text-blue-600 shrink-0 mt-0.5" />
+                              <div>
+                                <p className="text-base font-bold text-blue-900">{feature.title}</p>
+                                <p className="text-sm text-slate-600 mt-1">{feature.desc}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+
+                        <div className="mt-8 p-6 rounded-2xl bg-blue-50/90 border border-blue-200/80 text-left w-full">
+                          <p className="text-sm sm:text-base text-blue-800 font-bold flex items-center gap-2">
+                            <Sparkles className="w-5 h-5 text-blue-600 shrink-0" />
+                            {t('Pro Tip for Accuracy:', 'सटीकता के लिए सुझाव:')}
+                          </p>
+                          <p className="text-sm text-slate-600 mt-2 leading-relaxed font-medium">
+                            {t('Accurate birth time ensures precise Lagna (Ascendant) & Bhava Chalit chart calculation.', 'सटीक जन्म समय से सही लग्न एवं भाव चलित चार्ट प्राप्त होता है।')}
+                          </p>
                         </div>
                       </div>
                     </div>

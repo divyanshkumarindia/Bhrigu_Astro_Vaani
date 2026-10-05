@@ -120,215 +120,220 @@ const Login = () => {
               </button>
             </div>
 
-            {isDesktopView ? (
-              /* Desktop View Content - Enlarged Vertically */
-              <div className="w-full px-2 sm:px-6 mt-8 space-y-12 pb-6">
-                {/* Hero 2-column layout */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center text-left bg-white/40 p-8 sm:p-12 rounded-[2.5rem] border border-blue-200/50 shadow-lg min-h-[580px]">
-                  <div className="lg:col-span-7 space-y-8">
-                    <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-blue-700 tracking-tight leading-tight">
-                      {t('KNOW YOUR DESTINY With Bhrigu Nandi Nandi Astrology', 'वापसी पर स्वागत है')}
-                    </h1>
-
-                    <p className="text-slate-700 text-base sm:text-lg leading-relaxed font-medium">
-                      {t('Expert guidance specializing in Bhrigu Nandi Nadi (BNN) and Vedic Astrology. Discover clarity for your career, marriage, health, and future.', 'भृगु नंदी नाड़ी (बीएनएन) और वैदिक ज्योतिष में विशेषज्ञ मार्गदर्शन। अपने करियर, शादी, स्वास्थ्य और भविष्य के लिए स्पष्टता खोजें।')}
-                    </p>
-
-                    {/* Primary CTA Form */}
-                    <form onSubmit={handleLogin} className="pt-2">
-                      <Button
-                        type="submit"
-                        disabled={isLoading}
-                        className="w-full sm:w-auto min-w-[360px] bg-gradient-to-r from-orange-400 to-amber-500 hover:from-orange-500 hover:to-amber-600 text-white font-semibold h-20 rounded-2xl transition-all shadow-[0_8px_30px_rgba(234,88,12,0.35)] hover:shadow-[0_8px_30px_rgba(234,88,12,0.55)] flex items-center justify-center gap-4 active:scale-[0.98] px-8"
-                      >
-                        {isLoading ? (
-                          <div className="w-7 h-7 border-3 border-white/30 border-t-white rounded-full animate-spin" />
-                        ) : (
-                          <div className="flex items-center justify-between w-full gap-5">
-                            <div className="flex flex-col text-left">
-                              <span className="text-lg font-bold leading-tight drop-shadow-sm">{t('Generate Your Kundali', 'अपनी कुंडली')}</span>
-                              <span className="text-xs sm:text-sm font-semibold text-white/90 leading-tight drop-shadow-sm">{t('& Know Your Daily Horoscope', '& अपना दैनिक राशिफल जानें')}</span>
-                            </div>
-                            <ArrowRight className="w-7 h-7 text-white shrink-0 ml-2" />
-                          </div>
-                        )}
-                      </Button>
-                    </form>
-
-                    {/* Quick action buttons */}
-                    <div className="flex flex-wrap items-center gap-5 pt-3">
-                      <button
-                        onClick={() => navigate('/services')}
-                        type="button"
-                        className="bg-orange-400 text-white px-7 py-3 rounded-full font-bold text-sm sm:text-base shadow-md hover:bg-orange-500 transition-all active:scale-95 whitespace-nowrap uppercase tracking-wider"
-                      >
-                        {t('Explore Our Services', 'हमारी सेवाएँ देखें')}
-                      </button>
-                      <button
-                        onClick={() => navigate('/services')}
-                        type="button" 
-                        className="bg-white text-orange-500 border-2 border-orange-400 px-7 py-3 rounded-full font-bold text-sm sm:text-base shadow-md hover:bg-orange-50 transition-all active:scale-95 whitespace-nowrap uppercase tracking-wider"
-                      >
-                        {t('Book Astro Services', 'एस्ट्रो सेवाएं बुक करें')}
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Sacred Images right column */}
-                  <div className="lg:col-span-5 flex flex-row lg:flex-col items-center justify-center gap-8 py-4">
-                    <div className="flex flex-col items-center group">
-                      <div className="overflow-hidden rounded-3xl shadow-xl border-4 border-blue-300/40 bg-white/40">
-                        <img
-                          src="/maharishi_bhrigu.png"
-                          alt="Maharishi Bhrigu"
-                          className="w-[220px] sm:w-[260px] aspect-square object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      </div>
-                      <p className="mt-3 text-sm text-blue-700 font-bold uppercase tracking-wider">
-                        Maharishi Bhrigu
-                      </p>
-                    </div>
-
-                    <div className="flex flex-col items-center group">
-                      <div className="overflow-hidden rounded-3xl shadow-xl border-4 border-blue-300/40 bg-white/40">
-                        <img
-                          src="/ancient_book.png"
-                          alt="Bhrigu Nandi Nadi Astrology Book"
-                          className="w-[220px] sm:w-[260px] aspect-square object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      </div>
-                      <p className="mt-3 text-sm text-blue-700 font-bold uppercase tracking-wider">
-                        {t('Sacred Scripture of BNN', 'बीएनएन का पवित्र ग्रंथ')}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Visionary Astrologer Wide Section */}
-                <div className="bg-white/50 backdrop-blur-md p-8 sm:p-12 rounded-[2.5rem] border border-blue-200/50 shadow-lg text-left space-y-6">
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                    <div className="lg:col-span-5 space-y-4">
-                      <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold text-blue-700 tracking-tight leading-tight uppercase">
-                        MEET THE VISIONARY ASTROLOGER
-                      </h2>
-                      <p className="text-slate-700 text-base sm:text-lg leading-relaxed font-semibold">
-                        With over 10 years of experience in Vedic Astrology Sciences, Acharya Dr. S.K. has dedicated his life to helping individuals find their true path. His mastery over Bhrigu Nandi Nadi (BNN) allows for exceptionally detailed and accurate predictions that go beyond traditional methods.
-                      </p>
-                    </div>
-
-                    <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      {[
-                        "Master of BNN/Vedic Astrology & Philosophy",
-                        "Expert in Bhrigu Nandi Nadi (BNN) Analysis",
-                        "Specialist in Career & Financial Growth",
-                        "Helping clients Globally with Most Accurate Remedies"
-                      ].map((item, i) => (
-                        <div key={i} className="flex items-start gap-4 bg-white/80 p-5 rounded-2xl border border-blue-100 shadow-sm">
-                          <CheckCircle2 className="w-6 h-6 text-[#4272e8] shrink-0 mt-0.5" />
-                          <span className="text-base text-slate-900 font-bold leading-snug">{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              /* Original Mobile View Content */
-              <div className="w-full px-4 mt-8">
-                <h1 className="font-display text-2xl sm:text-3xl font-bold text-blue-700 tracking-tight text-center drop-shadow-sm">
-                  {t('KNOW YOUR DESTINY With Bhrigu Nandi Nandi Astrology', 'वापसी पर स्वागत है')}
+            {/* Home Page Content - Strictly Vertical Above-and-Below Pattern with Enlarged Elements */}
+            <div className={cn(
+              "w-full transition-all flex flex-col items-center",
+              isDesktopView ? "space-y-16 py-10 px-4 sm:px-8" : "space-y-10 py-6 px-2"
+            )}>
+              {/* Article 1: Hero Header & Introduction */}
+              <div className="w-full text-center space-y-6">
+                <h1 className={cn(
+                  "font-serif font-extrabold text-blue-700 tracking-tight leading-tight uppercase mx-auto transition-all drop-shadow-sm",
+                  isDesktopView ? "text-4xl sm:text-5xl lg:text-6xl max-w-4xl" : "text-2xl sm:text-3xl"
+                )}>
+                  {t('KNOW YOUR DESTINY With Bhrigu Nandi Astrology', 'भृगु नंदी ज्योतिष के साथ अपना भाग्य जानें')}
                 </h1>
 
-                <p className="text-slate-600 mt-4 text-center text-[10px] sm:text-sm px-2 leading-relaxed font-medium max-w-[95%] mx-auto">
-                  {t('Expert guidance specializing in Bhrigu Nandi Nadi (BNN) and Vedic Astrology. Discover clarity for your career, marriage, health, and future.', 'भृगु नंदी नाड़ी (बीएनएन) और वैदिक ज्योतिष में विशेषज्ञ मार्गदर्शन। अपने करियर, शादी, स्वास्थ्य और भविष्य के लिए स्पष्टता खोजें।')}
+                <p className={cn(
+                  "text-slate-700 leading-relaxed font-semibold mx-auto transition-all",
+                  isDesktopView ? "text-xl sm:text-2xl max-w-3xl" : "text-sm sm:text-base max-w-md"
+                )}>
+                  {t(
+                    'Expert guidance specializing in Bhrigu Nandi Nadi (BNN) and authentic Vedic Astrology. Discover clarity for your career, marriage, health, and future life path.',
+                    'भृगु नंदी नाड़ी (बीएनएन) और प्रामाणिक वैदिक ज्योतिष में विशेषज्ञ मार्गदर्शन। अपने करियर, शादी, स्वास्थ्य और भविष्य के लिए स्पष्टता खोजें।'
+                  )}
                 </p>
+              </div>
 
-                <div className="flex flex-col justify-center items-center gap-4 mt-8 w-full max-w-[280px] mx-auto">
-                  <button
-                    onClick={() => navigate('/services')}
-                    type="button"
-                    className="w-full bg-orange-400 text-white px-5 py-3 rounded-full font-bold text-[13px] shadow-lg hover:bg-orange-500 hover:shadow-orange-200/50 transition-all active:scale-95 whitespace-nowrap uppercase tracking-wider"
-                  >
-                    {t('Explore Our Services', 'हमारी सेवाएँ देखें')}
-                  </button>
-                  <button
-                    onClick={() => navigate('/services')}
-                    type="button" 
-                    className="w-full bg-white text-orange-400 border-2 border-orange-400 px-5 py-3 rounded-full font-bold text-[13px] shadow-lg hover:bg-orange-50 transition-all active:scale-95 whitespace-nowrap uppercase tracking-wider"
-                  >
-                    {t('Book Astro Services', 'एस्ट्रो सेवाएं बुक करें')}
-                  </button>
-                </div>
-
-                {/* Added Image of Maharishi Bhrigu */}
-                <div className="mt-8 flex flex-col items-center gap-8 w-full px-4 text-center">
-                  <img
-                    src="/maharishi_bhrigu.png"
-                    alt="Maharishi Bhrigu"
-                    className="w-[220px] sm:w-[260px] rounded-2xl shadow-2xl border-2 border-blue-400/30 object-cover aspect-square"
-                  />
-                  
-                  <div className="flex flex-col items-center">
-                    <img
-                      src="/ancient_book.png"
-                      alt="Bhrigu Nandi Nadi Astrology Book"
-                      className="w-[220px] sm:w-[260px] rounded-2xl shadow-2xl border-2 border-blue-400/30 transform hover:scale-105 transition-transform duration-500 aspect-square object-cover"
-                    />
-                    <p className="mt-3 text-[10px] sm:text-[12px] text-blue-700 font-bold uppercase tracking-[0.2em] opacity-90">
-                      {t('The Sacred Scripture of BNN', 'बीएनएन का पवित्र ग्रंथ')}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Visionary Astrologer Section */}
-                <div className="mt-10 px-4 sm:px-6 text-center w-full mx-auto max-w-sm">
-                  <h2 className="font-serif text-[26px] sm:text-3xl font-extrabold text-blue-600 tracking-tight leading-[1.1] uppercase">
-                    MEET THE<br />VISIONARY<br />ASTROLOGER
-                  </h2>
-
-                  <p className="mt-4 text-slate-700 text-[13px] sm:text-[14px] leading-relaxed font-semibold">
-                    With over 10 years of experience in Vedic Astrology Sciences, Acharya Dr. S.K. has dedicated his life to helping individuals find their true path. His mastery over Bhrigu Nandi Nadi (BNN) allows for exceptionally detailed and accurate predictions that go beyond traditional methods.
-                  </p>
-
-                  <ul className="mt-5 space-y-3">
-                    {[
-                      "Master of BNN/Vedic Astrology & Philosophy",
-                      "Expert in Bhrigu Nandi Nadi (BNN) Analysis",
-                      "Specialist in Career & Financial Growth",
-                      "Helping clients Globally with Most Accurate Remedies"
-                    ].map((item, i) => (
-                      <li key={i} className="flex items-start gap-2.5 text-[13px] sm:text-[14px] text-slate-900 font-bold">
-                        <CheckCircle2 className="w-[18px] h-[18px] text-[#4272e8] shrink-0 mt-[2px]" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <form onSubmit={handleLogin} className="space-y-6 text-left w-full mb-4">
+              {/* Primary CTA Box - Vertically Stacked */}
+              <div className="w-full flex justify-center">
+                <form onSubmit={handleLogin} className="w-full max-w-2xl">
                   <Button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full max-w-[320px] mx-auto bg-gradient-to-r from-orange-400 to-amber-500 hover:from-orange-300 hover:to-amber-400 text-white font-semibold h-20 rounded-xl transition-all shadow-[0_8px_30px_rgba(234,88,12,0.3)] hover:shadow-[0_8px_30px_rgba(234,88,12,0.5)] flex items-center justify-center gap-1 active:scale-[0.98] my-6 px-4"
+                    className={cn(
+                      "w-full bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 hover:from-orange-600 hover:to-amber-600 text-white font-bold rounded-3xl transition-all shadow-[0_12px_40px_rgba(234,88,12,0.4)] hover:shadow-[0_16px_50px_rgba(234,88,12,0.6)] flex items-center justify-between active:scale-[0.98] cursor-pointer border border-white/20",
+                      isDesktopView ? "h-24 sm:h-28 px-8 sm:px-12" : "h-20 px-6"
+                    )}
                   >
                     {isLoading ? (
-                      <div className="w-6 h-6 border-3 border-white/30 border-t-white rounded-full animate-spin" />
+                      <div className="w-8 h-8 border-4 border-white/30 border-t-white rounded-full animate-spin mx-auto" />
                     ) : (
-                      <>
-                        <div className="flex items-center justify-center gap-4 w-full">
-                          <div className="flex flex-col items-center justify-center text-center">
-                            <span className="text-[14px] sm:text-[16px] font-bold leading-tight drop-shadow-sm">{t('Generate Your Kundali', 'अपनी कुंडली')}</span>
-                            <span className="text-[9px] sm:text-[10px] font-semibold text-white/80 tracking-[0.2em] my-1 uppercase">{t('And', 'और')}</span>
-                            <span className="text-[11px] sm:text-[13px] font-bold leading-tight drop-shadow-sm">{t('Know Your Daily Horoscope', 'अपना दैनिक राशिफल जानें')}</span>
-                          </div>
-                          <ArrowRight className="w-6 h-6 text-white/90 shrink-0" />
+                      <div className="flex items-center justify-between w-full gap-4">
+                        <div className="flex flex-col text-left">
+                          <span className={cn(
+                            "font-black tracking-wide drop-shadow-sm",
+                            isDesktopView ? "text-xl sm:text-2xl" : "text-base sm:text-lg"
+                          )}>
+                            {t('Generate Your Kundali', 'अपनी कुंडली बनाएं')}
+                          </span>
+                          <span className={cn(
+                            "font-semibold text-white/95 drop-shadow-sm mt-1",
+                            isDesktopView ? "text-base sm:text-lg" : "text-xs sm:text-sm"
+                          )}>
+                            {t('& Know Your Daily Horoscope', '& अपना दैनिक राशिफल जानें')}
+                          </span>
                         </div>
-                      </>
+                        <ArrowRight className={cn(
+                          "text-white shrink-0",
+                          isDesktopView ? "w-8 h-8" : "w-6 h-6"
+                        )} />
+                      </div>
                     )}
                   </Button>
                 </form>
               </div>
-            )}
+
+              {/* Action Buttons - Stacked Vertically in an Above and Below Pattern */}
+              <div className="flex flex-col items-center justify-center gap-4 w-full max-w-md mx-auto">
+                <button
+                  onClick={() => navigate('/services')}
+                  type="button"
+                  className={cn(
+                    "w-full bg-orange-400 hover:bg-orange-500 text-white rounded-2xl font-bold shadow-lg transition-all active:scale-95 uppercase tracking-wider cursor-pointer",
+                    isDesktopView ? "py-5 px-8 text-lg" : "py-3.5 px-6 text-sm"
+                  )}
+                >
+                  {t('Explore Our Services', 'हमारी सेवाएँ देखें')}
+                </button>
+                <button
+                  onClick={() => navigate('/services')}
+                  type="button" 
+                  className={cn(
+                    "w-full bg-white hover:bg-orange-50 text-orange-600 border-2 border-orange-400 rounded-2xl font-bold shadow-lg transition-all active:scale-95 uppercase tracking-wider cursor-pointer",
+                    isDesktopView ? "py-5 px-8 text-lg" : "py-3.5 px-6 text-sm"
+                  )}
+                >
+                  {t('Book Astro Services', 'एस्ट्रो सेवाएं बुक करें')}
+                </button>
+              </div>
+
+              {/* Image 1: Maharishi Bhrigu (Enlarged & Vertically Centered) */}
+              <div className={cn(
+                "w-full max-w-2xl mx-auto flex flex-col items-center text-center bg-white/70 backdrop-blur-md rounded-3xl border border-blue-200/60 shadow-xl transition-all hover:shadow-2xl",
+                isDesktopView ? "p-10 sm:p-14" : "p-6"
+              )}>
+                <div className="overflow-hidden rounded-3xl shadow-2xl border-4 border-blue-300/50 bg-white/50 group">
+                  <img
+                    src="/maharishi_bhrigu.png"
+                    alt="Maharishi Bhrigu"
+                    className={cn(
+                      "aspect-square object-cover group-hover:scale-105 transition-transform duration-500",
+                      isDesktopView ? "w-[340px] sm:w-[420px]" : "w-[240px] sm:w-[280px]"
+                    )}
+                  />
+                </div>
+                <h3 className={cn(
+                  "font-serif font-bold text-blue-800 uppercase tracking-wider",
+                  isDesktopView ? "text-2xl sm:text-3xl mt-6" : "text-lg sm:text-xl mt-4"
+                )}>
+                  Maharishi Bhrigu
+                </h3>
+                <p className={cn(
+                  "text-slate-600 font-medium",
+                  isDesktopView ? "text-base sm:text-lg mt-2 max-w-md" : "text-xs sm:text-sm mt-1"
+                )}>
+                  {t('Father of Hindu Astrology & Sage of Bhrigu Samhita', 'वैदिक ज्योतिष के प्रवर्तक एवं भृगु संहिता के रचयिता')}
+                </p>
+              </div>
+
+              {/* Image 2: The Sacred Scripture of BNN (Directly Below Image 1, NOT side by side) */}
+              <div className={cn(
+                "w-full max-w-2xl mx-auto flex flex-col items-center text-center bg-white/70 backdrop-blur-md rounded-3xl border border-blue-200/60 shadow-xl transition-all hover:shadow-2xl",
+                isDesktopView ? "p-10 sm:p-14" : "p-6"
+              )}>
+                <div className="overflow-hidden rounded-3xl shadow-2xl border-4 border-blue-300/50 bg-white/50 group">
+                  <img
+                    src="/ancient_book.png"
+                    alt="Bhrigu Nandi Nadi Astrology Book"
+                    className={cn(
+                      "aspect-square object-cover group-hover:scale-105 transition-transform duration-500",
+                      isDesktopView ? "w-[340px] sm:w-[420px]" : "w-[240px] sm:w-[280px]"
+                    )}
+                  />
+                </div>
+                <h3 className={cn(
+                  "font-serif font-bold text-blue-800 uppercase tracking-wider",
+                  isDesktopView ? "text-2xl sm:text-3xl mt-6" : "text-lg sm:text-xl mt-4"
+                )}>
+                  {t('The Sacred Scripture of BNN', 'बीएनएन का पवित्र ग्रंथ')}
+                </h3>
+                <p className={cn(
+                  "text-slate-600 font-medium",
+                  isDesktopView ? "text-base sm:text-lg mt-2 max-w-md" : "text-xs sm:text-sm mt-1"
+                )}>
+                  {t('Ancient manuscript embodying the timeless secrets of planetary transits', 'ग्रहों के गोचर और नियति के शाश्वत रहस्यों को समाहित करने वाला प्राचीन ग्रंथ')}
+                </p>
+              </div>
+
+              {/* Article 2: Meet The Visionary Astrologer (Directly Below, Vertically Aligned) */}
+              <div className={cn(
+                "w-full max-w-3xl mx-auto bg-white/70 backdrop-blur-md rounded-3xl border border-blue-200/60 shadow-xl text-center flex flex-col items-center transition-all hover:shadow-2xl",
+                isDesktopView ? "p-10 sm:p-14 space-y-8" : "p-6 sm:p-8 space-y-6"
+              )}>
+                <h2 className={cn(
+                  "font-serif font-extrabold text-blue-700 tracking-tight uppercase leading-tight",
+                  isDesktopView ? "text-3xl sm:text-4xl md:text-5xl" : "text-2xl sm:text-3xl"
+                )}>
+                  MEET THE VISIONARY ASTROLOGER
+                </h2>
+
+                <p className={cn(
+                  "text-slate-700 leading-relaxed font-semibold max-w-2xl mx-auto",
+                  isDesktopView ? "text-lg sm:text-xl" : "text-sm sm:text-base"
+                )}>
+                  {t(
+                    'With over 10 years of experience in Vedic Astrology Sciences, Acharya Dr. S.K. has dedicated his life to helping individuals find their true path. His mastery over Bhrigu Nandi Nadi (BNN) allows for exceptionally detailed and accurate predictions that go beyond traditional methods.',
+                    'वैदिक ज्योतिष विज्ञान में 10 से अधिक वर्षों के अनुभव के साथ, आचार्य डॉ. एस.के. ने व्यक्तियों को उनके सच्चे मार्ग को खोजने में मदद करने के लिए अपना जीवन समर्पित किया है। भृगु नंदी नाड़ी (बीएनएन) पर उनकी महारत असाधारण रूप से विस्तृत और सटीक भविष्यवाणियों की अनुमति देती है।'
+                  )}
+                </p>
+
+                {/* 4 Feature/Credential Boxes - Placed One Below The Other Vertically */}
+                <div className="w-full space-y-4">
+                  {[
+                    t("Master of BNN / Vedic Astrology & Philosophy", "बीएनएन / वैदिक ज्योतिष और दर्शन के विशेषज्ञ"),
+                    t("Expert in Bhrigu Nandi Nadi (BNN) Analysis", "भृगु नंदी नाड़ी (बीएनएन) विश्लेषण में विशेषज्ञ"),
+                    t("Specialist in Career & Financial Growth", "करियर और वित्तीय विकास में विशेषज्ञ"),
+                    t("Helping clients Globally with Most Accurate Remedies", "सटीक उपायों के साथ वैश्विक स्तर पर ग्राहकों का मार्गदर्शन")
+                  ].map((item, i) => (
+                    <div 
+                      key={i} 
+                      className={cn(
+                        "w-full bg-white/90 rounded-2xl border border-blue-100 shadow-md flex items-center gap-4 text-left transition-all hover:border-blue-300 hover:shadow-lg",
+                        isDesktopView ? "p-6 sm:p-7" : "p-4"
+                      )}
+                    >
+                      <CheckCircle2 className={cn(
+                        "text-[#4272e8] shrink-0",
+                        isDesktopView ? "w-8 h-8" : "w-5 h-5"
+                      )} />
+                      <span className={cn(
+                        "text-slate-900 font-bold leading-snug",
+                        isDesktopView ? "text-lg sm:text-xl" : "text-sm sm:text-base"
+                      )}>
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Bottom CTA to start Kundali */}
+              <div className="w-full max-w-2xl mx-auto pb-4">
+                <Button
+                  onClick={handleLogin}
+                  disabled={isLoading}
+                  className={cn(
+                    "w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold rounded-2xl transition-all shadow-xl hover:shadow-blue-500/40 flex items-center justify-center gap-3 active:scale-[0.98] cursor-pointer",
+                    isDesktopView ? "h-20 text-xl" : "h-16 text-base"
+                  )}
+                >
+                  <Sparkles className="w-6 h-6 text-yellow-300" />
+                  <span>{t('Begin Your Astrological Journey Now', 'अपनी ज्योतिषीय यात्रा अभी शुरू करें')}</span>
+                  <ArrowRight className="w-6 h-6" />
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
