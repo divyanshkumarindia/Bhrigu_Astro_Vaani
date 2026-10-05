@@ -18,22 +18,22 @@ const About = () => {
     {
       title: t('10+ Years Experience', '10+ वर्षों का अनुभव'),
       description: t('Deeply rooted in traditional Nadi and Vedic wisdom.', 'पारंपरिक नाड़ी और वैदिक ज्ञान में गहराई से निहित।'),
-      icon: <Award className="w-6 h-6 text-blue-500" />,
+      icon: <Award className="w-8 h-8 sm:w-10 sm:h-10 text-blue-500" />,
     },
     {
       title: t('10,000+ Consultations', '10,000+ परामर्श'),
       description: t('Helping individuals find clarity and purpose across the globe.', 'दुनिया भर में व्यक्तियों को स्पष्टता और उद्देश्य खोजने में मदद करना।'),
-      icon: <Users className="w-6 h-6 text-indigo-500" />,
+      icon: <Users className="w-8 h-8 sm:w-10 sm:h-10 text-indigo-500" />,
     },
     {
       title: t('Ancient Wisdom', 'प्राचीन ज्ञान'),
       description: t('Mastery over Bhrigu Nandi Nadi scriptures and techniques.', 'भृगु नंदी नाड़ी शास्त्रों और तकनीकों पर महारत।'),
-      icon: <BookOpen className="w-6 h-6 text-purple-500" />,
+      icon: <BookOpen className="w-8 h-8 sm:w-10 sm:h-10 text-purple-500" />,
     },
     {
       title: t('Ethical Practice', 'नैतिक अभ्यास'),
       description: t('Dedicated to authentic astrology without superstitious fears.', 'अंधविश्वास के डर के बिना प्रामाणिक ज्योतिष के लिए समर्पित।'),
-      icon: <ShieldCheck className="w-6 h-6 text-yellow-500" />,
+      icon: <ShieldCheck className="w-8 h-8 sm:w-10 sm:h-10 text-yellow-500" />,
     },
   ];
 
@@ -127,97 +127,115 @@ const About = () => {
               </button>
             </div>
 
-            <div className="w-full px-4 mt-8 text-center">
-              <h1 className={cn(
-                "font-display font-bold text-blue-700 tracking-tight text-center drop-shadow-sm uppercase transition-all",
-                isDesktopView ? "text-3xl sm:text-4xl mb-4" : "text-2xl sm:text-3xl"
-              )}>
-                {t('About Our Heritage', 'हमारी विरासत के बारे में')}
-              </h1>
-
-              <div className={cn(
-                "w-full px-4",
-                isDesktopView 
-                  ? "grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto items-center my-10" 
-                  : "flex flex-col items-center gap-6 mt-8"
-              )}>
-                <div className="flex flex-col items-center group w-full">
-                  <div className={cn(
-                    "overflow-hidden rounded-3xl shadow-2xl border-4 border-blue-200/60 bg-white/40 backdrop-blur-sm transition-all duration-500 group-hover:shadow-blue-500/20 group-hover:border-blue-300 mx-auto",
-                    isDesktopView ? "w-full max-w-md aspect-square" : "w-64 sm:w-72 aspect-square"
-                  )}>
-                    <img
-                      src="/maharishi_bhrigu.png"
-                      alt="Maharishi Bhrigu"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
-                  <p className="mt-3.5 text-sm sm:text-base text-blue-700 font-bold uppercase tracking-widest">
-                    {t('Maharishi Bhrigu', 'महर्षि भृगु')}
-                  </p>
-                </div>
-                
-                <div className="flex flex-col items-center group w-full">
-                  <div className={cn(
-                    "overflow-hidden rounded-3xl shadow-2xl border-4 border-blue-200/60 bg-white/40 backdrop-blur-sm transition-all duration-500 group-hover:shadow-blue-500/20 group-hover:border-blue-300 mx-auto",
-                    isDesktopView ? "w-full max-w-md aspect-square" : "w-64 sm:w-72 aspect-square"
-                  )}>
-                    <img
-                      src="/ancient_book.png"
-                      alt="Bhrigu Nandi Nadi Astrology Book"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
-                  <p className="mt-3.5 text-sm sm:text-base text-blue-700 font-bold uppercase tracking-widest">
-                    {t('Sacred Ancient Manuscript', 'पवित्र प्राचीन पांडुलिपि')}
-                  </p>
-                </div>
-              </div>
-
-              {/* Visionary Acharya Dr. S.K. Section */}
-              <div className={cn(
-                "transition-all text-left",
-                isDesktopView 
-                  ? "p-8 sm:p-12 my-10 bg-white/50 backdrop-blur-md rounded-[2.5rem] border border-blue-200/50 shadow-md max-w-4xl mx-auto" 
-                  : "mt-8 px-2"
-              )}>
-                <h2 className={cn(
-                  "font-bold text-slate-800 mb-4 uppercase",
-                  isDesktopView ? "text-2xl sm:text-3xl text-blue-700" : "text-xl"
+            {/* About Page Content - Strictly Vertical Above-and-Below Pattern with Enlarged Elements */}
+            <div className={cn(
+              "w-full transition-all flex flex-col items-center",
+              isDesktopView ? "space-y-16 py-10 px-4 sm:px-8" : "space-y-10 py-6 px-2"
+            )}>
+              {/* Article 1: Heading */}
+              <div className="w-full text-center space-y-6">
+                <h1 className={cn(
+                  "font-serif font-extrabold text-blue-700 tracking-tight leading-tight uppercase mx-auto transition-all drop-shadow-sm",
+                  isDesktopView ? "text-4xl sm:text-5xl lg:text-6xl max-w-4xl" : "text-2xl sm:text-3xl"
                 )}>
-                  {t('Acharya Dr. S.K.', 'आचार्य डॉ. एस.के.')}
-                </h2>
+                  {t('About Our Heritage', 'हमारी विरासत के बारे में')}
+                </h1>
                 <p className={cn(
-                  "text-slate-600 leading-relaxed font-medium",
-                  isDesktopView ? "text-base sm:text-lg" : "text-[13px] sm:text-[14px]"
+                  "text-slate-700 leading-relaxed font-semibold mx-auto transition-all",
+                  isDesktopView ? "text-xl sm:text-2xl max-w-3xl" : "text-sm sm:text-base max-w-md"
                 )}>
-                  {t('Acharya Dr. S.K. is a renowned visionary in the field of Bhrigu Nandi Nadi (BNN) Astrology. With a wide study in Vedic Astrology Sciences. He has decoded real problems being faced by thousands of people due to ignorance or lack of our knowledge about our ancient sciences. So, he decide to help thousands of people to navigate their real life\'s complex journey in a easy way.', 'आचार्य डॉ. एस.के. भृगु नंदी नाड़ी (बीएनएन) ज्योतिष के क्षेत्र में एक प्रसिद्ध दूरदर्शी हैं। वैदिक विज्ञान में एक दशक से अधिक के समर्पित शोध के साथ, उन्होंने हजारों लोगों को जीवन की जटिल यात्रा को नेविगेट करने में मदद करने के लिए प्राचीन वैदिक ज्योतिष विज्ञान को डिकोड किया है।')}
+                  {t(
+                    'Rooted in centuries-old traditions of Maharishi Bhrigu and authentic Bhrigu Nandi Nadi astrology.',
+                    'महर्षि भृगु और प्रामाणिक भृगु नंदी नाड़ी ज्योतिष की सदियों पुरानी परंपराओं में निहित।'
+                  )}
                 </p>
               </div>
 
-              {/* Milestones Grid */}
+              {/* Image 1 Card: Maharishi Bhrigu - Vertically Stacked */}
+              <div className="flex flex-col items-center group w-full max-w-2xl bg-white/40 backdrop-blur-sm rounded-3xl p-6 sm:p-10 border border-blue-200/50 shadow-md">
+                <div className="w-[300px] sm:w-[400px] aspect-square overflow-hidden rounded-3xl shadow-2xl border-4 border-blue-200/80 bg-white/40 backdrop-blur-sm transition-all duration-500 group-hover:shadow-blue-500/30 group-hover:border-blue-300">
+                  <img
+                    src="/maharishi_bhrigu.png"
+                    alt="Maharishi Bhrigu"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <p className="mt-5 text-xl sm:text-2xl text-blue-700 font-serif font-bold uppercase tracking-widest text-center">
+                  {t('Maharishi Bhrigu', 'महर्षि भृगु')}
+                </p>
+              </div>
+
+              {/* Image 2 Card: Sacred Ancient Manuscript - Directly Below Image 1 */}
+              <div className="flex flex-col items-center group w-full max-w-2xl bg-white/40 backdrop-blur-sm rounded-3xl p-6 sm:p-10 border border-blue-200/50 shadow-md">
+                <div className="w-[300px] sm:w-[400px] aspect-square overflow-hidden rounded-3xl shadow-2xl border-4 border-blue-200/80 bg-white/40 backdrop-blur-sm transition-all duration-500 group-hover:shadow-blue-500/30 group-hover:border-blue-300">
+                  <img
+                    src="/ancient_book.png"
+                    alt="Bhrigu Nandi Nadi Astrology Book"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <p className="mt-5 text-xl sm:text-2xl text-blue-700 font-serif font-bold uppercase tracking-widest text-center">
+                  {t('Sacred Ancient Manuscript', 'पवित्र प्राचीन पांडुलिपि')}
+                </p>
+              </div>
+
+              {/* Visionary Acharya Dr. S.K. Article Box - Vertically Stacked Below Images */}
               <div className={cn(
-                "transition-all",
-                isDesktopView 
-                  ? "grid grid-cols-1 md:grid-cols-2 gap-6 my-10 max-w-4xl mx-auto" 
-                  : "mt-10 space-y-4"
+                "w-full max-w-3xl bg-white/50 backdrop-blur-md rounded-3xl border border-blue-200/60 shadow-lg text-left transition-all",
+                isDesktopView ? "p-10 sm:p-14 space-y-6" : "p-6 space-y-4"
               )}>
+                <div className="space-y-2">
+                  <span className={cn(
+                    "text-blue-600 font-bold uppercase tracking-widest",
+                    isDesktopView ? "text-base sm:text-lg" : "text-xs sm:text-sm"
+                  )}>
+                    {t('Meet Our Mentor & Founder', 'हमारे मार्गदर्शक और संस्थापक से मिलें')}
+                  </span>
+                  <h2 className={cn(
+                    "font-serif font-extrabold text-blue-700 tracking-tight uppercase",
+                    isDesktopView ? "text-3xl sm:text-4xl md:text-5xl" : "text-xl sm:text-2xl"
+                  )}>
+                    {t('Acharya Dr. S.K.', 'आचार्य डॉ. एस.के.')}
+                  </h2>
+                </div>
+                <p className={cn(
+                  "text-slate-700 leading-relaxed font-semibold",
+                  isDesktopView ? "text-xl sm:text-2xl" : "text-sm sm:text-base"
+                )}>
+                  {t(
+                    'Acharya Dr. S.K. is a renowned visionary in the field of Bhrigu Nandi Nadi (BNN) Astrology. With a wide study in Vedic Astrology Sciences. He has decoded real problems being faced by thousands of people due to ignorance or lack of our knowledge about our ancient sciences. So, he decide to help thousands of people to navigate their real life\'s complex journey in a easy way.',
+                    'आचार्य डॉ. एस.के. भृगु नंदी नाड़ी (बीएनएन) ज्योतिष के क्षेत्र में एक प्रसिद्ध दूरदर्शी हैं। वैदिक विज्ञान में एक दशक से अधिक के समर्पित शोध के साथ, उन्होंने हजारों लोगों को जीवन की जटिल यात्रा को नेविगेट करने में मदद करने के लिए प्राचीन वैदिक ज्योतिष विज्ञान को डिकोड किया है।'
+                  )}
+                </p>
+              </div>
+
+              {/* Milestones / Credentials - Vertically Stacked One Below Another */}
+              <div className="flex flex-col items-center gap-6 w-full max-w-3xl">
                 {milestones.map((milestone, index) => (
                   <div
                     key={index}
                     className={cn(
-                      "bg-white/60 backdrop-blur-sm rounded-2xl border border-blue-200/50 shadow-sm flex items-center",
-                      isDesktopView ? "p-6 gap-5" : "p-4 gap-4"
+                      "w-full bg-white/70 backdrop-blur-md rounded-3xl border border-blue-200/60 shadow-md flex items-center transition-all hover:shadow-xl hover:border-blue-300",
+                      isDesktopView ? "p-8 sm:p-10 gap-8" : "p-5 gap-4"
                     )}
                   >
-                    <div className={cn("bg-blue-50 rounded-2xl", isDesktopView ? "p-4" : "p-3")}>
+                    <div className={cn(
+                      "bg-blue-50 rounded-2xl flex-shrink-0 flex items-center justify-center",
+                      isDesktopView ? "p-5" : "p-3.5"
+                    )}>
                       {milestone.icon}
                     </div>
-                    <div className="text-left">
-                      <h3 className={cn("font-bold text-slate-800 italic", isDesktopView ? "text-base sm:text-lg mb-1" : "text-sm")}>
+                    <div className="text-left space-y-1 sm:space-y-2">
+                      <h3 className={cn(
+                        "font-bold text-slate-800",
+                        isDesktopView ? "text-xl sm:text-2xl" : "text-base sm:text-lg"
+                      )}>
                         {milestone.title}
                       </h3>
-                      <p className={cn("text-slate-500 leading-relaxed", isDesktopView ? "text-sm font-medium" : "text-[11px] sm:text-[12px] leading-tight")}>
+                      <p className={cn(
+                        "text-slate-600 leading-relaxed font-medium",
+                        isDesktopView ? "text-base sm:text-lg" : "text-xs sm:text-sm"
+                      )}>
                         {milestone.description}
                       </p>
                     </div>
@@ -225,50 +243,56 @@ const About = () => {
                 ))}
               </div>
 
-              {/* Mission Statement and Sacred Services CTA */}
+              {/* Mission Statement Card - Vertically Stacked Below Milestones */}
               <div className={cn(
-                "flex flex-col gap-6",
-                isDesktopView ? "my-12 max-w-4xl mx-auto" : "mt-10 px-4 gap-4"
+                "w-full max-w-3xl bg-gradient-to-br from-blue-50/90 via-indigo-50/80 to-purple-50/90 border border-blue-200/60 rounded-3xl text-left shadow-lg transition-all",
+                isDesktopView ? "p-10 sm:p-14 space-y-4" : "p-6 space-y-3"
               )}>
-                <div className={cn(
-                  "bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 rounded-3xl text-left shadow-sm",
-                  isDesktopView ? "p-8 sm:p-10" : "p-6 rounded-2xl"
+                <h3 className={cn(
+                  "text-blue-800 font-serif font-extrabold uppercase tracking-wider",
+                  isDesktopView ? "text-2xl sm:text-3xl" : "text-lg sm:text-xl"
                 )}>
-                  <h3 className={cn("text-blue-800 font-bold mb-3 uppercase tracking-wider", isDesktopView ? "text-xl sm:text-2xl" : "text-base")}>
-                    Our Mission
-                  </h3>
-                  <p className={cn("text-slate-700 leading-relaxed italic font-medium", isDesktopView ? "text-base sm:text-lg" : "text-[12px] sm:text-[13px]")}>
-                    "To bridge the gap between ancient celestial wisdom and modern life challenges, providing every seeker with the light of truth and accurate guidance."
-                  </p>
-                </div>
+                  {t('Our Mission', 'हमारा उद्देश्य')}
+                </h3>
+                <p className={cn(
+                  "text-slate-700 leading-relaxed italic font-semibold",
+                  isDesktopView ? "text-xl sm:text-2xl" : "text-sm sm:text-base"
+                )}>
+                  "{t(
+                    'To bridge the gap between ancient celestial wisdom and modern life challenges, providing every seeker with the light of truth and accurate guidance.',
+                    'प्राचीन आकाशीय ज्ञान और आधुनिक जीवन की चुनौतियों के बीच की खाई को पाटना, प्रत्येक साधक को सत्य का प्रकाश और सटीक मार्गदर्शन प्रदान करना।'
+                  )}"
+                </p>
+              </div>
 
-                <div className={cn(isDesktopView ? "px-0" : "px-12")}>
-                  <button
-                    onClick={() => navigate('/services')}
-                    type="button"
-                    className={cn(
-                      "w-full bg-[#4272e8] hover:bg-blue-600 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-3 uppercase tracking-wider active:scale-[0.99]",
-                      isDesktopView ? "h-16 text-base sm:text-lg" : "py-3 px-4 text-sm"
-                    )}
-                  >
-                    {t('Explore Our Sacred Services', 'हमारी पवित्र सेवाओं का लाभ उठाएं')} <ArrowRight className="w-5 h-5" />
-                  </button>
-                </div>
+              {/* Sacred Services CTA - Full Width & Vertically Stacked Below */}
+              <div className="w-full max-w-3xl">
+                <button
+                  onClick={() => navigate('/services')}
+                  type="button"
+                  className={cn(
+                    "w-full bg-[#4272e8] hover:bg-blue-600 text-white font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-3 uppercase tracking-wider active:scale-[0.99] cursor-pointer",
+                    isDesktopView ? "h-20 sm:h-24 text-lg sm:text-xl" : "py-4 px-6 text-sm"
+                  )}
+                >
+                  {t('Explore Our Sacred Services', 'हमारी पवित्र सेवाओं का लाभ उठाएं')} <ArrowRight className="w-6 h-6" />
+                </button>
+              </div>
+
+              {/* Back to Home Button - Vertically Stacked Below */}
+              <div className="w-full max-w-3xl">
+                <Button
+                  onClick={() => navigate('/')}
+                  className={cn(
+                    "w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold rounded-2xl transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-3 active:scale-95 cursor-pointer",
+                    isDesktopView ? "h-18 sm:h-20 text-lg sm:text-xl" : "h-12 text-sm rounded-lg"
+                  )}
+                >
+                  <ArrowRight className="w-6 h-6 rotate-180" />
+                  {t('Back to Home', 'होम पर वापस जाएं')}
+                </Button>
               </div>
             </div>
-          </div>
-
-          <div className={cn("w-full mb-8", isDesktopView ? "px-8 mt-12" : "px-16 mt-8")}>
-            <Button
-              onClick={() => navigate('/')}
-              className={cn(
-                "w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold rounded-2xl transition-all shadow-md hover:shadow-xl flex items-center justify-center gap-3 active:scale-95",
-                isDesktopView ? "h-16 text-base sm:text-lg" : "h-11 text-sm rounded-lg"
-              )}
-            >
-              <ArrowRight className="w-5 h-5 rotate-180" />
-              {t('Back to Home', 'होम पर वापस जाएं')}
-            </Button>
           </div>
         </div>
       </div>
