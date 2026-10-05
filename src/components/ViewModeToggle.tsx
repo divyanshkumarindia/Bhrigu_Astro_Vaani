@@ -16,7 +16,7 @@ export const ViewModeToggle: React.FC<ViewModeToggleProps> = ({ className }) => 
     <button
       type="button"
       onClick={toggleViewMode}
-      title={isDesktopView ? t('Switch to Mobile View', 'मोबाइल दृश्य पर स्विच करें') : t('Switch to Desktop View', 'डेस्कटॉप दृश्य पर स्विच करें')}
+      title={isDesktopView ? t('Switch to Mobile View', 'मोबाइल दृश्य पर स्विच करें') : t('Switch to Website View', 'वेबसाइट दृश्य पर स्विच करें')}
       className={cn(
         "flex-shrink-0 bg-blue-50/70 hover:bg-blue-100/70 active:scale-95 backdrop-blur-sm px-2.5 sm:px-3 py-1.5 rounded-lg flex items-center gap-1.5 sm:gap-2 text-blue-700 text-[11px] sm:text-[13px] font-bold transition-all border border-blue-200/50 shadow-sm hover:shadow cursor-pointer select-none",
         className
@@ -25,7 +25,7 @@ export const ViewModeToggle: React.FC<ViewModeToggleProps> = ({ className }) => 
       {isDesktopView ? (
         <>
           <Monitor className="w-3.5 h-3.5 text-blue-600 shrink-0" />
-          <span>{t('Desktop View', 'डेस्कटॉप दृश्य')}</span>
+          <span>{t('Website View', 'वेबसाइट दृश्य')}</span>
         </>
       ) : (
         <>

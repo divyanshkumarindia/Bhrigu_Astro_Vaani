@@ -359,15 +359,18 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative flex flex-col items-center overflow-x-hidden bg-white print:bg-white">
-      {/* Unified Main Container - Header and Page Card in Perfect Symmetry */}
+      {/* Unified Main Container */}
       <div className={cn(
-        "relative z-10 w-full transition-all duration-300 ease-in-out flex flex-col items-center pt-4 sm:pt-6",
-        isDesktopView ? "max-w-6xl px-4 sm:px-8 pb-12 sm:pb-16" : "max-w-md px-4 pb-8"
+        "relative z-10 w-full transition-all duration-300 ease-in-out flex flex-col items-center",
+        isDesktopView ? "w-full pt-0 pb-16" : "max-w-md px-4 pt-4 pb-8"
       )}>
-        {/* Top Header Group - Reduced width matching card width in symmetry */}
-        <header className="w-full relative z-20 flex flex-col items-center bg-white/95 backdrop-blur-xl border border-b-0 border-blue-200/70 rounded-none overflow-hidden shadow-xl">
+        {/* Top Header Group */}
+        <header className={cn(
+          "w-full relative z-20 flex flex-col items-center bg-white/95 backdrop-blur-xl border-blue-200/70 rounded-none overflow-hidden transition-all",
+          isDesktopView ? "border-x-0 border-t-0 border-b shadow-sm" : "border border-b-0 shadow-xl"
+        )}>
           {/* Top Heading with matching amber-orange gradient and font size/bold matching KNOW YOUR DESTINY */}
-          <div className={cn("w-full transition-all text-center", isDesktopView ? "py-6 sm:py-8" : "py-4 sm:py-5")}>
+          <div className={cn("w-full transition-all text-center", isDesktopView ? "py-6 sm:py-8 max-w-7xl mx-auto px-4" : "py-4 sm:py-5 px-2")}>
             <h1 className={cn(
               "text-center font-display font-black tracking-tight leading-tight drop-shadow-md px-2 transition-all uppercase",
               "bg-gradient-to-r from-amber-500 via-orange-600 to-amber-600 bg-clip-text text-transparent",
@@ -405,13 +408,15 @@ const Index = () => {
           </div>
         </header>
 
-        {/* Main Content Area - Joined directly to the header with 0 gap */}
+        {/* Main Content Area */}
         <div className={cn(
-          "glass-card flex flex-col rounded-none border-t-0 border border-blue-300/50 bg-white-300/40 backdrop-blur-xl shadow-2xl shadow-blue-400/30 relative overflow-hidden transition-all duration-300 w-full",
-          isDesktopView ? "p-8 sm:p-12 space-y-10" : "p-4"
+          "flex flex-col rounded-none relative overflow-hidden transition-all duration-300 w-full",
+          isDesktopView 
+            ? "border-0 shadow-none bg-white p-8 sm:p-12 space-y-10 max-w-6xl mx-auto" 
+            : "glass-card border-t-0 border border-blue-300/50 bg-white-300/40 backdrop-blur-xl shadow-2xl shadow-blue-400/30 p-4"
         )}>
 
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 opacity-80" />
+          <div className={cn("absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 opacity-80", isDesktopView && "hidden")} />
 
           <div className="w-full">
             {/* Main Content Area */}

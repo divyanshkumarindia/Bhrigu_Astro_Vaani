@@ -642,22 +642,22 @@ Time: ${bookingData.timestamp}
   };
 
   return (
-    <div className="min-h-screen relative flex flex-col items-center py-8 overflow-x-hidden bg-white">
+    <div className="min-h-screen relative flex flex-col items-center overflow-x-hidden bg-white">
       <div className={cn(
-        "relative z-10 w-full transition-all duration-300 ease-in-out",
-        isDesktopView ? "max-w-6xl px-4 sm:px-8 py-10 sm:py-16" : "max-w-md px-4 py-4"
+        "relative z-10 w-full transition-all duration-300 ease-in-out flex flex-col items-center",
+        isDesktopView ? "w-full pt-0 pb-16" : "max-w-md px-4 pt-4 pb-8"
       )}>
-        <div className={cn(
-          "glass-card flex flex-col rounded-none border border-blue-400 border-opacity-30 bg-white bg-opacity-95 backdrop-blur-xl shadow-2xl shadow-blue-500 shadow-opacity-20 overflow-hidden min-h-[700px] h-auto transition-all",
-          isDesktopView ? "p-8 sm:p-14 space-y-10" : ""
+        {/* Top Header Group */}
+        <header className={cn(
+          "w-full relative z-20 flex flex-col items-center bg-white/95 backdrop-blur-xl border-blue-200/70 rounded-none overflow-hidden transition-all",
+          isDesktopView ? "border-x-0 border-t-0 border-b shadow-sm" : "border border-b-0 shadow-xl"
         )}>
-          
           {/* Header Block */}
           <div className={cn(
             "bg-[#4272e8] border-b-[3px] border-white shadow-md w-full relative z-20 transition-all",
             isDesktopView ? "py-5 sm:py-6 px-8" : "py-4 px-4"
           )}>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between max-w-7xl mx-auto w-full">
               <button 
                 onClick={() => navigate('/')}
                 className={cn(
@@ -680,12 +680,14 @@ Time: ${bookingData.timestamp}
           </div>
 
           {/* Subheader bar for consistency */}
-          <NavigationLinks />
+          <div className="w-full">
+            <NavigationLinks className="w-full" />
+          </div>
 
           {/* Toggle Row */}
           <div className={cn(
-            "w-full flex flex-wrap items-center justify-center transition-all",
-            isDesktopView ? "py-6 px-6 gap-4" : "py-3 px-3 sm:px-5 gap-3"
+            "w-full flex flex-wrap items-center justify-center transition-all bg-gradient-to-b from-blue-50/50 to-white/40 border-b border-blue-100/60",
+            isDesktopView ? "py-4 px-6 gap-4" : "py-2.5 px-3 gap-2.5"
           )}>
             <ViewModeToggle />
             <LanguageToggle
@@ -714,7 +716,15 @@ Time: ${bookingData.timestamp}
               <span>Contact</span>
             </button>
           </div>
+        </header>
 
+        {/* Main Content Card / Website Section */}
+        <div className={cn(
+          "flex flex-col rounded-none relative overflow-hidden transition-all duration-300 w-full",
+          isDesktopView
+            ? "border-0 shadow-none bg-white p-6 sm:p-12 space-y-10 max-w-6xl mx-auto"
+            : "glass-card border-t-0 border border-blue-400 border-opacity-30 bg-white bg-opacity-95 backdrop-blur-xl shadow-2xl shadow-blue-500 shadow-opacity-20 overflow-hidden min-h-[700px] h-auto"
+        )}>
           {/* Stepper container */}
           <div className={cn(
             "w-full transition-all",

@@ -19,7 +19,11 @@ export const ViewModeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     } catch {
       // ignore
     }
-    // Default to desktop view as requested by user
+    // Auto-detect based on screen width if not previously set
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      return 'mobile';
+    }
+    // Default to desktop/website view for Windows and Mac
     return 'desktop';
   });
 
