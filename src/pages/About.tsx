@@ -129,20 +129,40 @@ const About = () => {
                 {t('About Our Heritage', 'हमारी विरासत के बारे में')}
               </h1>
 
-              <div className="mt-8 flex flex-col items-center gap-6 w-full px-4">
-                <img
-                  src="/maharishi_bhrigu.png"
-                  alt="Maharishi Bhrigu"
-                  className="w-[200px] sm:w-[240px] rounded-xl shadow-2xl border-2 border-blue-100/50 object-cover aspect-square"
-                />
+              <div className={cn(
+                "mt-8 w-full px-4",
+                isDesktopView 
+                  ? "grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-center" 
+                  : "flex flex-col items-center gap-6"
+              )}>
+                <div className="flex flex-col items-center group w-full">
+                  <div className={cn(
+                    "overflow-hidden rounded-2xl shadow-2xl border-4 border-blue-200/60 bg-white/40 backdrop-blur-sm transition-all duration-500 group-hover:shadow-blue-500/20 group-hover:border-blue-300 mx-auto",
+                    isDesktopView ? "w-full max-w-sm aspect-square" : "w-64 sm:w-72 aspect-square"
+                  )}>
+                    <img
+                      src="/maharishi_bhrigu.png"
+                      alt="Maharishi Bhrigu"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <p className="mt-3 text-xs sm:text-sm text-blue-700 font-bold uppercase tracking-widest">
+                    {t('Maharishi Bhrigu', 'महर्षि भृगु')}
+                  </p>
+                </div>
                 
-                <div className="flex flex-col items-center">
-                  <img
-                    src="/ancient_book.png"
-                    alt="Bhrigu Nandi Nadi Astrology Book"
-                    className="w-[200px] sm:w-[240px] rounded-xl shadow-2xl border-2 border-blue-100/50 transform hover:scale-105 transition-transform duration-500"
-                  />
-                  <p className="mt-2 text-[10px] sm:text-[11px] text-blue-600 font-bold uppercase tracking-widest opacity-80">
+                <div className="flex flex-col items-center group w-full">
+                  <div className={cn(
+                    "overflow-hidden rounded-2xl shadow-2xl border-4 border-blue-200/60 bg-white/40 backdrop-blur-sm transition-all duration-500 group-hover:shadow-blue-500/20 group-hover:border-blue-300 mx-auto",
+                    isDesktopView ? "w-full max-w-sm aspect-square" : "w-64 sm:w-72 aspect-square"
+                  )}>
+                    <img
+                      src="/ancient_book.png"
+                      alt="Bhrigu Nandi Nadi Astrology Book"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <p className="mt-3 text-xs sm:text-sm text-blue-700 font-bold uppercase tracking-widest">
                     {t('Sacred Ancient Manuscript', 'पवित्र प्राचीन पांडुलिपि')}
                   </p>
                 </div>

@@ -129,9 +129,43 @@ const Vision = () => {
                 {t('Our Future Vision', 'हमारा भविष्य का दृष्टिकोण')}
               </h1>
 
-              <div className="mt-8 flex justify-center">
-                <div className="p-4 bg-orange-100 rounded-full shadow-lg shadow-orange-200">
-                  <Target className="w-12 h-12 text-[#EA580C]" />
+              {/* Both Sacred Pictures Sized According to Page View */}
+              <div className={cn(
+                "mt-8 w-full px-4",
+                isDesktopView 
+                  ? "grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-center" 
+                  : "flex flex-col items-center gap-6"
+              )}>
+                <div className="flex flex-col items-center group w-full">
+                  <div className={cn(
+                    "overflow-hidden rounded-2xl shadow-2xl border-4 border-orange-200/70 bg-white/60 backdrop-blur-sm transition-all duration-500 group-hover:shadow-orange-500/20 group-hover:border-orange-400 mx-auto",
+                    isDesktopView ? "w-full max-w-sm aspect-square" : "w-64 sm:w-72 aspect-square"
+                  )}>
+                    <img
+                      src="/maharishi_bhrigu.png"
+                      alt="Maharishi Bhrigu"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <p className="mt-3 text-xs sm:text-sm text-orange-700 font-bold uppercase tracking-widest">
+                    {t('Maharishi Bhrigu', 'महर्षि भृगु')}
+                  </p>
+                </div>
+                
+                <div className="flex flex-col items-center group w-full">
+                  <div className={cn(
+                    "overflow-hidden rounded-2xl shadow-2xl border-4 border-orange-200/70 bg-white/60 backdrop-blur-sm transition-all duration-500 group-hover:shadow-orange-500/20 group-hover:border-orange-400 mx-auto",
+                    isDesktopView ? "w-full max-w-sm aspect-square" : "w-64 sm:w-72 aspect-square"
+                  )}>
+                    <img
+                      src="/ancient_book.png"
+                      alt="Bhrigu Nandi Nadi Astrology Book"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <p className="mt-3 text-xs sm:text-sm text-orange-700 font-bold uppercase tracking-widest">
+                    {t('Sacred Ancient Manuscript', 'पवित्र प्राचीन पांडुलिपि')}
+                  </p>
                 </div>
               </div>
 
@@ -148,7 +182,7 @@ const Vision = () => {
 
                 <section className="bg-orange-50 bg-opacity-50 p-6 rounded-2xl border border-orange-100">
                   <h3 className="font-bold text-orange-800 text-lg mb-4">{t('Core Strategic Goals', 'मुख्य रणनीतिक लक्ष्य')}</h3>
-                  <div className="grid grid-cols-1 gap-4">
+                  <div className={cn("grid gap-4", isDesktopView ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1")}>
                     {values.map((val, idx) => (
                       <div key={idx} className="bg-white bg-opacity-80 p-4 rounded-xl shadow-sm border border-orange-100 flex items-start gap-3">
                         <div className="shrink-0 mt-1">{val.icon}</div>
