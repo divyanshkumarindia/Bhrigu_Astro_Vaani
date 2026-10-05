@@ -1014,7 +1014,7 @@ Time: ${bookingData.timestamp}
                                 <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{t('Selected Services', 'चुनी गई सेवाएँ')}</span>
                                 <div className="flex flex-col gap-1.5">
                                    {selectedServices.map(s => (
-                                     <div key={s.id} className="text-[12px] font-bold text-slate-700 capitalize leading-relaxed border-b border-slate-50 pb-1 last:border-0 uppercase tracking-tight">
+                                     <div key={s.id} className="text-[12px] font-bold text-slate-700 leading-relaxed border-b border-slate-50 pb-1 last:border-0 uppercase tracking-tight">
                                        • {t(s.title, s.title)}
                                      </div>
                                    ))}
