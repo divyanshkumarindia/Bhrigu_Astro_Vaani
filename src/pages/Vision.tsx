@@ -4,11 +4,15 @@ import { Button } from '@/components/ui/button';
 import { StarField } from '@/components/StarField';
 import { Globe, Eye, ChevronDown, CheckCircle2, ArrowRight, Target, Lightbulb, TrendingUp, Handshake, Home, Info, Sparkles, PhoneCall } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useViewMode } from '@/contexts/ViewModeContext';
 import { LanguageToggle } from '@/components/LanguageToggle';
+import { ViewModeToggle } from '@/components/ViewModeToggle';
+import { cn } from '@/lib/utils';
 
 const Vision = () => {
   const navigate = useNavigate();
   const { t } = useLanguage();
+  const { isDesktopView } = useViewMode();
 
   const values = [
     {
@@ -37,22 +41,37 @@ const Vision = () => {
     <div className="min-h-screen relative flex items-center justify-center overflow-hidden bg-slate-950">
       <StarField count={100} />
 
-      <div className="relative z-10 w-full max-w-md px-4 py-8">
-        <div className="glass-card flex flex-col rounded-3xl border border-blue-300 border-opacity-50 bg-white bg-opacity-90 backdrop-blur-xl shadow-2xl shadow-blue-400 shadow-opacity-30 relative overflow-hidden">
+      <div className={cn(
+        "relative z-10 w-full transition-all duration-300 ease-in-out",
+        isDesktopView ? "max-w-6xl px-4 sm:px-8 py-6 sm:py-10" : "max-w-md px-4 py-8"
+      )}>
+        <div className={cn(
+          "glass-card flex flex-col rounded-3xl border border-blue-300 border-opacity-50 bg-white bg-opacity-90 backdrop-blur-xl shadow-2xl shadow-blue-400 shadow-opacity-30 relative overflow-hidden transition-all duration-300",
+          isDesktopView ? "p-6 sm:p-8" : ""
+        )}>
 
           <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-orange-400 via-[#EA580C] to-red-500 opacity-80" />
 
           {/* Header Group */}
           <div className="relative z-10 flex flex-col">
             <div className="py-3 w-full">
-             <h2 className="text-blue-700 text-center font-serif text-lg sm:text-xl md:text-2xl font-bold tracking-wider drop-shadow-md px-2">
+             <h2 className={cn(
+                "text-blue-700 text-center font-serif font-bold tracking-wider drop-shadow-md px-2 transition-all",
+                isDesktopView ? "text-2xl sm:text-3xl md:text-4xl" : "text-lg sm:text-xl md:text-2xl"
+              )}>
                 BHRIGU NANDI ASTROLOGY
               </h2>
             </div>
 
             {/* Navigation links */}
-            <div className="bg-[#4272e8] w-full py-2.5 px-3 sm:px-5 flex items-center space-x-2 sm:justify-between border-b-[3px] border-white border-opacity-90 shadow-lg overflow-x-auto no-scrollbar">
-              <div className="flex gap-4 sm:gap-5 text-white text-[11px] sm:text-[13px] font-bold tracking-wide whitespace-nowrap">
+            <div className={cn(
+              "bg-[#4272e8] w-full py-2.5 px-3 sm:px-5 flex items-center border-b-[3px] border-white border-opacity-90 shadow-lg overflow-x-auto no-scrollbar",
+              isDesktopView ? "justify-center" : "space-x-2 sm:justify-between"
+            )}>
+              <div className={cn(
+                "flex text-white font-bold tracking-wide whitespace-nowrap",
+                isDesktopView ? "gap-8 sm:gap-12 text-sm sm:text-base" : "gap-4 sm:gap-5 text-[11px] sm:text-[13px]"
+              )}>
                 <button
                   onClick={() => navigate('/')}
                   type="button"
@@ -88,16 +107,17 @@ const Vision = () => {
               </div>
             </div>
 
-            {/* Language and Currency Toggles Row */}
-            <div className="w-full py-3 px-3 sm:px-5 flex items-center justify-center gap-3">
+            {/* Language, View Mode and Currency Toggles Row */}
+            <div className="w-full py-3 px-3 sm:px-5 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+              <ViewModeToggle />
               <LanguageToggle 
                 className="flex-shrink-0"
-                triggerClassName="bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-blue-700 text-[11px] sm:text-[13px] font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0"
+                triggerClassName="bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-blue-700 text-[11px] sm:text-[13px] font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
               />
               <button 
                 onClick={() => navigate('/contact')}
                 type="button" 
-                className="flex-shrink-0 bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-blue-700 text-[11px] sm:text-[13px] font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0"
+                className="flex-shrink-0 bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-blue-700 text-[11px] sm:text-[13px] font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
               >
                 <PhoneCall className="w-3.5 h-3.5" />
                 <span>Contact</span>

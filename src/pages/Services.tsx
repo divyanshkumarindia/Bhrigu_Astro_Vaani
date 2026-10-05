@@ -4,30 +4,49 @@ import { Button } from '@/components/ui/button';
 import { StarField } from '@/components/StarField';
 import { Globe, ArrowLeft, Eye, ChevronDown, CheckCircle2, ArrowRight, Sparkles, Heart, Briefcase, Shield, Zap, Info, Home, PhoneCall } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useViewMode } from '@/contexts/ViewModeContext';
 import { LanguageToggle } from '@/components/LanguageToggle';
 import { CurrencyToggle } from '@/components/CurrencyToggle';
+import { ViewModeToggle } from '@/components/ViewModeToggle';
+import { cn } from '@/lib/utils';
 
 const Services = () => {
   const navigate = useNavigate();
   const { t } = useLanguage();
+  const { isDesktopView } = useViewMode();
 
   return (
     <div className="min-h-screen relative flex items-center justify-center overflow-hidden bg-slate-950">
       <StarField count={100} />
 
-      <div className="relative z-10 w-full max-w-md px-4 py-8">
-        <div className="glass-card flex flex-col rounded-3xl border border-blue-300 border-opacity-50 bg-white bg-opacity-90 backdrop-blur-xl shadow-2xl shadow-blue-400 shadow-opacity-30 relative overflow-hidden">
+      <div className={cn(
+        "relative z-10 w-full transition-all duration-300 ease-in-out",
+        isDesktopView ? "max-w-6xl px-4 sm:px-8 py-6 sm:py-10" : "max-w-md px-4 py-8"
+      )}>
+        <div className={cn(
+          "glass-card flex flex-col rounded-3xl border border-blue-300 border-opacity-50 bg-white bg-opacity-90 backdrop-blur-xl shadow-2xl shadow-blue-400 shadow-opacity-30 relative overflow-hidden transition-all duration-300",
+          isDesktopView ? "p-6 sm:p-8" : ""
+        )}>
           {/* Header Group matching Home Page */}
           <div className="relative z-20 flex flex-col">
             <div className="py-3 w-full">
-              <h2 className="text-blue-700 text-center font-serif text-lg sm:text-xl md:text-2xl font-bold tracking-wider drop-shadow-md px-2">
+              <h2 className={cn(
+                "text-blue-700 text-center font-serif font-bold tracking-wider drop-shadow-md px-2 transition-all",
+                isDesktopView ? "text-2xl sm:text-3xl md:text-4xl" : "text-lg sm:text-xl md:text-2xl"
+              )}>
                 BHRIGU NANDI ASTROLOGY
               </h2>
             </div>
 
             {/* Navigation links */}
-            <div className="bg-[#4272e8] w-full py-2.5 px-3 sm:px-5 flex items-center space-x-2 sm:justify-between border-b-[3px] border-white border-opacity-90 shadow-lg overflow-x-auto no-scrollbar">
-              <div className="flex gap-4 sm:gap-6 text-white text-[11px] sm:text-[13px] font-bold tracking-wide whitespace-nowrap">
+            <div className={cn(
+              "bg-[#4272e8] w-full py-2.5 px-3 sm:px-5 flex items-center border-b-[3px] border-white border-opacity-90 shadow-lg overflow-x-auto no-scrollbar",
+              isDesktopView ? "justify-center" : "space-x-2 sm:justify-between"
+            )}>
+              <div className={cn(
+                "flex text-white font-bold tracking-wide whitespace-nowrap",
+                isDesktopView ? "gap-8 sm:gap-12 text-sm sm:text-base" : "gap-4 sm:gap-6 text-[11px] sm:text-[13px]"
+              )}>
                 <button
                   onClick={() => navigate('/')}
                   type="button"
@@ -63,20 +82,21 @@ const Services = () => {
               </div>
             </div>
 
-            {/* Language and Currency Toggles Row */}
-            <div className="w-full py-3 px-3 sm:px-5 flex flex-wrap items-center justify-center gap-3">
+            {/* Language, View Mode and Currency Toggles Row */}
+            <div className="w-full py-3 px-3 sm:px-5 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+              <ViewModeToggle />
               <LanguageToggle
                 className="flex-shrink-0"
-                triggerClassName="bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-blue-700 text-[11px] sm:text-[13px] font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0"
+                triggerClassName="bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-blue-700 text-[11px] sm:text-[13px] font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
               />
               <CurrencyToggle
                 className="flex-shrink-0"
-                triggerClassName="bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-blue-700 text-[11px] sm:text-[13px] font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0"
+                triggerClassName="bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-blue-700 text-[11px] sm:text-[13px] font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
               />
               <button 
                 onClick={() => navigate('/contact')}
                 type="button" 
-                className="flex-shrink-0 bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-blue-700 text-[11px] sm:text-[13px] font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0"
+                className="flex-shrink-0 bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-blue-700 text-[11px] sm:text-[13px] font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
               >
                 <PhoneCall className="w-3.5 h-3.5" />
                 <span>Contact</span>
@@ -106,7 +126,9 @@ const Services = () => {
               {t('Comprehensive astrological solutions tailored to your unique planetary signature.', 'आपकी अद्वितीय ग्रहों की स्थिति के अनुसार व्यापक ज्योतिषीय समाधान।')}
             </p>
 
-            <div className="space-y-6">
+            <div className={cn(
+              isDesktopView ? "grid grid-cols-1 md:grid-cols-2 gap-6 space-y-0" : "space-y-6"
+            )}>
               {[
                 {
                   title: 'BIRTH CHART ANALYSIS',

@@ -30,12 +30,14 @@ import {
 
 
 import { LanguageToggle } from '@/components/LanguageToggle';
+import { ViewModeToggle } from '@/components/ViewModeToggle';
+import { useViewMode } from '@/contexts/ViewModeContext';
 import { getCityCoordinates } from '@/lib/worldLocations';
 import { generateMockKundali } from '@/lib/mockKundali';
 import { KundaliReport, Panchang, RASHI_SANSKRIT } from '@/types/astrology';
 import { Button } from '@/components/ui/button';
 import { AlertCircle } from 'lucide-react';
-import { ArrowLeft, Eye, MapPin, Download, Share2, Printer, FileText, FileType, Sparkles, Users, Combine, Star, Coins, Stethoscope, Plane, Heart, HeartHandshake, BookOpen, Gem, Calendar, BookMarked, Clock, Compass, Moon, Menu, Building2, Baby, Home, Waypoints, Scale, TrendingUp, Gavel, RotateCcw, User, Palette, Zap, Save, Globe, ChevronDown, Info, PhoneCall } from 'lucide-react';
+import { ArrowLeft, Eye, MapPin, Download, Share2, Printer, FileText, FileType, Sparkles, Users, Combine, Star, Coins, Stethoscope, Plane, Heart, HeartHandshake, BookOpen, Gem, Calendar, BookMarked, Clock, Compass, Moon, Menu, Building2, Baby, Home, Waypoints, Scale, TrendingUp, Gavel, RotateCcw, User, Palette, Zap, Save, Globe, ChevronDown, Info, PhoneCall, Monitor, Smartphone, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
@@ -45,6 +47,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const Index = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { isDesktopView } = useViewMode();
   const [isLoading, setIsLoading] = useState(false);
 
   const [report, setReport] = useState<KundaliReport | null>(null);
@@ -357,22 +360,37 @@ const Index = () => {
     <div className="min-h-screen relative flex items-center justify-center overflow-hidden bg-slate-950 print:bg-white">
       <StarField count={100} />
 
-      <div className="relative z-10 w-full max-w-md px-4 py-8">
-        <div className="glass-card flex flex-col p-4 rounded-3xl border border-blue-300/50 bg-white-300/40 backdrop-blur-xl shadow-2xl shadow-blue-400/30 relative overflow-hidden">
+      <div className={cn(
+        "relative z-10 w-full transition-all duration-300 ease-in-out",
+        isDesktopView ? "max-w-6xl px-4 sm:px-8 py-6 sm:py-10" : "max-w-md px-4 py-8"
+      )}>
+        <div className={cn(
+          "glass-card flex flex-col rounded-3xl border border-blue-300/50 bg-white-300/40 backdrop-blur-xl shadow-2xl shadow-blue-400/30 relative overflow-hidden transition-all duration-300",
+          isDesktopView ? "p-6 sm:p-8" : "p-4"
+        )}>
 
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 opacity-70" />
 
-          {/* Header Group matching Login Page */}
+          {/* Header Group */}
           <div className="relative z-10 flex flex-col">
             <div className="py-3 w-full">
-              <h2 className="text-blue-700 text-center font-serif text-lg sm:text-xl md:text-2xl font-bold tracking-wider drop-shadow-md px-2">
+              <h2 className={cn(
+                "text-blue-700 text-center font-serif font-bold tracking-wider drop-shadow-md px-2 transition-all",
+                isDesktopView ? "text-2xl sm:text-3xl md:text-4xl" : "text-lg sm:text-xl md:text-2xl"
+              )}>
                 BHRIGU NANDI ASTROLOGY
               </h2>
             </div>
 
             {/* Navigation links */}
-            <div className="bg-[#4272e8] w-full py-2.5 px-3 sm:px-5 flex items-center space-x-2 sm:justify-between border-b-[3px] border-white/90 shadow-lg overflow-x-auto no-scrollbar">
-              <div className="flex gap-4 sm:gap-6 text-white text-[11px] sm:text-[13px] font-bold tracking-wide whitespace-nowrap">
+            <div className={cn(
+              "bg-[#4272e8] w-full py-2.5 px-3 sm:px-5 flex items-center border-b-[3px] border-white/90 shadow-lg overflow-x-auto no-scrollbar",
+              isDesktopView ? "justify-center" : "space-x-2 sm:justify-between"
+            )}>
+              <div className={cn(
+                "flex text-white font-bold tracking-wide whitespace-nowrap",
+                isDesktopView ? "gap-8 sm:gap-12 text-sm sm:text-base" : "gap-4 sm:gap-6 text-[11px] sm:text-[13px]"
+              )}>
                 <button
                   onClick={() => navigate('/')}
                   type="button"
@@ -408,17 +426,19 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Language and Currency Toggles Row */}
-            <div className="w-full py-3 px-3 sm:px-5 flex items-center justify-center gap-3">
-              <button type="button" className="flex-shrink-0 bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-blue-700 text-[11px] sm:text-[13px] font-bold transition-all border border-blue-200/50">
-                <Globe className="w-3.5 h-3.5" />
-                <span>{t('Language', 'भाषा')}</span>
-                <ChevronDown className="w-3.5 h-3.5 opacity-80" />
-              </button>
+            {/* Language, View Mode and Contact Toggles Row */}
+            <div className="w-full py-3 px-3 sm:px-5 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+              {/* Toggle button on the top of the screen placed before languages dropdown menu */}
+              <ViewModeToggle />
+
+              <LanguageToggle 
+                className="flex-shrink-0"
+                triggerClassName="bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-blue-700 text-[11px] sm:text-[13px] font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
+              />
               <button 
                 onClick={() => navigate('/contact')}
                 type="button" 
-                className="flex-shrink-0 bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-blue-700 text-[11px] sm:text-[13px] font-bold transition-all border border-blue-200/50"
+                className="flex-shrink-0 bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-blue-700 text-[11px] sm:text-[13px] font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
               >
                 <PhoneCall className="w-3.5 h-3.5" />
                 <span>Contact</span>
@@ -430,15 +450,23 @@ const Index = () => {
             {/* Main Content Area */}
             <main className="relative z-0 w-full px-0">
               {!report ? (
-                <div className="w-full mt-8">
-                  <div className="mb-8 px-2">
-                    <h1 className="font-display text-xl sm:text-2xl font-bold text-blue-700 tracking-tight text-center drop-shadow-sm uppercase">
+                <div className="w-full mt-6">
+                  <div className="mb-6 px-2">
+                    <h1 className={cn(
+                      "font-display font-bold text-blue-700 tracking-tight text-center drop-shadow-sm uppercase transition-all",
+                      isDesktopView ? "text-2xl sm:text-3xl lg:text-4xl" : "text-xl sm:text-2xl"
+                    )}>
                       {t('Generate Your Kundali & Know Your Daily Horoscope', 'अपनी कुंडली बनाएं और अपना दैनिक राशिफल जानें')}
                     </h1>
                   </div>
 
-                  <div className="flex flex-col gap-2 bg-white/40 backdrop-blur-md p-3 rounded-2xl border border-blue-200/50 shadow-lg mb-8 mx-0">
-                    <div className="flex items-center justify-center gap-2">
+                  <div className={cn(
+                    "flex bg-white/40 backdrop-blur-md p-3 rounded-2xl border border-blue-200/50 shadow-lg mb-8",
+                    isDesktopView 
+                      ? "flex-row items-center justify-center gap-4 max-w-xl mx-auto" 
+                      : "flex-col gap-2 mx-0"
+                  )}>
+                    <div className="flex items-center justify-center gap-2 w-full">
                       <Button
                         variant="outline"
                         size="sm"
@@ -460,33 +488,115 @@ const Index = () => {
                             <span className="font-medium">{t('Profiles', 'प्रोफाइल')}</span>
                           </Button>
                         </SheetTrigger>
-...
+                        <SheetContent side="right" className="w-[90%] sm:w-[450px] bg-background/95 backdrop-blur-xl border-border/50">
+                          <SheetHeader className="mb-6">
+                            <SheetTitle className="text-2xl font-display text-primary flex items-center gap-2">
+                              <Users className="w-6 h-6" />
+                              {t('Saved Profiles', 'सहेजी गई प्रोफ़ाइल')}
+                            </SheetTitle>
+                            <SheetDescription>
+                              {t('View and select your saved birth details alphabetically', 'अपने सहेजे गए जन्म विवरण को वर्णानुक्रम में देखें और चुनें')}
+                            </SheetDescription>
+                          </SheetHeader>
+                          <ProfileList onSelectProfile={handleSelectProfile} />
+                        </SheetContent>
                       </Sheet>
                     </div>
 
-                    <div className="flex items-center justify-center gap-2">
-                      <div className="flex-1 h-10 px-2 flex items-center border border-blue-400/20 rounded-md bg-white/50 backdrop-blur-sm hover:bg-blue-50 transition-colors">
-                        <LanguageToggle />
+                    {!isDesktopView && (
+                      <div className="flex items-center justify-center gap-2">
+                        <div className="flex-1 h-10 px-2 flex items-center border border-blue-400/20 rounded-md bg-white/50 backdrop-blur-sm hover:bg-blue-50 transition-colors">
+                          <LanguageToggle />
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
 
-                  <div className="glass-card p-4 rounded-2xl border border-blue-100/50 shadow-inner w-full">
-                    <BirthDetailsForm
-                      onSubmit={handleGenerateKundali}
-                      onDailyHoroscope={handleDailyHoroscope}
-                      isLoading={isLoading}
-                      isDailyLoading={isDailyLoading}
-                      initialDetails={formDetails}
-                      onDetailsChange={setFormDetails}
-                      country={formCountry}
-                      onCountryChange={setFormCountry}
-                      state={formState}
-                      onStateChange={setFormState}
-                      city={formCity}
-                      onCityChange={setFormCity}
-                    />
-                  </div>
+                  {isDesktopView ? (
+                    /* Desktop Layout: 2 Columns (Heritage & Form) */
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                      {/* Left Info Column */}
+                      <div className="lg:col-span-5 space-y-6">
+                        <div className="bg-white/50 backdrop-blur-md p-6 rounded-2xl border border-blue-200/50 shadow-md text-center flex flex-col items-center">
+                          <img
+                            src="/maharishi_bhrigu.png"
+                            alt="Maharishi Bhrigu"
+                            className="w-[180px] sm:w-[200px] rounded-2xl shadow-xl border-2 border-blue-400/30 object-cover aspect-square hover:scale-105 transition-transform duration-300"
+                          />
+                          <h3 className="font-serif text-xl font-bold text-blue-700 mt-4">
+                            Maharishi Bhrigu Heritage
+                          </h3>
+                          <p className="text-xs text-slate-600 mt-1">
+                            {t('Sacred Bhrigu Nandi Nadi (BNN) Calculations', 'पवित्र भृगु नंदी नाड़ी गणना')}
+                          </p>
+
+                          <div className="w-full mt-6 space-y-3 text-left">
+                            {[
+                              { title: t('Parashari & Lahiri Ayanamsha', 'पाराशरी और लहिरी अयनांश'), desc: t('High-precision astronomical planetary degrees', 'सटीक खगोलीय ग्रह अंश') },
+                              { title: t('Lagna & Chalit (D1) Charts', 'लग्न और चलित (D1) चार्ट'), desc: t('Dual chart view for true planetary house occupation', 'सटीक भाव स्थिति के लिए दोहरा चार्ट दृश्य') },
+                              { title: t('BNN Daily Transit Insights', 'बीएनएन दैनिक गोचर अंतर्दृष्टि'), desc: t('Personalized daily horoscope and astro remedies', 'व्यक्तिगत दैनिक राशिफल और वैदिक उपाय') }
+                            ].map((feature, idx) => (
+                              <div key={idx} className="flex items-start gap-3 bg-white/80 p-3 rounded-xl border border-blue-100 shadow-sm">
+                                <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                                <div>
+                                  <p className="text-xs font-bold text-blue-900">{feature.title}</p>
+                                  <p className="text-[11px] text-slate-600">{feature.desc}</p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+
+                          <div className="mt-6 p-3 rounded-xl bg-blue-50/80 border border-blue-200/60 text-left w-full">
+                            <p className="text-[11px] text-blue-800 font-semibold flex items-center gap-1.5">
+                              <Sparkles className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                              {t('Pro Tip for Accuracy:', 'सटीकता के लिए सुझाव:')}
+                            </p>
+                            <p className="text-[11px] text-slate-600 mt-1">
+                              {t('Accurate birth time ensures precise Lagna (Ascendant) & Bhava Chalit chart calculation.', 'सटीक जन्म समय से सही लग्न एवं भाव चलित चार्ट प्राप्त होता है।')}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Right Form Column */}
+                      <div className="lg:col-span-7">
+                        <div className="glass-card p-6 sm:p-8 rounded-2xl border border-blue-100/50 shadow-inner w-full">
+                          <BirthDetailsForm
+                            onSubmit={handleGenerateKundali}
+                            onDailyHoroscope={handleDailyHoroscope}
+                            isLoading={isLoading}
+                            isDailyLoading={isDailyLoading}
+                            initialDetails={formDetails}
+                            onDetailsChange={setFormDetails}
+                            country={formCountry}
+                            onCountryChange={setFormCountry}
+                            state={formState}
+                            onStateChange={setFormState}
+                            city={formCity}
+                            onCityChange={setFormCity}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    /* Mobile Form Layout */
+                    <div className="glass-card p-4 rounded-2xl border border-blue-100/50 shadow-inner w-full">
+                      <BirthDetailsForm
+                        onSubmit={handleGenerateKundali}
+                        onDailyHoroscope={handleDailyHoroscope}
+                        isLoading={isLoading}
+                        isDailyLoading={isDailyLoading}
+                        initialDetails={formDetails}
+                        onDetailsChange={setFormDetails}
+                        country={formCountry}
+                        onCountryChange={setFormCountry}
+                        state={formState}
+                        onStateChange={setFormState}
+                        city={formCity}
+                        onCityChange={setFormCity}
+                      />
+                    </div>
+                  )}
 
                   <p className="text-center text-[10px] text-slate-500 mt-6 max-w-sm mx-auto leading-tight italic">
                     {t('Uses Parashari system with Lahiri (Chitra Paksha) Ayanamsha for accurate planetary positions', 'सटीक ग्रह स्थिति के लिए लहिरी (चित्रा पक्ष) अयनांश के साथ पाराशरी प्रणाली का उपयोग करता है')}
@@ -518,7 +628,10 @@ const Index = () => {
                       </div>
                     </div>
 
-                    <div className="flex flex-col gap-3 bg-white/40 backdrop-blur-md p-4 rounded-2xl border border-blue-200/50 shadow-lg print:hidden w-full">
+                    <div className={cn(
+                      "flex gap-3 bg-white/40 backdrop-blur-md p-4 rounded-2xl border border-blue-200/50 shadow-lg print:hidden w-full",
+                      isDesktopView ? "flex-row items-center justify-center max-w-2xl mx-auto flex-wrap" : "flex-col"
+                    )}>
                       <div className="flex items-center justify-center gap-3">
                         <Button
                           variant="outline"
@@ -574,7 +687,7 @@ const Index = () => {
                     </div>
                   </div>
 
-                  <div id="birth-chart-summary" className="glass-card p-3 rounded-xl border border-blue-200/50 scroll-mt-20 w-full">
+                  <div id="birth-chart-summary" className="glass-card p-3 sm:p-6 rounded-xl border border-blue-200/50 scroll-mt-20 w-full">
                     <div className="flex items-center gap-2 mb-6">
                       <FileText className="w-5 h-5 text-blue-600" />
                       <div>
@@ -595,7 +708,10 @@ const Index = () => {
                         </div>
                       )}
 
-                      <div className="flex flex-col gap-8 items-center">
+                      <div className={cn(
+                        "w-full",
+                        isDesktopView ? "grid grid-cols-1 lg:grid-cols-2 gap-8 items-start" : "flex flex-col gap-8 items-center"
+                      )}>
                         <div ref={lagnaChartRef} className="w-full">
                           <NorthIndianChart report={report} />
                         </div>
