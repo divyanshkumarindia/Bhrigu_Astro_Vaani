@@ -8,6 +8,7 @@ import { useViewMode } from '@/contexts/ViewModeContext';
 import { LanguageToggle } from '@/components/LanguageToggle';
 import { CurrencyToggle } from '@/components/CurrencyToggle';
 import { ViewModeToggle } from '@/components/ViewModeToggle';
+import { NavigationLinks } from '@/components/NavigationLinks';
 import { cn } from '@/lib/utils';
 
 const Services = () => {
@@ -42,50 +43,7 @@ const Services = () => {
             </div>
 
             {/* Navigation links */}
-            <div className={cn(
-              "bg-[#4272e8] w-full flex items-center border-b-[3px] border-white border-opacity-90 shadow-lg overflow-x-auto no-scrollbar transition-all",
-              isDesktopView 
-                ? "py-4 px-8 justify-center gap-10 sm:gap-14 text-base sm:text-lg" 
-                : "py-2.5 px-3 sm:px-5 space-x-2 sm:justify-between"
-            )}>
-              <div className={cn(
-                "flex text-white font-bold tracking-wide whitespace-nowrap",
-                isDesktopView ? "gap-10 sm:gap-14 text-base sm:text-lg" : "gap-4 sm:gap-6 text-[11px] sm:text-[13px]"
-              )}>
-                <button
-                  onClick={() => navigate('/')}
-                  type="button"
-                  className="flex items-center gap-2 hover:text-blue-200 transition-colors uppercase sm:capitalize"
-                >
-                  <Home className={isDesktopView ? "w-5 h-5" : "w-3.5 h-3.5"} />
-                  <span>Home</span>
-                </button>
-                <button
-                  onClick={() => navigate('/about')}
-                  type="button"
-                  className="flex items-center gap-2 hover:text-blue-200 transition-colors uppercase sm:capitalize"
-                >
-                  <Info className={isDesktopView ? "w-5 h-5" : "w-3.5 h-3.5"} />
-                  <span>About</span>
-                </button>
-                <button
-                  onClick={() => navigate('/vision')}
-                  type="button"
-                  className="flex items-center gap-2 hover:text-blue-200 transition-colors uppercase sm:capitalize"
-                >
-                  <Eye className={isDesktopView ? "w-5 h-5" : "w-3.5 h-3.5"} />
-                  <span>Vision</span>
-                </button>
-                <button
-                  onClick={() => navigate('/services')}
-                  type="button"
-                  className="flex items-center gap-2 text-yellow-300 border-b-2 border-yellow-300 transition-colors uppercase sm:capitalize"
-                >
-                  <Sparkles className={isDesktopView ? "w-5 h-5" : "w-3.5 h-3.5"} />
-                  <span>Astro Services</span>
-                </button>
-              </div>
-            </div>
+            <NavigationLinks />
 
             {/* Language, View Mode and Currency Toggles Row */}
             <div className={cn(
