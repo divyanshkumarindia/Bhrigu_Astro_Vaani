@@ -362,21 +362,21 @@ const Index = () => {
 
       <div className={cn(
         "relative z-10 w-full transition-all duration-300 ease-in-out",
-        isDesktopView ? "max-w-6xl px-4 sm:px-8 py-6 sm:py-10" : "max-w-md px-4 py-8"
+        isDesktopView ? "max-w-6xl px-4 sm:px-8 py-10 sm:py-16" : "max-w-md px-4 py-8"
       )}>
         <div className={cn(
           "glass-card flex flex-col rounded-3xl border border-blue-300/50 bg-white-300/40 backdrop-blur-xl shadow-2xl shadow-blue-400/30 relative overflow-hidden transition-all duration-300",
-          isDesktopView ? "p-6 sm:p-8" : "p-4"
+          isDesktopView ? "p-8 sm:p-12 space-y-10 rounded-[2.5rem]" : "p-4"
         )}>
 
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 opacity-70" />
+          <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 opacity-80" />
 
           {/* Header Group */}
           <div className="relative z-10 flex flex-col">
-            <div className="py-3 w-full">
+            <div className={cn("w-full transition-all", isDesktopView ? "py-6" : "py-3")}>
               <h2 className={cn(
                 "text-blue-700 text-center font-serif font-bold tracking-wider drop-shadow-md px-2 transition-all",
-                isDesktopView ? "text-2xl sm:text-3xl md:text-4xl" : "text-lg sm:text-xl md:text-2xl"
+                isDesktopView ? "text-3xl sm:text-4xl md:text-5xl" : "text-lg sm:text-xl md:text-2xl"
               )}>
                 BHRIGU NANDI ASTROLOGY
               </h2>
@@ -384,63 +384,66 @@ const Index = () => {
 
             {/* Navigation links */}
             <div className={cn(
-              "bg-[#4272e8] w-full py-2.5 px-3 sm:px-5 flex items-center border-b-[3px] border-white/90 shadow-lg overflow-x-auto no-scrollbar",
-              isDesktopView ? "justify-center" : "space-x-2 sm:justify-between"
+              "bg-[#4272e8] w-full flex items-center border-b-[3px] border-white/90 shadow-lg overflow-x-auto no-scrollbar transition-all",
+              isDesktopView ? "py-4 px-8 justify-center" : "py-2.5 px-3 sm:px-5 space-x-2 sm:justify-between"
             )}>
               <div className={cn(
                 "flex text-white font-bold tracking-wide whitespace-nowrap",
-                isDesktopView ? "gap-8 sm:gap-12 text-sm sm:text-base" : "gap-4 sm:gap-6 text-[11px] sm:text-[13px]"
+                isDesktopView ? "gap-10 sm:gap-14 text-base sm:text-lg" : "gap-4 sm:gap-6 text-[11px] sm:text-[13px]"
               )}>
                 <button
                   onClick={() => navigate('/')}
                   type="button"
-                  className="flex items-center gap-1.5 text-yellow-300 border-b-2 border-yellow-300 transition-colors uppercase sm:capitalize"
+                  className="flex items-center gap-2 hover:text-blue-200 transition-colors uppercase sm:capitalize"
                 >
-                  <Home className="w-3.5 h-3.5" />
+                  <Home className={cn(isDesktopView ? "w-5 h-5" : "w-3.5 h-3.5")} />
                   <span>Home</span>
                 </button>
                 <button
                   onClick={() => navigate('/about')}
                   type="button"
-                  className="flex items-center gap-1.5 hover:text-blue-200 transition-colors uppercase sm:capitalize"
+                  className="flex items-center gap-2 hover:text-blue-200 transition-colors uppercase sm:capitalize"
                 >
-                  <Info className="w-3.5 h-3.5" />
+                  <Info className={cn(isDesktopView ? "w-5 h-5" : "w-3.5 h-3.5")} />
                   <span>About</span>
                 </button>
                 <button
                   onClick={() => navigate('/vision')}
                   type="button"
-                  className="flex items-center gap-1.5 hover:text-blue-200 transition-colors uppercase sm:capitalize"
+                  className="flex items-center gap-2 hover:text-blue-200 transition-colors uppercase sm:capitalize"
                 >
-                  <Eye className="w-3.5 h-3.5" />
+                  <Eye className={cn(isDesktopView ? "w-5 h-5" : "w-3.5 h-3.5")} />
                   <span>Vision</span>
                 </button>
                 <button
                   onClick={() => navigate('/services')}
                   type="button"
-                  className="flex items-center gap-1.5 hover:text-blue-200 transition-colors uppercase sm:capitalize"
+                  className="flex items-center gap-2 hover:text-blue-200 transition-colors uppercase sm:capitalize"
                 >
-                  <Sparkles className="w-3.5 h-3.5" />
+                  <Sparkles className={cn(isDesktopView ? "w-5 h-5" : "w-3.5 h-3.5")} />
                   <span>Astro Services</span>
                 </button>
               </div>
             </div>
 
             {/* Language, View Mode and Contact Toggles Row */}
-            <div className="w-full py-3 px-3 sm:px-5 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+            <div className={cn(
+              "w-full flex flex-wrap items-center justify-center transition-all",
+              isDesktopView ? "py-5 px-6 gap-4" : "py-3 px-3 sm:px-5 gap-2.5 sm:gap-3"
+            )}>
               {/* Toggle button on the top of the screen placed before languages dropdown menu */}
               <ViewModeToggle />
 
               <LanguageToggle 
                 className="flex-shrink-0"
-                triggerClassName="bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-blue-700 text-[11px] sm:text-[13px] font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
+                triggerClassName="bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3.5 py-2 rounded-xl flex items-center gap-2 text-blue-700 text-xs sm:text-sm font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
               />
               <button 
                 onClick={() => navigate('/contact')}
                 type="button" 
-                className="flex-shrink-0 bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-blue-700 text-[11px] sm:text-[13px] font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
+                className="flex-shrink-0 bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3.5 py-2 rounded-xl flex items-center gap-2 text-blue-700 text-xs sm:text-sm font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
               >
-                <PhoneCall className="w-3.5 h-3.5" />
+                <PhoneCall className="w-4 h-4" />
                 <span>Contact</span>
               </button>
             </div>
@@ -513,45 +516,49 @@ const Index = () => {
                   </div>
 
                   {isDesktopView ? (
-                    /* Desktop Layout: 2 Columns (Heritage & Form) */
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    /* Desktop Layout: 2 Columns (Heritage & Form) Enlarged Vertically */
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch my-6">
                       {/* Left Info Column */}
-                      <div className="lg:col-span-5 space-y-6">
-                        <div className="bg-white/50 backdrop-blur-md p-6 rounded-2xl border border-blue-200/50 shadow-md text-center flex flex-col items-center">
-                          <img
-                            src="/maharishi_bhrigu.png"
-                            alt="Maharishi Bhrigu"
-                            className="w-[180px] sm:w-[200px] rounded-2xl shadow-xl border-2 border-blue-400/30 object-cover aspect-square hover:scale-105 transition-transform duration-300"
-                          />
-                          <h3 className="font-serif text-xl font-bold text-blue-700 mt-4">
-                            Maharishi Bhrigu Heritage
-                          </h3>
-                          <p className="text-xs text-slate-600 mt-1">
-                            {t('Sacred Bhrigu Nandi Nadi (BNN) Calculations', 'पवित्र भृगु नंदी नाड़ी गणना')}
-                          </p>
+                      <div className="lg:col-span-5 flex flex-col">
+                        <div className="bg-white/50 backdrop-blur-md p-8 sm:p-10 rounded-[2.5rem] border border-blue-200/50 shadow-lg text-center flex flex-col items-center justify-between flex-1 min-h-[640px]">
+                          <div className="flex flex-col items-center w-full">
+                            <div className="overflow-hidden rounded-3xl shadow-xl border-4 border-blue-300/40 bg-white/40 mb-4">
+                              <img
+                                src="/maharishi_bhrigu.png"
+                                alt="Maharishi Bhrigu"
+                                className="w-[220px] sm:w-[250px] aspect-square object-cover hover:scale-105 transition-transform duration-500"
+                              />
+                            </div>
+                            <h3 className="font-serif text-2xl font-bold text-blue-700 mt-2">
+                              Maharishi Bhrigu Heritage
+                            </h3>
+                            <p className="text-sm text-slate-600 mt-1 font-medium">
+                              {t('Sacred Bhrigu Nandi Nadi (BNN) Calculations', 'पवित्र भृगु नंदी नाड़ी गणना')}
+                            </p>
 
-                          <div className="w-full mt-6 space-y-3 text-left">
-                            {[
-                              { title: t('Parashari & Lahiri Ayanamsha', 'पाराशरी और लहिरी अयनांश'), desc: t('High-precision astronomical planetary degrees', 'सटीक खगोलीय ग्रह अंश') },
-                              { title: t('Lagna & Chalit (D1) Charts', 'लग्न और चलित (D1) चार्ट'), desc: t('Dual chart view for true planetary house occupation', 'सटीक भाव स्थिति के लिए दोहरा चार्ट दृश्य') },
-                              { title: t('BNN Daily Transit Insights', 'बीएनएन दैनिक गोचर अंतर्दृष्टि'), desc: t('Personalized daily horoscope and astro remedies', 'व्यक्तिगत दैनिक राशिफल और वैदिक उपाय') }
-                            ].map((feature, idx) => (
-                              <div key={idx} className="flex items-start gap-3 bg-white/80 p-3 rounded-xl border border-blue-100 shadow-sm">
-                                <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
-                                <div>
-                                  <p className="text-xs font-bold text-blue-900">{feature.title}</p>
-                                  <p className="text-[11px] text-slate-600">{feature.desc}</p>
+                            <div className="w-full mt-6 space-y-4 text-left">
+                              {[
+                                { title: t('Parashari & Lahiri Ayanamsha', 'पाराशरी और लहिरी अयनांश'), desc: t('High-precision astronomical planetary degrees', 'सटीक खगोलीय ग्रह अंश') },
+                                { title: t('Lagna & Chalit (D1) Charts', 'लग्न और चलित (D1) चार्ट'), desc: t('Dual chart view for true planetary house occupation', 'सटीक भाव स्थिति के लिए दोहरा चार्ट दृश्य') },
+                                { title: t('BNN Daily Transit Insights', 'बीएनएन दैनिक गोचर अंतर्दृष्टि'), desc: t('Personalized daily horoscope and astro remedies', 'व्यक्तिगत दैनिक राशिफल और वैदिक उपाय') }
+                              ].map((feature, idx) => (
+                                <div key={idx} className="flex items-start gap-4 bg-white/80 p-4 sm:p-5 rounded-2xl border border-blue-100 shadow-sm">
+                                  <CheckCircle2 className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+                                  <div>
+                                    <p className="text-sm font-bold text-blue-900">{feature.title}</p>
+                                    <p className="text-xs text-slate-600 mt-0.5">{feature.desc}</p>
+                                  </div>
                                 </div>
-                              </div>
-                            ))}
+                              ))}
+                            </div>
                           </div>
 
-                          <div className="mt-6 p-3 rounded-xl bg-blue-50/80 border border-blue-200/60 text-left w-full">
-                            <p className="text-[11px] text-blue-800 font-semibold flex items-center gap-1.5">
-                              <Sparkles className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                          <div className="mt-6 p-4 sm:p-5 rounded-2xl bg-blue-50/80 border border-blue-200/60 text-left w-full">
+                            <p className="text-xs sm:text-sm text-blue-800 font-bold flex items-center gap-2">
+                              <Sparkles className="w-4 h-4 text-blue-600 shrink-0" />
                               {t('Pro Tip for Accuracy:', 'सटीकता के लिए सुझाव:')}
                             </p>
-                            <p className="text-[11px] text-slate-600 mt-1">
+                            <p className="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed font-medium">
                               {t('Accurate birth time ensures precise Lagna (Ascendant) & Bhava Chalit chart calculation.', 'सटीक जन्म समय से सही लग्न एवं भाव चलित चार्ट प्राप्त होता है।')}
                             </p>
                           </div>
@@ -559,8 +566,8 @@ const Index = () => {
                       </div>
 
                       {/* Right Form Column */}
-                      <div className="lg:col-span-7">
-                        <div className="glass-card p-6 sm:p-8 rounded-2xl border border-blue-100/50 shadow-inner w-full">
+                      <div className="lg:col-span-7 flex flex-col">
+                        <div className="glass-card p-8 sm:p-12 rounded-[2.5rem] border border-blue-100/50 shadow-xl w-full flex-1 flex flex-col justify-center min-h-[640px]">
                           <BirthDetailsForm
                             onSubmit={handleGenerateKundali}
                             onDailyHoroscope={handleDailyHoroscope}

@@ -34,21 +34,21 @@ const Login = () => {
 
       <div className={cn(
         "relative z-10 w-full transition-all duration-300 ease-in-out",
-        isDesktopView ? "max-w-6xl px-4 sm:px-8 py-6 sm:py-10" : "max-w-md px-4 py-8"
+        isDesktopView ? "max-w-6xl px-4 sm:px-8 py-10 sm:py-16" : "max-w-md px-4 py-8"
       )}>
         <div className={cn(
           "glass-card flex flex-col justify-center rounded-3xl border border-blue-300/50 bg-white-300/40 backdrop-blur-xl shadow-2xl shadow-blue-400/30 text-center relative overflow-hidden transition-all duration-300",
-          isDesktopView ? "p-6 sm:p-10" : "p-4"
+          isDesktopView ? "p-8 sm:p-12 space-y-10" : "p-4"
         )}>
 
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 opacity-70" />
+          <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 opacity-80" />
 
           {/* Header Group */}
           <div className="relative z-10 flex flex-col">
-            <div className="py-3 w-full">
+            <div className={cn("w-full transition-all", isDesktopView ? "py-6" : "py-3")}>
               <h2 className={cn(
                 "text-blue-700 text-center font-serif font-bold tracking-wider drop-shadow-md px-2 transition-all",
-                isDesktopView ? "text-2xl sm:text-3xl md:text-4xl" : "text-lg sm:text-xl md:text-2xl"
+                isDesktopView ? "text-3xl sm:text-4xl md:text-5xl" : "text-lg sm:text-xl md:text-2xl"
               )}>
                 BHRIGU NANDI ASTROLOGY
               </h2>
@@ -56,78 +56,81 @@ const Login = () => {
 
             {/* Navigation links */}
             <div className={cn(
-              "bg-[#4272e8] w-full py-2.5 px-3 sm:px-5 flex items-center border-b-[3px] border-white/90 shadow-lg overflow-x-auto no-scrollbar",
-              isDesktopView ? "justify-center" : "space-x-2 sm:justify-between"
+              "bg-[#4272e8] w-full flex items-center border-b-[3px] border-white/90 shadow-lg overflow-x-auto no-scrollbar transition-all",
+              isDesktopView ? "py-4 px-8 justify-center" : "py-2.5 px-3 sm:px-5 space-x-2 sm:justify-between"
             )}>
               <div className={cn(
                 "flex text-white font-bold tracking-wide whitespace-nowrap",
-                isDesktopView ? "gap-8 sm:gap-12 text-sm sm:text-base" : "gap-4 sm:gap-5 text-[11px] sm:text-[13px]"
+                isDesktopView ? "gap-10 sm:gap-14 text-base sm:text-lg" : "gap-4 sm:gap-5 text-[11px] sm:text-[13px]"
               )}>
                 <button
                   onClick={() => navigate('/')}
                   type="button"
-                  className="flex items-center gap-1.5 text-yellow-300 border-b-2 border-yellow-300 transition-colors uppercase sm:capitalize"
+                  className="flex items-center gap-2 text-yellow-300 border-b-2 border-yellow-300 transition-colors uppercase sm:capitalize"
                 >
-                  <Home className="w-3.5 h-3.5" />
+                  <Home className={cn(isDesktopView ? "w-5 h-5" : "w-3.5 h-3.5")} />
                   <span>Home</span>
                 </button>
                 <button
                   onClick={() => navigate('/about')}
                   type="button"
-                  className="flex items-center gap-1.5 hover:text-blue-200 transition-colors uppercase sm:capitalize"
+                  className="flex items-center gap-2 hover:text-blue-200 transition-colors uppercase sm:capitalize"
                 >
-                  <Info className="w-3.5 h-3.5" />
+                  <Info className={cn(isDesktopView ? "w-5 h-5" : "w-3.5 h-3.5")} />
                   <span>About</span>
                 </button>
                 <button
                   onClick={() => navigate('/vision')}
                   type="button"
-                  className="flex items-center gap-1.5 hover:text-blue-200 transition-colors uppercase sm:capitalize"
+                  className="flex items-center gap-2 hover:text-blue-200 transition-colors uppercase sm:capitalize"
                 >
-                  <Eye className="w-3.5 h-3.5" />
+                  <Eye className={cn(isDesktopView ? "w-5 h-5" : "w-3.5 h-3.5")} />
                   <span>Vision</span>
                 </button>
                 <button
                   onClick={() => navigate('/services')}
                   type="button"
-                  className="flex items-center gap-1.5 hover:text-blue-200 transition-colors uppercase sm:capitalize"
+                  className="flex items-center gap-2 hover:text-blue-200 transition-colors uppercase sm:capitalize"
                 >
-                  <Sparkles className="w-3.5 h-3.5" />
+                  <Sparkles className={cn(isDesktopView ? "w-5 h-5" : "w-3.5 h-3.5")} />
                   <span>Astro Services</span>
                 </button>
               </div>
             </div>
 
             {/* Language, View and Currency Toggles Row */}
-            <div className="w-full py-3 px-3 sm:px-5 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+            <div className={cn(
+              "w-full flex flex-wrap items-center justify-center transition-all",
+              isDesktopView ? "py-5 px-6 gap-4" : "py-3 px-3 sm:px-5 gap-2.5 sm:gap-3"
+            )}>
               {/* Toggle button placed before language dropdown menu */}
               <ViewModeToggle />
 
               <LanguageToggle 
                 className="flex-shrink-0"
-                triggerClassName="bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-blue-700 text-[11px] sm:text-[13px] font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
+                triggerClassName="bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3.5 py-2 rounded-xl flex items-center gap-2 text-blue-700 text-xs sm:text-sm font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
               />
               <button 
                 onClick={() => navigate('/contact')}
                 type="button" 
-                className="flex-shrink-0 bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-blue-700 text-[11px] sm:text-[13px] font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
+                className="flex-shrink-0 bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3.5 py-2 rounded-xl flex items-center gap-2 text-blue-700 text-xs sm:text-sm font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
               >
-                <PhoneCall className="w-3.5 h-3.5" />
+                <PhoneCall className="w-4 h-4" />
                 <span>Contact</span>
               </button>
             </div>
 
             {isDesktopView ? (
-              /* Desktop View Content */
-              <div className="w-full px-2 sm:px-6 mt-6 space-y-10">
+              /* Desktop View Content - Enlarged Vertically */
+              <div className="w-full px-2 sm:px-6 mt-8 space-y-12 pb-6">
                 {/* Hero 2-column layout */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left">
-                  <div className="lg:col-span-7 space-y-6">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center text-left bg-white/40 p-8 sm:p-12 rounded-[2.5rem] border border-blue-200/50 shadow-lg min-h-[580px]">
+                  <div className="lg:col-span-7 space-y-8">
                     <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-blue-700 tracking-tight leading-tight">
                       {t('KNOW YOUR DESTINY With Bhrigu Nandi Nandi Astrology', 'वापसी पर स्वागत है')}
                     </h1>
 
-                    <p className="text-slate-700 text-sm sm:text-base leading-relaxed font-medium">
+                    <p className="text-slate-700 text-base sm:text-lg leading-relaxed font-medium">
                       {t('Expert guidance specializing in Bhrigu Nandi Nadi (BNN) and Vedic Astrology. Discover clarity for your career, marriage, health, and future.', 'भृगु नंदी नाड़ी (बीएनएन) और वैदिक ज्योतिष में विशेषज्ञ मार्गदर्शन। अपने करियर, शादी, स्वास्थ्य और भविष्य के लिए स्पष्टता खोजें।')}
                     </p>
 
@@ -136,35 +139,35 @@ const Login = () => {
                       <Button
                         type="submit"
                         disabled={isLoading}
-                        className="w-full sm:w-auto min-w-[340px] bg-gradient-to-r from-orange-400 to-amber-500 hover:from-orange-500 hover:to-amber-600 text-white font-semibold h-16 rounded-xl transition-all shadow-[0_8px_30px_rgba(234,88,12,0.35)] hover:shadow-[0_8px_30px_rgba(234,88,12,0.55)] flex items-center justify-center gap-4 active:scale-[0.98] px-6"
+                        className="w-full sm:w-auto min-w-[360px] bg-gradient-to-r from-orange-400 to-amber-500 hover:from-orange-500 hover:to-amber-600 text-white font-semibold h-20 rounded-2xl transition-all shadow-[0_8px_30px_rgba(234,88,12,0.35)] hover:shadow-[0_8px_30px_rgba(234,88,12,0.55)] flex items-center justify-center gap-4 active:scale-[0.98] px-8"
                       >
                         {isLoading ? (
-                          <div className="w-6 h-6 border-3 border-white/30 border-t-white rounded-full animate-spin" />
+                          <div className="w-7 h-7 border-3 border-white/30 border-t-white rounded-full animate-spin" />
                         ) : (
-                          <div className="flex items-center justify-between w-full gap-4">
+                          <div className="flex items-center justify-between w-full gap-5">
                             <div className="flex flex-col text-left">
-                              <span className="text-base font-bold leading-tight drop-shadow-sm">{t('Generate Your Kundali', 'अपनी कुंडली')}</span>
-                              <span className="text-xs font-bold text-white/90 leading-tight drop-shadow-sm">{t('& Know Your Daily Horoscope', '& अपना दैनिक राशिफल जानें')}</span>
+                              <span className="text-lg font-bold leading-tight drop-shadow-sm">{t('Generate Your Kundali', 'अपनी कुंडली')}</span>
+                              <span className="text-xs sm:text-sm font-semibold text-white/90 leading-tight drop-shadow-sm">{t('& Know Your Daily Horoscope', '& अपना दैनिक राशिफल जानें')}</span>
                             </div>
-                            <ArrowRight className="w-6 h-6 text-white shrink-0 ml-2" />
+                            <ArrowRight className="w-7 h-7 text-white shrink-0 ml-2" />
                           </div>
                         )}
                       </Button>
                     </form>
 
                     {/* Quick action buttons */}
-                    <div className="flex flex-wrap items-center gap-4 pt-2">
+                    <div className="flex flex-wrap items-center gap-5 pt-3">
                       <button
                         onClick={() => navigate('/services')}
                         type="button"
-                        className="bg-orange-400 text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-md hover:bg-orange-500 transition-all active:scale-95 whitespace-nowrap uppercase tracking-wider"
+                        className="bg-orange-400 text-white px-7 py-3 rounded-full font-bold text-sm sm:text-base shadow-md hover:bg-orange-500 transition-all active:scale-95 whitespace-nowrap uppercase tracking-wider"
                       >
                         {t('Explore Our Services', 'हमारी सेवाएँ देखें')}
                       </button>
                       <button
                         onClick={() => navigate('/services')}
                         type="button" 
-                        className="bg-white text-orange-500 border-2 border-orange-400 px-6 py-2.5 rounded-full font-bold text-sm shadow-md hover:bg-orange-50 transition-all active:scale-95 whitespace-nowrap uppercase tracking-wider"
+                        className="bg-white text-orange-500 border-2 border-orange-400 px-7 py-3 rounded-full font-bold text-sm sm:text-base shadow-md hover:bg-orange-50 transition-all active:scale-95 whitespace-nowrap uppercase tracking-wider"
                       >
                         {t('Book Astro Services', 'एस्ट्रो सेवाएं बुक करें')}
                       </button>
@@ -172,25 +175,29 @@ const Login = () => {
                   </div>
 
                   {/* Sacred Images right column */}
-                  <div className="lg:col-span-5 flex flex-row lg:flex-col items-center justify-center gap-6">
-                    <div className="flex flex-col items-center">
-                      <img
-                        src="/maharishi_bhrigu.png"
-                        alt="Maharishi Bhrigu"
-                        className="w-[200px] sm:w-[240px] rounded-2xl shadow-xl border-2 border-blue-400/30 object-cover aspect-square hover:scale-105 transition-transform duration-300"
-                      />
-                      <p className="mt-2 text-xs text-blue-700 font-bold uppercase tracking-wider">
+                  <div className="lg:col-span-5 flex flex-row lg:flex-col items-center justify-center gap-8 py-4">
+                    <div className="flex flex-col items-center group">
+                      <div className="overflow-hidden rounded-3xl shadow-xl border-4 border-blue-300/40 bg-white/40">
+                        <img
+                          src="/maharishi_bhrigu.png"
+                          alt="Maharishi Bhrigu"
+                          className="w-[220px] sm:w-[260px] aspect-square object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                      <p className="mt-3 text-sm text-blue-700 font-bold uppercase tracking-wider">
                         Maharishi Bhrigu
                       </p>
                     </div>
 
-                    <div className="flex flex-col items-center">
-                      <img
-                        src="/ancient_book.png"
-                        alt="Bhrigu Nandi Nadi Astrology Book"
-                        className="w-[200px] sm:w-[240px] rounded-2xl shadow-xl border-2 border-blue-400/30 hover:scale-105 transition-transform duration-300 aspect-square object-cover"
-                      />
-                      <p className="mt-2 text-xs text-blue-700 font-bold uppercase tracking-wider">
+                    <div className="flex flex-col items-center group">
+                      <div className="overflow-hidden rounded-3xl shadow-xl border-4 border-blue-300/40 bg-white/40">
+                        <img
+                          src="/ancient_book.png"
+                          alt="Bhrigu Nandi Nadi Astrology Book"
+                          className="w-[220px] sm:w-[260px] aspect-square object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                      <p className="mt-3 text-sm text-blue-700 font-bold uppercase tracking-wider">
                         {t('Sacred Scripture of BNN', 'बीएनएन का पवित्र ग्रंथ')}
                       </p>
                     </div>
@@ -198,27 +205,27 @@ const Login = () => {
                 </div>
 
                 {/* Visionary Astrologer Wide Section */}
-                <div className="bg-white/50 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-blue-200/50 shadow-md text-left">
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                    <div className="lg:col-span-5 space-y-3">
-                      <h2 className="font-serif text-2xl sm:text-3xl font-extrabold text-blue-700 tracking-tight leading-tight uppercase">
+                <div className="bg-white/50 backdrop-blur-md p-8 sm:p-12 rounded-[2.5rem] border border-blue-200/50 shadow-lg text-left space-y-6">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <div className="lg:col-span-5 space-y-4">
+                      <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold text-blue-700 tracking-tight leading-tight uppercase">
                         MEET THE VISIONARY ASTROLOGER
                       </h2>
-                      <p className="text-slate-700 text-sm leading-relaxed font-semibold">
+                      <p className="text-slate-700 text-base sm:text-lg leading-relaxed font-semibold">
                         With over 10 years of experience in Vedic Astrology Sciences, Acharya Dr. S.K. has dedicated his life to helping individuals find their true path. His mastery over Bhrigu Nandi Nadi (BNN) allows for exceptionally detailed and accurate predictions that go beyond traditional methods.
                       </p>
                     </div>
 
-                    <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
                       {[
                         "Master of BNN/Vedic Astrology & Philosophy",
                         "Expert in Bhrigu Nandi Nadi (BNN) Analysis",
                         "Specialist in Career & Financial Growth",
                         "Helping clients Globally with Most Accurate Remedies"
                       ].map((item, i) => (
-                        <div key={i} className="flex items-start gap-3 bg-white/70 p-3.5 rounded-xl border border-blue-100 shadow-sm">
-                          <CheckCircle2 className="w-5 h-5 text-[#4272e8] shrink-0 mt-0.5" />
-                          <span className="text-sm text-slate-900 font-bold">{item}</span>
+                        <div key={i} className="flex items-start gap-4 bg-white/80 p-5 rounded-2xl border border-blue-100 shadow-sm">
+                          <CheckCircle2 className="w-6 h-6 text-[#4272e8] shrink-0 mt-0.5" />
+                          <span className="text-base text-slate-900 font-bold leading-snug">{item}</span>
                         </div>
                       ))}
                     </div>

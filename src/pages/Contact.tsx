@@ -38,21 +38,24 @@ const Contact = () => {
 
       <div className={cn(
         "relative z-10 w-full transition-all duration-300 ease-in-out",
-        isDesktopView ? "max-w-6xl px-4 sm:px-8 py-6 sm:py-10" : "max-w-md px-4 py-8"
+        isDesktopView ? "max-w-6xl px-4 sm:px-8 py-10 sm:py-16" : "max-w-md px-4 py-8"
       )}>
         <div className={cn(
           "glass-card flex flex-col rounded-3xl border border-blue-300/50 bg-white-300/40 backdrop-blur-xl shadow-2xl shadow-blue-400/30 relative overflow-hidden transition-all duration-300",
-          isDesktopView ? "p-6 sm:p-8" : ""
+          isDesktopView ? "p-8 sm:p-14 space-y-10" : ""
         )}>
 
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 opacity-70" />
+          <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 opacity-70" />
 
           {/* Header Group */}
           <div className="relative z-10 flex flex-col">
-            <div className="py-3 w-full">
+            <div className={cn(
+              "w-full transition-all",
+              isDesktopView ? "py-4 sm:py-6" : "py-3"
+            )}>
               <h2 className={cn(
                 "text-blue-700 text-center font-serif font-bold tracking-wider drop-shadow-md px-2 transition-all",
-                isDesktopView ? "text-2xl sm:text-3xl md:text-4xl" : "text-lg sm:text-xl md:text-2xl"
+                isDesktopView ? "text-3xl sm:text-4xl md:text-5xl" : "text-lg sm:text-xl md:text-2xl"
               )}>
                 BHRIGU NANDI ASTROLOGY
               </h2>
@@ -60,149 +63,240 @@ const Contact = () => {
 
             {/* Navigation links */}
             <div className={cn(
-              "bg-[#4272e8] w-full py-2.5 px-3 sm:px-5 flex items-center border-b-[3px] border-white/90 shadow-lg overflow-x-auto no-scrollbar",
-              isDesktopView ? "justify-center" : "space-x-2 sm:justify-between"
+              "bg-[#4272e8] w-full flex items-center border-b-[3px] border-white/90 shadow-lg overflow-x-auto no-scrollbar transition-all",
+              isDesktopView 
+                ? "py-4 px-8 justify-center gap-10 sm:gap-14 text-base sm:text-lg" 
+                : "py-2.5 px-3 sm:px-5 space-x-2 sm:justify-between"
             )}>
               <div className={cn(
                 "flex text-white font-bold tracking-wide whitespace-nowrap",
-                isDesktopView ? "gap-8 sm:gap-12 text-sm sm:text-base" : "gap-4 sm:gap-5 text-[11px] sm:text-[13px]"
+                isDesktopView ? "gap-10 sm:gap-14 text-base sm:text-lg" : "gap-4 sm:gap-5 text-[11px] sm:text-[13px]"
               )}>
                 <button
                   onClick={() => navigate('/')}
                   type="button"
-                  className="flex items-center gap-1.5 hover:text-blue-200 transition-colors uppercase sm:capitalize"
+                  className="flex items-center gap-2 hover:text-blue-200 transition-colors uppercase sm:capitalize"
                 >
-                  <Home className="w-3.5 h-3.5" />
+                  <Home className={isDesktopView ? "w-5 h-5" : "w-3.5 h-3.5"} />
                   <span>Home</span>
                 </button>
                 <button
                   onClick={() => navigate('/about')}
                   type="button"
-                  className="flex items-center gap-1.5 hover:text-blue-200 transition-colors uppercase sm:capitalize"
+                  className="flex items-center gap-2 hover:text-blue-200 transition-colors uppercase sm:capitalize"
                 >
-                  <Info className="w-3.5 h-3.5" />
+                  <Info className={isDesktopView ? "w-5 h-5" : "w-3.5 h-3.5"} />
                   <span>About</span>
                 </button>
                 <button
                   onClick={() => navigate('/vision')}
                   type="button"
-                  className="flex items-center gap-1.5 hover:text-blue-200 transition-colors uppercase sm:capitalize"
+                  className="flex items-center gap-2 hover:text-blue-200 transition-colors uppercase sm:capitalize"
                 >
-                  <Eye className="w-3.5 h-3.5" />
+                  <Eye className={isDesktopView ? "w-5 h-5" : "w-3.5 h-3.5"} />
                   <span>Vision</span>
                 </button>
                 <button
                   onClick={() => navigate('/services')}
                   type="button"
-                  className="flex items-center gap-1.5 hover:text-blue-200 transition-colors uppercase sm:capitalize"
+                  className="flex items-center gap-2 hover:text-blue-200 transition-colors uppercase sm:capitalize"
                 >
-                  <Sparkles className="w-3.5 h-3.5" />
+                  <Sparkles className={isDesktopView ? "w-5 h-5" : "w-3.5 h-3.5"} />
                   <span>Astro Services</span>
                 </button>
               </div>
             </div>
 
             {/* Language, View Mode and Currency Toggles Row */}
-            <div className="w-full py-3 px-3 sm:px-5 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+            <div className={cn(
+              "w-full flex flex-wrap items-center justify-center transition-all",
+              isDesktopView ? "py-6 px-6 gap-4" : "py-3 px-3 sm:px-5 gap-2.5 sm:gap-3"
+            )}>
               <ViewModeToggle />
               <LanguageToggle 
                 className="flex-shrink-0"
-                triggerClassName="bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-blue-700 text-[11px] sm:text-[13px] font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
+                triggerClassName={cn(
+                  "bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm rounded-xl flex items-center gap-2 text-blue-700 font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm",
+                  isDesktopView ? "px-4 py-2 text-sm sm:text-base" : "px-3 py-1.5 text-[11px] sm:text-[13px]"
+                )}
               />
               <CurrencyToggle 
                 className="flex-shrink-0"
-                triggerClassName="bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-blue-700 text-[11px] sm:text-[13px] font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
+                triggerClassName={cn(
+                  "bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm rounded-xl flex items-center gap-2 text-blue-700 font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm",
+                  isDesktopView ? "px-4 py-2 text-sm sm:text-base" : "px-3 py-1.5 text-[11px] sm:text-[13px]"
+                )}
               />
               <button 
                 onClick={() => navigate('/contact')}
                 type="button" 
-                className="flex-shrink-0 bg-yellow-500/10 hover:bg-yellow-500/20 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-yellow-600 text-[11px] sm:text-[13px] font-bold transition-all border border-yellow-400/50 h-auto w-auto focus:ring-0 border-b-2 border-yellow-400 cursor-pointer shadow-sm"
+                className={cn(
+                  "flex-shrink-0 bg-yellow-500/10 hover:bg-yellow-500/20 backdrop-blur-sm rounded-xl flex items-center gap-2 text-yellow-600 font-bold transition-all border border-yellow-400/50 h-auto w-auto focus:ring-0 border-b-2 border-yellow-400 cursor-pointer shadow-sm",
+                  isDesktopView ? "px-4 py-2 text-sm sm:text-base" : "px-3 py-1.5 text-[11px] sm:text-[13px]"
+                )}
               >
-                <PhoneCall className="w-3.5 h-3.5 text-yellow-500" />
+                <PhoneCall className={isDesktopView ? "w-4 h-4 text-yellow-500" : "w-3.5 h-3.5 text-yellow-500"} />
                 <span>Contact</span>
               </button>
             </div>
           </div>
 
-          <div className="w-full px-4 mt-8 text-center">
-            <h1 className="font-display text-2xl sm:text-3xl font-bold text-blue-700 tracking-tight text-center drop-shadow-sm uppercase">
+          <div className="w-full px-4 mt-6 text-center">
+            <h1 className={cn(
+              "font-serif font-bold text-blue-700 tracking-tight text-center drop-shadow-sm uppercase transition-all",
+              isDesktopView ? "text-3xl sm:text-4xl md:text-5xl my-6" : "text-2xl sm:text-3xl"
+            )}>
               {t('Connect With Us', 'हमसे जुड़ें')}
             </h1>
 
+            <p className={cn(
+              "text-slate-600 max-w-2xl mx-auto leading-relaxed font-medium transition-all",
+              isDesktopView ? "text-base sm:text-lg mb-8" : "text-xs sm:text-sm mt-2 mb-6"
+            )}>
+              {t(
+                'Reach out to our Vedic scholars directly for consultations, chart queries, and guidance.',
+                'परामर्श, कुंडली प्रश्नों और मार्गदर्शन के लिए सीधे हमारे वैदिक विद्वानों से संपर्क करें।'
+              )}
+            </p>
+
             <div className={cn(
-              "mt-10",
-              isDesktopView ? "grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto" : "space-y-6"
+              "transition-all",
+              isDesktopView ? "grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto my-10" : "space-y-6 mt-10"
             )}>
               <a 
                 href="https://wa.me/919817588099"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white/60 hover:bg-white/80 transition-all backdrop-blur-sm p-5 rounded-2xl border border-emerald-200/50 shadow-sm flex flex-col items-center gap-3 group cursor-pointer"
+                className={cn(
+                  "bg-white/80 hover:bg-white transition-all backdrop-blur-sm rounded-3xl border border-emerald-200/60 shadow-lg flex flex-col items-center justify-center group cursor-pointer hover:shadow-emerald-200/50 hover:scale-[1.02]",
+                  isDesktopView ? "p-8 sm:p-10 min-h-[220px] gap-4" : "p-5 gap-3"
+                )}
               >
-                <div className="p-3 bg-emerald-100 rounded-full group-hover:scale-110 transition-transform">
-                  <WhatsAppIcon className="w-6 h-6 text-emerald-600" />
+                <div className={cn(
+                  "bg-emerald-100 rounded-full group-hover:scale-110 transition-transform",
+                  isDesktopView ? "p-4 sm:p-5" : "p-3"
+                )}>
+                  <WhatsAppIcon className={isDesktopView ? "w-8 h-8 sm:w-10 sm:h-10 text-emerald-600" : "w-6 h-6 text-emerald-600"} />
                 </div>
-                <h3 className="font-bold text-slate-800 text-lg flex items-center gap-1.5">
+                <h3 className={cn(
+                  "font-bold text-slate-800 flex items-center gap-2",
+                  isDesktopView ? "text-xl sm:text-2xl" : "text-lg"
+                )}>
                   {t('WhatsApp at', 'व्हाट्सएप करें')}
                 </h3>
-                <p className="text-emerald-700 font-bold text-base">+91 9817588099</p>
-                <p className="text-slate-500 text-xs italic">{t('Click to chat on WhatsApp', 'व्हाट्सएप पर चैट करने के लिए क्लिक करें')}</p>
+                <p className={cn(
+                  "text-emerald-700 font-bold",
+                  isDesktopView ? "text-xl sm:text-2xl" : "text-base"
+                )}>
+                  +91 9817588099
+                </p>
+                <p className={cn(
+                  "text-slate-500 italic",
+                  isDesktopView ? "text-sm sm:text-base" : "text-xs"
+                )}>
+                  {t('Click to chat on WhatsApp', 'व्हाट्सएप पर चैट करने के लिए क्लिक करें')}
+                </p>
               </a>
 
               <a 
                 href="mailto:bhriguastrovaani@gmail.com"
-                className="bg-white/60 hover:bg-white/80 transition-all backdrop-blur-sm p-5 rounded-2xl border border-blue-200/50 shadow-sm flex flex-col items-center gap-3 group cursor-pointer"
+                className={cn(
+                  "bg-white/80 hover:bg-white transition-all backdrop-blur-sm rounded-3xl border border-blue-200/60 shadow-lg flex flex-col items-center justify-center group cursor-pointer hover:shadow-blue-200/50 hover:scale-[1.02]",
+                  isDesktopView ? "p-8 sm:p-10 min-h-[220px] gap-4" : "p-5 gap-3"
+                )}
               >
-                <div className="p-3 bg-indigo-100 rounded-full group-hover:scale-110 transition-transform">
-                  <Mail className="w-6 h-6 text-indigo-600" />
+                <div className={cn(
+                  "bg-indigo-100 rounded-full group-hover:scale-110 transition-transform",
+                  isDesktopView ? "p-4 sm:p-5" : "p-3"
+                )}>
+                  <Mail className={isDesktopView ? "w-8 h-8 sm:w-10 sm:h-10 text-indigo-600" : "w-6 h-6 text-indigo-600"} />
                 </div>
-                <h3 className="font-bold text-slate-800 text-lg">{t('Email Us', 'हमें ईमेल करें')}</h3>
-                <p className="text-indigo-700 font-bold text-base break-all">bhriguastrovaani@gmail.com</p>
-                <p className="text-slate-500 text-xs italic">{t('Quick Response Guaranteed', 'शीघ्र उत्तर की गारंटी')}</p>
+                <h3 className={cn(
+                  "font-bold text-slate-800",
+                  isDesktopView ? "text-xl sm:text-2xl" : "text-lg"
+                )}>
+                  {t('Email Us', 'हमें ईमेल करें')}
+                </h3>
+                <p className={cn(
+                  "text-indigo-700 font-bold break-all",
+                  isDesktopView ? "text-lg sm:text-xl" : "text-base"
+                )}>
+                  bhriguastrovaani@gmail.com
+                </p>
+                <p className={cn(
+                  "text-slate-500 italic",
+                  isDesktopView ? "text-sm sm:text-base" : "text-xs"
+                )}>
+                  {t('Quick Response Guaranteed', 'शीघ्र उत्तर की गारंटी')}
+                </p>
               </a>
             </div>
 
             <div className={cn(
-              "mt-10 mb-8",
-              isDesktopView ? "max-w-2xl mx-auto" : ""
+              "transition-all",
+              isDesktopView ? "max-w-4xl mx-auto my-12" : "mt-10 mb-8"
             )}>
-                <form onSubmit={handleSendMessage} className="space-y-4">
-                  <div className="bg-white/40 border border-blue-200 rounded-xl p-4">
-                    <h3 className="text-blue-800 font-bold text-sm mb-4 flex items-center gap-2">
-                       <MessageSquare className="w-4 h-4" /> {t('Send a Quick Message', 'एक त्वरित संदेश भेजें')}
-                    </h3>
-                    <div className="space-y-3">
-                      <input 
-                        type="text" 
-                        placeholder={t('Your Name', 'आपका नाम')}
-                        className="w-full bg-white/60 border border-blue-100 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        required
-                      />
-                      <textarea 
-                        placeholder={t('How can we help you?', 'हम आपकी कैसे मदद कर सकते हैं?')}
-                        className="w-full bg-white/60 border border-blue-100 rounded-lg px-4 py-2 text-sm h-24 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        required
-                      ></textarea>
-                      <button
-                        type="submit"
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-lg shadow transition-all flex items-center justify-center gap-2 text-sm uppercase tracking-wider"
-                      >
-                        {t('Send Message', 'संदेश भेजें')} <Send className="w-4 h-4" />
-                      </button>
-                    </div>
+              <form onSubmit={handleSendMessage} className="space-y-6">
+                <div className={cn(
+                  "bg-white/60 border border-blue-200 rounded-3xl shadow-lg transition-all",
+                  isDesktopView ? "p-8 sm:p-12" : "p-4"
+                )}>
+                  <h3 className={cn(
+                    "text-blue-800 font-bold flex items-center justify-center gap-2 mb-6",
+                    isDesktopView ? "text-xl sm:text-2xl" : "text-sm"
+                  )}>
+                    <MessageSquare className={isDesktopView ? "w-6 h-6" : "w-4 h-4"} />
+                    {t('Send a Quick Message', 'एक त्वरित संदेश भेजें')}
+                  </h3>
+                  <div className={cn(
+                    "space-y-4",
+                    isDesktopView ? "space-y-6" : "space-y-3"
+                  )}>
+                    <input 
+                      type="text" 
+                      placeholder={t('Your Name', 'आपका नाम')}
+                      className={cn(
+                        "w-full bg-white/90 border border-blue-200 rounded-xl px-5 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all",
+                        isDesktopView ? "py-4 text-base sm:text-lg" : "py-2 text-sm"
+                      )}
+                      required
+                    />
+                    <textarea 
+                      placeholder={t('How can we help you?', 'हम आपकी कैसे मदद कर सकते हैं?')}
+                      className={cn(
+                        "w-full bg-white/90 border border-blue-200 rounded-xl px-5 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all",
+                        isDesktopView ? "h-36 sm:h-44 py-4 text-base sm:text-lg" : "h-24 py-2 text-sm"
+                      )}
+                      required
+                    ></textarea>
+                    <button
+                      type="submit"
+                      className={cn(
+                        "w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 uppercase tracking-wider cursor-pointer active:scale-[0.98]",
+                        isDesktopView ? "h-16 text-base sm:text-lg" : "py-2.5 text-sm"
+                      )}
+                    >
+                      {t('Send Message', 'संदेश भेजें')}
+                      <Send className={isDesktopView ? "w-5 h-5" : "w-4 h-4"} />
+                    </button>
                   </div>
-                </form>
-              </div>
+                </div>
+              </form>
             </div>
+          </div>
 
-
-
-          <div className="w-full px-8 mb-8 mt-8">
+          <div className={cn(
+            "w-full",
+            isDesktopView ? "max-w-4xl mx-auto mb-10 mt-6 px-4" : "px-8 mb-8 mt-8"
+          )}>
             <Button
               onClick={() => navigate('/')}
-              className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold h-16 rounded-xl transition-all shadow-[0_8px_30px_rgba(37,99,235,0.3)] hover:shadow-[0_8px_30px_rgba(37,99,235,0.5)] flex items-center justify-center gap-2 text-lg active:scale-[0.98]"
+              className={cn(
+                "w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold rounded-2xl transition-all shadow-[0_8px_30px_rgba(37,99,235,0.3)] hover:shadow-[0_8px_30px_rgba(37,99,235,0.5)] flex items-center justify-center gap-3 active:scale-[0.98]",
+                isDesktopView ? "h-18 sm:h-20 text-lg sm:text-xl" : "h-16 text-lg"
+              )}
             >
-              <ArrowRight className="w-5 h-5 rotate-180" />
+              <ArrowRight className="w-6 h-6 rotate-180" />
               {t('Back to Home', 'होम पर वापस जाएं')}
             </Button>
           </div>
