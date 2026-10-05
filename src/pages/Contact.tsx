@@ -38,7 +38,7 @@ const Contact = () => {
       {/* Unified Main Container */}
       <div className={cn(
         "relative z-10 w-full transition-all duration-300 ease-in-out flex flex-col items-center",
-        isDesktopView ? "w-full pt-0 pb-16" : "max-w-md px-4 pt-4 pb-8"
+        isDesktopView ? "w-full pt-0 pb-16" : "max-w-xl px-3 sm:px-4 pt-4 pb-8"
       )}>
         {/* Top Header Group */}
         <header className={cn(

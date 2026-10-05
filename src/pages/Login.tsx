@@ -34,7 +34,7 @@ const Login = () => {
       {/* Unified Main Container */}
       <div className={cn(
         "relative z-10 w-full transition-all duration-300 ease-in-out flex flex-col items-center",
-        isDesktopView ? "w-full pt-0 pb-16" : "max-w-md px-4 pt-4 pb-8"
+        isDesktopView ? "w-full pt-0 pb-16" : "max-w-xl px-3 sm:px-4 pt-4 pb-8"
       )}>
         {/* Top Header Group */}
         <header className={cn(
@@ -98,12 +98,12 @@ const Login = () => {
               {/* Article 1: Hero Header & Introduction */}
               <div className="w-full text-center flex flex-col items-center space-y-6 max-w-4xl mx-auto">
                 {/* Sacred Vedic Tradition Pill Badge */}
-                <div className="inline-flex items-center gap-2.5 px-6 py-2 rounded-full bg-gradient-to-r from-amber-50 via-yellow-100/90 to-amber-50 border border-amber-300/80 shadow-[0_4px_16px_rgba(245,158,11,0.2)]">
-                  <Sparkles className="w-4 h-4 text-amber-600 animate-pulse" />
-                  <span className="text-amber-800 font-serif font-black tracking-[0.2em] text-xs sm:text-sm uppercase">
+                <div className="inline-flex items-center gap-2 px-3.5 sm:px-6 py-2 rounded-full bg-gradient-to-r from-amber-50 via-yellow-100/90 to-amber-50 border border-amber-300/80 shadow-[0_4px_16px_rgba(245,158,11,0.2)] max-w-full">
+                  <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-600 animate-pulse shrink-0" />
+                  <span className="text-amber-800 font-serif font-black tracking-normal sm:tracking-[0.15em] text-[11px] sm:text-sm uppercase text-center">
                     {t('॥ श्री भृगुवे नमः ॥ • Authentic Vedic Astrology', '॥ श्री भृगुवे नमः ॥ • प्रामाणिक वैदिक ज्योतिष')}
                   </span>
-                  <Sparkles className="w-4 h-4 text-amber-600 animate-pulse" />
+                  <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-600 animate-pulse shrink-0" />
                 </div>
 
                 {/* Majestic Heading */}

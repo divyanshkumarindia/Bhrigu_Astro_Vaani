@@ -43,7 +43,7 @@ const Vision = () => {
       {/* Unified Main Container */}
       <div className={cn(
         "relative z-10 w-full transition-all duration-300 ease-in-out flex flex-col items-center",
-        isDesktopView ? "w-full pt-0 pb-16" : "max-w-md px-4 pt-4 pb-8"
+        isDesktopView ? "w-full pt-0 pb-16" : "max-w-xl px-3 sm:px-4 pt-4 pb-8"
       )}>
         {/* Top Header Group */}
         <header className={cn(
@@ -112,7 +112,7 @@ const Vision = () => {
                 </h1>
                 <p className={cn(
                   "text-slate-700 leading-relaxed font-semibold mx-auto transition-all",
-                  isDesktopView ? "text-xl sm:text-2xl max-w-3xl" : "text-sm sm:text-base max-w-md"
+                  isDesktopView ? "text-xl sm:text-2xl max-w-3xl" : "text-sm sm:text-base max-w-xl"
                 )}>
                   {t(
                     'Empowering lives through timeless astrological wisdom and personalized cosmic clarity.',

@@ -645,7 +645,7 @@ Time: ${bookingData.timestamp}
     <div className="min-h-screen relative flex flex-col items-center overflow-x-hidden bg-white">
       <div className={cn(
         "relative z-10 w-full transition-all duration-300 ease-in-out flex flex-col items-center",
-        isDesktopView ? "w-full pt-0 pb-16" : "max-w-md px-4 pt-4 pb-8"
+        isDesktopView ? "w-full pt-0 pb-16" : "max-w-xl px-3 sm:px-4 pt-4 pb-8"
       )}>
         {/* Top Header Group */}
         <header className={cn(
@@ -856,8 +856,8 @@ Time: ${bookingData.timestamp}
                             <p className="text-slate-400 text-sm italic text-center py-4">{t('No services selected.', 'कोई सेवा नहीं चुनी गई।')}</p>
                           ) : (
                             selectedServices.map(s => (
-                              <div key={s.id} className={cn("flex justify-between items-center", isDesktopView ? "text-sm py-1" : "text-xs")}>
-                                <span className="font-bold text-slate-700 uppercase pr-2 truncate">{t(s.title, s.title)}</span>
+                              <div key={s.id} className={cn("flex justify-between items-center gap-2", isDesktopView ? "text-sm py-1" : "text-xs py-0.5")}>
+                                <span className="font-bold text-slate-700 uppercase flex-1">{t(s.title, s.title)}</span>
                                 <span className="font-bold text-blue-600 shrink-0">{currencyInfo.symbol}{s.price.toFixed(2)}</span>
                               </div>
                             ))
@@ -1224,7 +1224,7 @@ Time: ${bookingData.timestamp}
                   </h2>
                   <p className={cn(
                     "text-slate-600 leading-relaxed mx-auto",
-                    isDesktopView ? "text-base max-w-md" : "text-sm max-w-[280px]"
+                    isDesktopView ? "text-base max-w-md" : "text-sm max-w-md"
                   )}>
                     {t('Thank you for choosing Bhrigu Nandi Astrology. Your birth details have been sent to our expert.', 'भृगु नंदी ज्योतिष चुनने के लिए धन्यवाद। आपके जन्म का विवरण हमारे विशेषज्ञ को भेज दिया गया है।')}
                   </p>
@@ -1240,9 +1240,9 @@ Time: ${bookingData.timestamp}
                       <span className="text-slate-400 font-bold">{t('Client', 'क्लाइंट')}</span>
                       <span className="text-slate-800 font-bold uppercase">{userDetails.fullName}</span>
                     </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-slate-400 font-bold">{t('Services', 'सेवाएं')}</span>
-                      <span className="text-slate-800 font-bold uppercase text-right max-w-sm truncate">{selectedServices.map(s => s.title).join(', ')}</span>
+                    <div className="flex justify-between items-start gap-3 text-sm">
+                      <span className="text-slate-400 font-bold shrink-0">{t('Services', 'सेवाएं')}</span>
+                      <span className="text-slate-800 font-bold uppercase text-right flex-1 break-words">{selectedServices.map(s => s.title).join(', ')}</span>
                     </div>
                   </div>
                 </div>

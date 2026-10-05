@@ -449,7 +449,7 @@ export const BirthDetailsForm: React.FC<BirthDetailsFormProps> = ({
       </div>
 
       {/* Date of Birth & Mobile No. Row */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {/* Date of Birth Column */}
         <div className="space-y-3">
           <Label className="text-foreground font-medium flex items-center gap-2">
@@ -505,7 +505,7 @@ export const BirthDetailsForm: React.FC<BirthDetailsFormProps> = ({
             Mobile Number
           </Label>
           <div className="space-y-1">
-            <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wide block">&nbsp;</span>
+            <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wide hidden sm:block">&nbsp;</span>
             <Input
               id="mobileNo"
               type="tel"
