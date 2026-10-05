@@ -361,52 +361,53 @@ const Index = () => {
     <div className="min-h-screen relative flex flex-col items-center overflow-x-hidden bg-slate-950 print:bg-white">
       <StarField count={100} />
 
-      {/* Top Header Group - Full Width of Page */}
-      <header className="w-full relative z-20 flex flex-col items-center bg-white/95 backdrop-blur-xl border-b border-blue-200/60 shadow-md">
-        {/* Top Heading with matching amber-orange gradient and font size/bold matching KNOW YOUR DESTINY */}
-        <div className={cn("w-full transition-all text-center", isDesktopView ? "py-6 sm:py-8" : "py-4 sm:py-5")}>
-          <h1 className={cn(
-            "text-center font-display font-black tracking-tight leading-tight drop-shadow-md px-2 transition-all uppercase",
-            "bg-gradient-to-r from-amber-500 via-orange-600 to-amber-600 bg-clip-text text-transparent",
-            isDesktopView ? "text-4xl sm:text-5xl lg:text-6xl" : "text-2xl sm:text-3xl"
-          )}>
-            BHRIGU NANDI ASTROLOGY
-          </h1>
-        </div>
-
-        {/* Navigation Blue Strip - 100% Full Width of Page */}
-        <div className="w-full">
-          <NavigationLinks className="w-full" />
-        </div>
-
-        {/* Language, View Mode and Contact Toggles Row */}
-        <div className={cn(
-          "w-full flex flex-wrap items-center justify-center transition-all bg-gradient-to-b from-blue-50/50 to-white/40",
-          isDesktopView ? "py-4 px-6 gap-4" : "py-2.5 px-3 gap-2.5"
-        )}>
-          {/* Toggle button on the top of the screen placed before languages dropdown menu */}
-          <ViewModeToggle />
-
-          <LanguageToggle 
-            className="flex-shrink-0"
-            triggerClassName="bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3.5 py-2 rounded-xl flex items-center gap-2 text-blue-700 text-xs sm:text-sm font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
-          />
-          <button 
-            onClick={() => navigate('/contact')}
-            type="button" 
-            className="flex-shrink-0 bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3.5 py-2 rounded-xl flex items-center gap-2 text-blue-700 text-xs sm:text-sm font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
-          >
-            <PhoneCall className="w-4 h-4 text-blue-600" />
-            <span>Contact</span>
-          </button>
-        </div>
-      </header>
-
-      {/* Main Content Area - Joined directly to the header with 0 gap */}
+      {/* Unified Main Container - Header and Page Card in Perfect Symmetry */}
       <div className={cn(
-        "relative z-10 w-full transition-all duration-300 ease-in-out flex flex-col items-center pt-0",
+        "relative z-10 w-full transition-all duration-300 ease-in-out flex flex-col items-center pt-4 sm:pt-6",
         isDesktopView ? "max-w-6xl px-4 sm:px-8 pb-12 sm:pb-16" : "max-w-md px-4 pb-8"
       )}>
+        {/* Top Header Group - Reduced width matching card width in symmetry */}
+        <header className="w-full relative z-20 flex flex-col items-center bg-white/95 backdrop-blur-xl border border-b-0 border-blue-200/70 rounded-t-3xl sm:rounded-t-[2.5rem] overflow-hidden shadow-xl">
+          {/* Top Heading with matching amber-orange gradient and font size/bold matching KNOW YOUR DESTINY */}
+          <div className={cn("w-full transition-all text-center", isDesktopView ? "py-6 sm:py-8" : "py-4 sm:py-5")}>
+            <h1 className={cn(
+              "text-center font-display font-black tracking-tight leading-tight drop-shadow-md px-2 transition-all uppercase",
+              "bg-gradient-to-r from-amber-500 via-orange-600 to-amber-600 bg-clip-text text-transparent",
+              isDesktopView ? "text-4xl sm:text-5xl lg:text-6xl" : "text-2xl sm:text-3xl"
+            )}>
+              BHRIGU NANDI ASTROLOGY
+            </h1>
+          </div>
+
+          {/* Navigation Blue Strip - 100% Full Width of Page */}
+          <div className="w-full">
+            <NavigationLinks className="w-full" />
+          </div>
+
+          {/* Language, View Mode and Contact Toggles Row */}
+          <div className={cn(
+            "w-full flex flex-wrap items-center justify-center transition-all bg-gradient-to-b from-blue-50/50 to-white/40 border-b border-blue-100/60",
+            isDesktopView ? "py-4 px-6 gap-4" : "py-2.5 px-3 gap-2.5"
+          )}>
+            {/* Toggle button on the top of the screen placed before languages dropdown menu */}
+            <ViewModeToggle />
+
+            <LanguageToggle 
+              className="flex-shrink-0"
+              triggerClassName="bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3.5 py-2 rounded-xl flex items-center gap-2 text-blue-700 text-xs sm:text-sm font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
+            />
+            <button 
+              onClick={() => navigate('/contact')}
+              type="button" 
+              className="flex-shrink-0 bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3.5 py-2 rounded-xl flex items-center gap-2 text-blue-700 text-xs sm:text-sm font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
+            >
+              <PhoneCall className="w-4 h-4 text-blue-600" />
+              <span>Contact</span>
+            </button>
+          </div>
+        </header>
+
+        {/* Main Content Area - Joined directly to the header with 0 gap */}
         <div className={cn(
           "glass-card flex flex-col rounded-b-3xl sm:rounded-b-[2.5rem] rounded-t-none border-t-0 border border-blue-300/50 bg-white-300/40 backdrop-blur-xl shadow-2xl shadow-blue-400/30 relative overflow-hidden transition-all duration-300 w-full",
           isDesktopView ? "p-8 sm:p-12 space-y-10" : "p-4"
