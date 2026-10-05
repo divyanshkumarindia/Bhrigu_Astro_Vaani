@@ -61,8 +61,8 @@ export const NavigationLinks: React.FC<NavigationLinksProps> = ({
     <nav
       aria-label="Main Navigation"
       className={cn(
-        "bg-gradient-to-r from-blue-700 via-[#4272e8] to-indigo-700 w-full flex items-center justify-center border-b-[3px] border-white/90 shadow-xl overflow-x-auto no-scrollbar transition-all",
-        isDesktopView ? "py-4 px-6 sm:px-10" : "py-2.5 px-2 sm:px-4",
+        "bg-gradient-to-r from-blue-700 via-[#3b6df5] to-indigo-700 w-full flex items-center justify-center border-t border-amber-300/40 border-b-[3px] border-amber-400/90 shadow-2xl overflow-x-auto no-scrollbar transition-all",
+        isDesktopView ? "py-4 sm:py-5 px-4 sm:px-8" : "py-3 px-2 sm:px-4",
         className
       )}
     >
@@ -80,21 +80,21 @@ export const NavigationLinks: React.FC<NavigationLinksProps> = ({
               onClick={() => navigate(item.path)}
               type="button"
               className={cn(
-                "group relative flex items-center justify-center gap-2 rounded-2xl font-bold tracking-wide transition-all duration-200 ease-out cursor-pointer select-none",
+                "group relative flex items-center justify-center gap-2.5 rounded-2xl font-bold tracking-wide transition-all duration-200 ease-out cursor-pointer select-none",
                 "active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300 focus-visible:ring-offset-2",
                 isDesktopView
-                  ? "px-6 py-3 text-base sm:text-lg min-w-[140px] shadow-sm"
-                  : "px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm shadow-xs",
+                  ? "px-7 py-3.5 text-base sm:text-lg min-w-[150px] shadow-md"
+                  : "px-3.5 py-2 text-xs sm:text-sm shadow-xs",
                 isActive
-                  ? "bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 text-slate-950 font-black shadow-[0_6px_20px_rgba(245,158,11,0.5)] border-2 border-white scale-[1.03] ring-2 ring-yellow-400/40"
-                  : "bg-white/15 hover:bg-white/30 text-white hover:text-white border border-white/30 hover:border-white/70 shadow-sm hover:shadow-lg hover:shadow-blue-900/30 backdrop-blur-md hover:-translate-y-0.5"
+                  ? "bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 text-slate-950 font-black shadow-[0_6px_24px_rgba(245,158,11,0.55)] border-2 border-white scale-[1.04] ring-2 ring-yellow-400/60"
+                  : "bg-white/15 hover:bg-white/30 text-white hover:text-white border border-white/35 hover:border-white/80 shadow-md hover:shadow-lg hover:shadow-blue-900/30 backdrop-blur-md hover:-translate-y-0.5"
               )}
             >
               <Icon
                 className={cn(
                   "transition-transform duration-200 group-hover:scale-110 shrink-0",
-                  isDesktopView ? "w-5 h-5" : "w-3.5 h-3.5",
-                  isActive ? "text-slate-950 animate-pulse" : "text-white/90 group-hover:text-white"
+                  isDesktopView ? "w-5 h-5" : "w-4 h-4",
+                  isActive ? "text-slate-950 animate-pulse" : "text-white/95 group-hover:text-white"
                 )}
               />
               <span className="capitalize">{item.label}</span>

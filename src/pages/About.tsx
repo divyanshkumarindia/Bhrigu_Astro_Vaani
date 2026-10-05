@@ -39,59 +39,65 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen relative flex items-center justify-center overflow-hidden bg-slate-950">
+    <div className="min-h-screen relative flex flex-col items-center overflow-x-hidden bg-slate-950">
       <StarField count={100} />
 
+      {/* Top Header Group - Full Width of Page */}
+      <header className="w-full relative z-20 flex flex-col items-center bg-white/95 backdrop-blur-xl border-b border-blue-200/60 shadow-md">
+        {/* Top Heading with matching amber-orange gradient and font size/bold matching KNOW YOUR DESTINY */}
+        <div className={cn("w-full transition-all text-center", isDesktopView ? "py-6 sm:py-8" : "py-4 sm:py-5")}>
+          <h1 className={cn(
+            "text-center font-display font-black tracking-tight leading-tight drop-shadow-md px-2 transition-all uppercase",
+            "bg-gradient-to-r from-amber-500 via-orange-600 to-amber-600 bg-clip-text text-transparent",
+            isDesktopView ? "text-4xl sm:text-5xl lg:text-6xl" : "text-2xl sm:text-3xl"
+          )}>
+            BHRIGU NANDI ASTROLOGY
+          </h1>
+        </div>
+
+        {/* Navigation Blue Strip - 100% Full Width of Page */}
+        <div className="w-full">
+          <NavigationLinks className="w-full" />
+        </div>
+
+        {/* Language, View Mode and Currency Toggles Row */}
+        <div className={cn(
+          "w-full flex flex-wrap items-center justify-center transition-all bg-gradient-to-b from-blue-50/50 to-white/40",
+          isDesktopView ? "py-4 px-6 gap-4" : "py-2.5 px-3 gap-2.5"
+        )}>
+          <ViewModeToggle />
+          <LanguageToggle 
+            className="flex-shrink-0"
+            triggerClassName="bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3.5 py-2 rounded-xl flex items-center gap-2 text-blue-700 text-xs sm:text-sm font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
+          />
+          <button 
+            onClick={() => navigate('/contact')}
+            type="button" 
+            className="flex-shrink-0 bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3.5 py-2 rounded-xl flex items-center gap-2 text-blue-700 text-xs sm:text-sm font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
+          >
+            <PhoneCall className="w-4 h-4 text-blue-600" />
+            <span>Contact</span>
+          </button>
+        </div>
+      </header>
+
+      {/* Main Content Area - Joined directly to the header with 0 gap */}
       <div className={cn(
-        "relative z-10 w-full transition-all duration-300 ease-in-out",
-        isDesktopView ? "max-w-6xl px-4 sm:px-8 py-10 sm:py-16" : "max-w-md px-4 py-8"
+        "relative z-10 w-full transition-all duration-300 ease-in-out flex flex-col items-center pt-0",
+        isDesktopView ? "max-w-6xl px-4 sm:px-8 pb-12 sm:pb-16" : "max-w-md px-4 pb-8"
       )}>
         <div className={cn(
-          "glass-card flex flex-col rounded-3xl border border-blue-300/50 bg-white-300/40 backdrop-blur-xl shadow-2xl shadow-blue-400/30 relative overflow-hidden transition-all duration-300",
-          isDesktopView ? "p-8 sm:p-14 space-y-12 rounded-[2.5rem]" : "p-4 sm:p-8"
+          "glass-card flex flex-col rounded-b-3xl sm:rounded-b-[2.5rem] rounded-t-none border-t-0 border border-blue-300/50 bg-white-300/40 backdrop-blur-xl shadow-2xl shadow-blue-400/30 relative overflow-hidden transition-all duration-300 w-full",
+          isDesktopView ? "p-8 sm:p-14 space-y-12" : "p-4 sm:p-8"
         )}>
 
-          <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 opacity-80" />
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 opacity-80" />
 
-          {/* Header Group */}
-          <div className="relative z-10 flex flex-col">
-            <div className={cn("w-full transition-all", isDesktopView ? "py-6" : "py-3")}>
-              <h2 className={cn(
-                "text-blue-700 text-center font-serif font-bold tracking-wider drop-shadow-md px-2 transition-all",
-                isDesktopView ? "text-3xl sm:text-4xl md:text-5xl" : "text-lg sm:text-xl md:text-2xl"
-              )}>
-                BHRIGU NANDI ASTROLOGY
-              </h2>
-            </div>
-
-            {/* Navigation links */}
-            <NavigationLinks />
-
-            {/* Language, View Mode and Currency Toggles Row */}
-            <div className={cn(
-              "w-full flex flex-wrap items-center justify-center transition-all",
-              isDesktopView ? "py-5 px-6 gap-4" : "py-3 px-3 sm:px-5 gap-2.5 sm:gap-3"
-            )}>
-              <ViewModeToggle />
-              <LanguageToggle 
-                className="flex-shrink-0"
-                triggerClassName="bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3.5 py-2 rounded-xl flex items-center gap-2 text-blue-700 text-xs sm:text-sm font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
-              />
-              <button 
-                onClick={() => navigate('/contact')}
-                type="button" 
-                className="flex-shrink-0 bg-blue-50/50 hover:bg-blue-100/50 backdrop-blur-sm px-3.5 py-2 rounded-xl flex items-center gap-2 text-blue-700 text-xs sm:text-sm font-bold transition-all border border-blue-200/50 h-auto w-auto focus:ring-0 cursor-pointer shadow-sm"
-              >
-                <PhoneCall className="w-4 h-4" />
-                <span>Contact</span>
-              </button>
-            </div>
-
-            {/* About Page Content - Strictly Vertical Above-and-Below Pattern with Enlarged Elements */}
-            <div className={cn(
-              "w-full transition-all flex flex-col items-center",
-              isDesktopView ? "space-y-16 py-10 px-4 sm:px-8" : "space-y-10 py-6 px-2"
-            )}>
+          {/* About Page Content - Strictly Vertical Above-and-Below Pattern with Enlarged Elements */}
+          <div className={cn(
+            "w-full transition-all flex flex-col items-center",
+            isDesktopView ? "space-y-16 py-6 px-4 sm:px-8" : "space-y-10 py-4 px-2"
+          )}>
               {/* Article 1: Heading */}
               <div className="w-full text-center space-y-6">
                 <h1 className={cn(
@@ -256,7 +262,6 @@ const About = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
