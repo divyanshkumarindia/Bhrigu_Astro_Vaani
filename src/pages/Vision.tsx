@@ -18,22 +18,22 @@ const Vision = () => {
     {
       title: t('Authenticity', 'प्रामाणिकता'),
       description: t('Preserving the sacred purity of Bhrigu Nandi Nadi scriptural wisdom.', 'भृगु नंदी नाड़ी के शास्त्रीय ज्ञान की पवित्र शुद्धता का संरक्षण।'),
-      icon: <CheckCircle2 className="w-6 h-6 text-blue-500" />,
+      icon: <CheckCircle2 className="w-8 h-8 sm:w-10 sm:h-10 text-blue-500" />,
     },
     {
       title: t('Global Reach', 'वैश्विक पहुंच'),
       description: t('Bringing ancient Vedic science to modern seekers across all borders.', 'सभी सीमाओं के पार आधुनिक साधकों के लिए प्राचीन वैदिक विज्ञान लाना।'),
-      icon: <Globe className="w-6 h-6 text-indigo-500" />,
+      icon: <Globe className="w-8 h-8 sm:w-10 sm:h-10 text-indigo-500" />,
     },
     {
       title: t('Clarity', 'स्पष्टता'),
       description: t('Empowering individuals with actionable insights for a brighter future.', 'उज्जवल भविष्य के लिए व्यक्तियों को क्रियाशील अंतर्दृष्टि के साथ सशक्त बनाना।'),
-      icon: <Lightbulb className="w-6 h-6 text-yellow-500" />,
+      icon: <Lightbulb className="w-8 h-8 sm:w-10 sm:h-10 text-yellow-500" />,
     },
     {
       title: t('Growth', 'विकास'),
       description: t('Guiding your journey towards spiritual and material prosperity.', 'आध्यात्मिक और भौतिक समृद्धि की ओर आपकी यात्रा का मार्गदर्शन करना।'),
-      icon: <TrendingUp className="w-6 h-6 text-green-500" />,
+      icon: <TrendingUp className="w-8 h-8 sm:w-10 sm:h-10 text-green-500" />,
     },
   ];
 
@@ -127,125 +127,185 @@ const Vision = () => {
               </button>
             </div>
 
-            <div className="w-full px-4 mt-8 text-center">
-              <h1 className={cn(
-                "font-display font-bold text-[#4272e8] tracking-tight text-center drop-shadow-sm uppercase transition-all",
-                isDesktopView ? "text-3xl sm:text-4xl mb-4" : "text-2xl sm:text-3xl"
-              )}>
-                {t('Our Future Vision', 'हमारा भविष्य का दृष्टिकोण')}
-              </h1>
-
-              {/* Both Sacred Pictures Sized According to Page View */}
-              <div className={cn(
-                "w-full px-4",
-                isDesktopView 
-                  ? "grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto items-center my-10" 
-                  : "flex flex-col items-center gap-6 mt-8"
-              )}>
-                <div className="flex flex-col items-center group w-full">
-                  <div className={cn(
-                    "overflow-hidden rounded-3xl shadow-2xl border-4 border-orange-200/70 bg-white/60 backdrop-blur-sm transition-all duration-500 group-hover:shadow-orange-500/20 group-hover:border-orange-400 mx-auto",
-                    isDesktopView ? "w-full max-w-md aspect-square" : "w-64 sm:w-72 aspect-square"
-                  )}>
-                    <img
-                      src="/maharishi_bhrigu.png"
-                      alt="Maharishi Bhrigu"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
-                  <p className="mt-3.5 text-sm sm:text-base text-orange-700 font-bold uppercase tracking-widest">
-                    {t('Maharishi Bhrigu', 'महर्षि भृगु')}
-                  </p>
-                </div>
-                
-                <div className="flex flex-col items-center group w-full">
-                  <div className={cn(
-                    "overflow-hidden rounded-3xl shadow-2xl border-4 border-orange-200/70 bg-white/60 backdrop-blur-sm transition-all duration-500 group-hover:shadow-orange-500/20 group-hover:border-orange-400 mx-auto",
-                    isDesktopView ? "w-full max-w-md aspect-square" : "w-64 sm:w-72 aspect-square"
-                  )}>
-                    <img
-                      src="/ancient_book.png"
-                      alt="Bhrigu Nandi Nadi Astrology Book"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
-                  <p className="mt-3.5 text-sm sm:text-base text-orange-700 font-bold uppercase tracking-widest">
-                    {t('Sacred Ancient Manuscript', 'पवित्र प्राचीन पांडुलिपि')}
-                  </p>
-                </div>
+            {/* Vision Page Content - Strictly Vertical Above-and-Below Pattern with Enlarged Elements */}
+            <div className={cn(
+              "w-full transition-all flex flex-col items-center",
+              isDesktopView ? "space-y-16 py-10 px-4 sm:px-8" : "space-y-10 py-6 px-2"
+            )}>
+              {/* Article 1: Heading */}
+              <div className="w-full text-center space-y-6">
+                <h1 className={cn(
+                  "font-serif font-extrabold text-[#4272e8] tracking-tight leading-tight uppercase mx-auto transition-all drop-shadow-sm",
+                  isDesktopView ? "text-4xl sm:text-5xl lg:text-6xl max-w-4xl" : "text-2xl sm:text-3xl"
+                )}>
+                  {t('Our Future Vision', 'हमारा भविष्य का दृष्टिकोण')}
+                </h1>
+                <p className={cn(
+                  "text-slate-700 leading-relaxed font-semibold mx-auto transition-all",
+                  isDesktopView ? "text-xl sm:text-2xl max-w-3xl" : "text-sm sm:text-base max-w-md"
+                )}>
+                  {t(
+                    'Empowering lives through timeless astrological wisdom and personalized cosmic clarity.',
+                    'कालातीत ज्योतिषीय ज्ञान और व्यक्तिगत ब्रह्मांडीय स्पष्टता के माध्यम से जीवन को सशक्त बनाना।'
+                  )}
+                </p>
               </div>
 
-              <div className={cn(
-                "space-y-10 text-left",
-                isDesktopView ? "my-12 max-w-4xl mx-auto" : "mt-10"
+              {/* Image 1 Card: Maharishi Bhrigu - Vertically Stacked */}
+              <div className="flex flex-col items-center group w-full max-w-2xl bg-white/40 backdrop-blur-sm rounded-3xl p-6 sm:p-10 border border-orange-200/60 shadow-md">
+                <div className={cn(
+                  "overflow-hidden rounded-3xl shadow-2xl border-4 border-orange-200/80 bg-white/60 backdrop-blur-sm transition-all duration-500 group-hover:shadow-orange-500/30 group-hover:border-orange-400 mx-auto",
+                  "w-[300px] sm:w-[400px] aspect-square"
+                )}>
+                  <img
+                    src="/maharishi_bhrigu.png"
+                    alt="Maharishi Bhrigu"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <p className="mt-5 text-xl sm:text-2xl text-orange-700 font-serif font-bold uppercase tracking-widest text-center">
+                  {t('Maharishi Bhrigu', 'महर्षि भृगु')}
+                </p>
+              </div>
+
+              {/* Image 2 Card: Sacred Ancient Manuscript - Directly Below Image 1 */}
+              <div className="flex flex-col items-center group w-full max-w-2xl bg-white/40 backdrop-blur-sm rounded-3xl p-6 sm:p-10 border border-orange-200/60 shadow-md">
+                <div className={cn(
+                  "overflow-hidden rounded-3xl shadow-2xl border-4 border-orange-200/80 bg-white/60 backdrop-blur-sm transition-all duration-500 group-hover:shadow-orange-500/30 group-hover:border-orange-400 mx-auto",
+                  "w-[300px] sm:w-[400px] aspect-square"
+                )}>
+                  <img
+                    src="/ancient_book.png"
+                    alt="Bhrigu Nandi Nadi Astrology Book"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <p className="mt-5 text-xl sm:text-2xl text-orange-700 font-serif font-bold uppercase tracking-widest text-center">
+                  {t('Sacred Ancient Manuscript', 'पवित्र प्राचीन पांडुलिपि')}
+                </p>
+              </div>
+
+              {/* Section 1: Our Vision Article Box - Vertically Stacked Below Images */}
+              <section className={cn(
+                "w-full max-w-3xl bg-white/60 backdrop-blur-md rounded-3xl border border-orange-200/60 shadow-lg text-left transition-all",
+                isDesktopView ? "p-10 sm:p-14 space-y-6" : "p-6 space-y-4"
               )}>
-                <section className={cn(
-                  "transition-all",
-                  isDesktopView ? "p-8 sm:p-12 bg-white/60 backdrop-blur-md rounded-[2.5rem] border border-orange-200/50 shadow-md" : ""
+                <h3 className={cn(
+                  "font-serif font-extrabold text-orange-800 flex items-center gap-3 uppercase tracking-tight",
+                  isDesktopView ? "text-3xl sm:text-4xl md:text-5xl" : "text-xl sm:text-2xl"
                 )}>
-                  <h3 className={cn("font-bold text-slate-800 mb-3 flex items-center gap-2.5", isDesktopView ? "text-xl sm:text-2xl text-orange-800" : "text-lg")}>
-                    <Sparkles className={cn(isDesktopView ? "w-6 h-6 text-orange-500" : "w-5 h-5 text-orange-500")} />
-                    {t('Our Vision', 'हमारा दृष्टिकोण')}
-                  </h3>
-                  <p className={cn("leading-relaxed font-medium", isDesktopView ? "text-base sm:text-lg text-slate-700" : "text-slate-600 text-sm")}>
-                    {t('To democratize access to the profound wisdom of Bhrigu Nandi Nadi Astrology, enabling every individual to navigate life\'s complexities with divine clarity and cosmic confidence.', 'भृगु नंदी नाड़ी ज्योतिष के गहन ज्ञान तक पहुंच को लोकतांत्रिक बनाना, जिससे प्रत्येक व्यक्ति ईश्वरीय स्पष्टता और ब्रह्मांडीय आत्मविश्वास के साथ जीवन की जटिलताओं को नेविगेट कर सके।')}
-                  </p>
-                </section>
+                  <Sparkles className={cn(isDesktopView ? "w-8 h-8 sm:w-10 sm:h-10 text-orange-500" : "w-6 h-6 text-orange-500")} />
+                  {t('Our Vision', 'हमारा दृष्टिकोण')}
+                </h3>
+                <p className={cn(
+                  "leading-relaxed font-semibold text-slate-700",
+                  isDesktopView ? "text-xl sm:text-2xl" : "text-sm sm:text-base"
+                )}>
+                  {t(
+                    'To democratize access to the profound wisdom of Bhrigu Nandi Nadi Astrology, enabling every individual to navigate life\'s complexities with divine clarity and cosmic confidence.',
+                    'भृगु नंदी नाड़ी ज्योतिष के गहन ज्ञान तक पहुंच को लोकतांत्रिक बनाना, जिससे प्रत्येक व्यक्ति ईश्वरीय स्पष्टता और ब्रह्मांडीय आत्मविश्वास के साथ जीवन की जटिलताओं को नेविगेट कर सके।'
+                  )}
+                </p>
+              </section>
 
-                <section className={cn(
-                  "bg-orange-50/70 p-6 rounded-3xl border border-orange-100/80 shadow-sm",
-                  isDesktopView ? "p-8 sm:p-12 rounded-[2.5rem]" : "p-6 rounded-2xl"
+              {/* Section 2: Core Strategic Goals - Vertically Stacked with No Side-by-Side Items */}
+              <section className={cn(
+                "w-full max-w-3xl bg-orange-50/80 rounded-3xl border border-orange-200/70 shadow-lg transition-all",
+                isDesktopView ? "p-10 sm:p-14 space-y-8" : "p-6 space-y-6"
+              )}>
+                <h3 className={cn(
+                  "font-serif font-extrabold text-orange-800 uppercase tracking-wide text-left",
+                  isDesktopView ? "text-2xl sm:text-3xl md:text-4xl" : "text-lg sm:text-xl"
                 )}>
-                  <h3 className={cn("font-bold text-orange-800 mb-6 uppercase tracking-wider", isDesktopView ? "text-xl sm:text-2xl" : "text-lg")}>
-                    {t('Core Strategic Goals', 'मुख्य रणनीतिक लक्ष्य')}
-                  </h3>
-                  <div className={cn("grid gap-6", isDesktopView ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1")}>
-                    {values.map((val, idx) => (
-                      <div key={idx} className={cn(
-                        "bg-white/90 rounded-2xl shadow-sm border border-orange-100 flex items-start",
-                        isDesktopView ? "p-6 gap-4" : "p-4 gap-3"
+                  {t('Core Strategic Goals', 'मुख्य रणनीतिक लक्ष्य')}
+                </h3>
+                
+                {/* 4 Strategic Goals Stacked Purely Vertically Above and Below */}
+                <div className="flex flex-col items-center gap-6 w-full">
+                  {values.map((val, idx) => (
+                    <div
+                      key={idx}
+                      className={cn(
+                        "w-full bg-white/90 rounded-3xl shadow-md border border-orange-100 flex items-center transition-all hover:shadow-xl hover:border-orange-300",
+                        isDesktopView ? "p-8 sm:p-10 gap-8" : "p-5 gap-4"
+                      )}
+                    >
+                      <div className={cn(
+                        "bg-orange-50 rounded-2xl flex-shrink-0 flex items-center justify-center",
+                        isDesktopView ? "p-5" : "p-3.5"
                       )}>
-                        <div className="shrink-0 mt-1">{val.icon}</div>
-                        <div>
-                          <h4 className={cn("font-black text-slate-800 uppercase tracking-wide", isDesktopView ? "text-sm sm:text-base" : "text-xs sm:text-sm")}>
-                            {val.title}
-                          </h4>
-                          <p className={cn("text-slate-600 mt-1.5 leading-relaxed font-medium", isDesktopView ? "text-xs sm:text-sm" : "text-[11px] sm:text-xs")}>
-                            {val.description}
-                          </p>
-                        </div>
+                        {val.icon}
                       </div>
-                    ))}
-                  </div>
-                </section>
+                      <div className="text-left space-y-1 sm:space-y-2">
+                        <h4 className={cn(
+                          "font-bold text-slate-800 uppercase tracking-wide",
+                          isDesktopView ? "text-xl sm:text-2xl" : "text-base sm:text-lg"
+                        )}>
+                          {val.title}
+                        </h4>
+                        <p className={cn(
+                          "text-slate-600 leading-relaxed font-medium",
+                          isDesktopView ? "text-base sm:text-lg" : "text-xs sm:text-sm"
+                        )}>
+                          {val.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
 
-                <section className={cn(
-                  "transition-all",
-                  isDesktopView ? "p-8 sm:p-12 bg-white/60 backdrop-blur-md rounded-[2.5rem] border border-blue-200/50 shadow-md" : "pb-10"
+              {/* Section 3: Commitment to You - Vertically Stacked Below Goals */}
+              <section className={cn(
+                "w-full max-w-3xl bg-white/60 backdrop-blur-md rounded-3xl border border-blue-200/60 shadow-lg text-left transition-all",
+                isDesktopView ? "p-10 sm:p-14 space-y-6" : "p-6 space-y-4"
+              )}>
+                <h3 className={cn(
+                  "font-serif font-extrabold text-blue-700 flex items-center gap-3 uppercase tracking-tight",
+                  isDesktopView ? "text-3xl sm:text-4xl md:text-5xl" : "text-xl sm:text-2xl"
                 )}>
-                  <h3 className={cn("font-bold text-slate-800 mb-3 flex items-center gap-2.5", isDesktopView ? "text-xl sm:text-2xl text-blue-700" : "text-lg")}>
-                    <Handshake className={cn(isDesktopView ? "w-6 h-6 text-blue-500" : "w-5 h-5 text-blue-500")} />
-                    {t('Commitment to You', 'आपके प्रति प्रतिबद्धता')}
-                  </h3>
-                  <p className={cn("leading-relaxed font-medium", isDesktopView ? "text-base sm:text-lg text-slate-700" : "text-slate-600 text-sm")}>
-                    {t('We envision a world where astrology is not used for fear-mongering, but as a sophisticated tool for personal empowerment, self-discovery, and strategic life planning.', 'हम एक ऐसी दुनिया की कल्पना करते हैं जहाँ ज्योतिष का उपयोग भय फैलाने के लिए नहीं, बल्कि व्यक्तिगत सशक्तिकरण, आत्म-खोज और रणनीतिक जीवन योजना के लिए एक परिष्कृत उपकरण के रूप में किया जाता है।')}
-                  </p>
-                </section>
+                  <Handshake className={cn(isDesktopView ? "w-8 h-8 sm:w-10 sm:h-10 text-blue-500" : "w-6 h-6 text-blue-500")} />
+                  {t('Commitment to You', 'आपके प्रति प्रतिबद्धता')}
+                </h3>
+                <p className={cn(
+                  "leading-relaxed font-semibold text-slate-700",
+                  isDesktopView ? "text-xl sm:text-2xl" : "text-sm sm:text-base"
+                )}>
+                  {t(
+                    'We envision a world where astrology is not used for fear-mongering, but as a sophisticated tool for personal empowerment, self-discovery, and strategic life planning.',
+                    'हम एक ऐसी दुनिया की कल्पना करते हैं जहाँ ज्योतिष का उपयोग भय फैलाने के लिए नहीं, बल्कि व्यक्तिगत सशक्तिकरण, आत्म-खोज और रणनीतिक जीवन योजना के लिए एक परिष्कृत उपकरण के रूप में किया जाता है।'
+                  )}
+                </p>
+              </section>
+
+              {/* Explore Sacred Services Button - Vertically Stacked Below */}
+              <div className="w-full max-w-3xl">
+                <button
+                  onClick={() => navigate('/services')}
+                  type="button"
+                  className={cn(
+                    "w-full bg-[#4272e8] hover:bg-blue-600 text-white font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-3 uppercase tracking-wider active:scale-[0.99] cursor-pointer",
+                    isDesktopView ? "h-20 sm:h-24 text-lg sm:text-xl" : "py-4 px-6 text-sm"
+                  )}
+                >
+                  {t('Explore Our Sacred Services', 'हमारी पवित्र सेवाओं का लाभ उठाएं')} <ArrowRight className="w-6 h-6" />
+                </button>
+              </div>
+
+              {/* Back to Home Button - Vertically Stacked Below */}
+              <div className="w-full max-w-3xl">
+                <Button
+                  onClick={() => navigate('/')}
+                  className={cn(
+                    "w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold rounded-2xl transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-3 active:scale-95 cursor-pointer",
+                    isDesktopView ? "h-18 sm:h-20 text-lg sm:text-xl" : "h-12 text-sm rounded-lg"
+                  )}
+                >
+                  <ArrowRight className="w-6 h-6 rotate-180" />
+                  {t('Back to Home', 'होम पर वापस जाएं')}
+                </Button>
               </div>
             </div>
-          </div>
-
-          <div className={cn("w-full mb-8", isDesktopView ? "px-8 mt-12" : "px-16 mt-8")}>
-            <Button
-              onClick={() => navigate('/')}
-              className={cn(
-                "w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold rounded-2xl transition-all shadow-md hover:shadow-xl flex items-center justify-center gap-3 active:scale-95",
-                isDesktopView ? "h-16 text-base sm:text-lg" : "h-11 text-sm rounded-lg"
-              )}
-            >
-              <ArrowRight className="w-5 h-5 rotate-180" />
-              {t('Back to Home', 'होम पर वापस जाएं')}
-            </Button>
           </div>
         </div>
       </div>
